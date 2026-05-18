@@ -1,4 +1,4 @@
-# EcoTrack Wert - MVP Sprint 1
+# EcoTrack Wert - MVP 
 
 Este pacote entrega a base do MVP alinhada à Sprint 1 do projeto:
 
