@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
 
 const initialForm = {
@@ -15,7 +14,6 @@ export default function EquipmentFormPage() {
   const [form, setForm] = useState(initialForm);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const { token } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -23,7 +21,11 @@ export default function EquipmentFormPage() {
     setError('');
 
     try {
-      await api.createEquipamento(token, { ...form, lote_id: Number(form.lote_id) });
+      await api.createEquipamento({
+        ...form,
+        lote_id: Number(form.lote_id)
+      });
+
       setMessage('Equipamento cadastrado com sucesso.');
       setForm(initialForm);
     } catch (err) {

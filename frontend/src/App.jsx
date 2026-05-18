@@ -7,6 +7,11 @@ import DashboardPage from './pages/DashboardPage';
 import EquipmentFormPage from './pages/EquipmentFormPage';
 import EquipmentListPage from './pages/EquipmentListPage';
 import UsersPage from './pages/UsersPage';
+import AgenciesPage from './pages/AgenciesPage';
+import LotsPage from './pages/LotsPage';
+import DestinationsPage from './pages/DestinationsPage';
+import ReportsPage from './pages/ReportsPage';
+import './styles/responsive.css';
 
 export default function App() {
   const { isAuthenticated } = useAuth();
@@ -15,9 +20,7 @@ export default function App() {
     <Routes>
       <Route
         path="/login"
-        element={
-          isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />
-        }
+        element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />}
       />
 
       <Route
@@ -43,11 +46,44 @@ export default function App() {
       />
 
       <Route
-        path="/equipamentos"
+        path="/agencias"
         element={
           <ProtectedRoute>
             <Layout>
-              <EquipmentListPage />
+              <AgenciesPage />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/lotes"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <LotsPage />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/destinacoes"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <DestinationsPage />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/relatorios"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <ReportsPage />
             </Layout>
           </ProtectedRoute>
         }
@@ -59,6 +95,17 @@ export default function App() {
           <ProtectedRoute>
             <Layout>
               <EquipmentFormPage />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/equipamentos"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <EquipmentListPage />
             </Layout>
           </ProtectedRoute>
         }

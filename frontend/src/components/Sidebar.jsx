@@ -5,9 +5,10 @@ const items = [
   ['/usuarios', 'Usuários'],
   ['/equipamentos/novo', 'Equipamentos'],
   ['/equipamentos', 'Listagem'],
-  ['#', 'Agências'],
-  ['#', 'Destinação'],
-  ['#', 'Relatórios']
+  ['/agencias', 'Agências'],
+  ['/lotes', 'Lotes'],
+  ['/destinacoes', 'Destinação'],
+  ['/relatorios', 'Relatórios']
 ];
 
 export default function Sidebar() {
@@ -24,22 +25,11 @@ export default function Sidebar() {
       <nav className="nav-menu" aria-label="Menu principal">
         {items.map(([href, label]) =>
           href === '#' ? (
-            <a
-              key={label}
-              href={href}
-              className="nav-item nav-item-disabled"
-              aria-disabled="true"
-            >
+            <a key={label} href={href} className="nav-item nav-item-disabled" aria-disabled="true">
               {label}
             </a>
           ) : (
-            <NavLink
-              key={label}
-              to={href}
-              className={({ isActive }) =>
-                `nav-item ${isActive ? 'active' : ''}`
-              }
-            >
+            <NavLink key={label} to={href} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
               {label}
             </NavLink>
           )
