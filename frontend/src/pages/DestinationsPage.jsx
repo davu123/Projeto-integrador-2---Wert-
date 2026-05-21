@@ -6,6 +6,7 @@ import {
   excluirDestinacao,
 } from '../services/destinationService';
 import api from '../services/api';
+import { formatDestino } from '../utils/formatters';
 
 const FORM_INICIAL = {
   equipamento_id: '',
@@ -112,11 +113,14 @@ export default function DestinationsPage() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function limparFormulario() {
+  function limparFormulario(options = {}) {
+    const { clearFeedback = true } = options;
     setForm(FORM_INICIAL);
     setEditandoId(null);
-    setMensagem('');
-    setErro('');
+    if (clearFeedback) {
+      setMensagem('');
+      setErro('');
+    }
   }
 
   function iniciarEdicao(destinacao) {
@@ -133,42 +137,40 @@ export default function DestinationsPage() {
   }
 
   async function handleSubmit(e) {
-  e.preventDefault();
-  setMensagem('');
-  setErro('');
+    e.preventDefault();
+    setMensagem('');
+    setErro('');
 
-  try {
-    if (!form.equipamento_id || !form.empresa || !form.data) {
-      setErro('Preencha equipamento, empresa e data.');
-      return;
+    try {
+      if (!form.equipamento_id || !form.empresa || !form.data) {
+        setErro('Preencha equipamento, empresa e data.');
+        return;
+      }
+
+      const payload = {
+        equipamento_id: Number(form.equipamento_id),
+        tipo_destino: form.tipo_destino,
+        empresa: form.empresa.trim(),
+        data: form.data,
+        certificado_url: form.certificado_url?.trim() || null,
+      };
+
+      let response;
+      if (editandoId) {
+        response = await atualizarDestinacao(editandoId, payload);
+        setMensagem(response.message || 'Destinação atualizada com sucesso.');
+      } else {
+        response = await criarDestinacao(payload);
+        setMensagem(response.message || 'Destinação criada com sucesso.');
+      }
+
+      limparFormulario({ clearFeedback: false });
+      await carregarTudo();
+    } catch (error) {
+      console.error('Erro detalhado ao salvar destinação:', error);
+      setErro(error.message || 'Erro ao salvar destinação.');
     }
-
-    const payload = {
-      equipamento_id: Number(form.equipamento_id),
-      tipo_destino: form.tipo_destino,
-      empresa: form.empresa.trim(),
-      data: form.data,
-      certificado_url: form.certificado_url?.trim() || null,
-    };
-
-    console.log('Payload enviado para /destinacoes:', payload);
-
-    let response;
-    if (editandoId) {
-      response = await atualizarDestinacao(editandoId, payload);
-      setMensagem(response.message || 'Destinação atualizada com sucesso.');
-    } else {
-      response = await criarDestinacao(payload);
-      setMensagem(response.message || 'Destinação criada com sucesso.');
-    }
-
-    limparFormulario();
-    await carregarTudo();
-  } catch (error) {
-    console.error('Erro detalhado ao salvar destinação:', error);
-    setErro(error.message || 'Erro ao salvar destinação.');
   }
-}
 
   async function handleExcluir(id) {
     const confirmou = window.confirm('Deseja excluir esta destinação?');
@@ -317,7 +319,7 @@ export default function DestinationsPage() {
                     <tr key={destinacao.id}>
                       <td style={tdStyle}>{destinacao.id}</td>
                       <td style={tdStyle}>{destinacao.equipamento_id}</td>
-                      <td style={tdStyle}>{destinacao.tipo_destino}</td>
+                      <td style={tdStyle}>{formatDestino(destinacao.tipo_destino)}</td>
                       <td style={tdStyle}>{destinacao.empresa}</td>
                       <td style={tdStyle}>
                         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>

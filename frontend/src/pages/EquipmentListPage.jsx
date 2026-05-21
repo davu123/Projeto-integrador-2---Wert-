@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
+import { formatEstado } from '../utils/formatters';
 
 export default function EquipmentListPage() {
-  const { token } = useAuth();
   const [items, setItems] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -11,16 +10,17 @@ export default function EquipmentListPage() {
   useEffect(() => {
     async function load() {
       try {
-        const data = await api.getEquipamentos(token);
+        const data = await api.getEquipamentos();
         setItems(data);
       } catch (err) {
-        setError(err.message);
+        setError(err.message || 'Erro ao carregar equipamentos.');
       } finally {
         setLoading(false);
       }
     }
+
     load();
-  }, [token]);
+  }, []);
 
   return (
     <section className="card">
@@ -55,7 +55,7 @@ export default function EquipmentListPage() {
                   <td>{item.marca}</td>
                   <td>{item.modelo}</td>
                   <td>{item.numero_serie || '-'}</td>
-                  <td>{item.estado}</td>
+                  <td>{formatEstado(item.estado)}</td>
                   <td>{item.agencia_nome}</td>
                 </tr>
               ))}

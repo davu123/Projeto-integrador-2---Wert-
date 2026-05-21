@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { cadastrarEquipamento } from '../services/equipmentService';
+import { cadastrarEquipamento } from '../services/equipmentApi';
 
 export default function NovoEquipamento() {
   const [form, setForm] = useState({
@@ -37,9 +37,7 @@ export default function NovoEquipamento() {
         estado: 'bom',
       });
     } catch (error) {
-      setErro(
-        error?.response?.data?.message || 'Erro ao cadastrar equipamento.'
-      );
+      setErro(error?.response?.data?.message || 'Erro ao cadastrar equipamento.');
     }
   }
 
@@ -60,9 +58,9 @@ export default function NovoEquipamento() {
         />
 
         <select name="estado" value={form.estado} onChange={handleChange}>
-          <option value="bom">bom</option>
-          <option value="danificado">danificado</option>
-          <option value="inutilizavel">inutilizavel</option>
+          <option value="bom">Bom</option>
+          <option value="danificado">Danificado</option>
+          <option value="inutilizavel">Inutilizável</option>
         </select>
 
         <button type="submit">Salvar</button>

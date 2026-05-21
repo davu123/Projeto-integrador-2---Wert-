@@ -1,19 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../services/api';
+import { listarLotes } from '../services/lotService';
+import { formatStatus } from '../utils/formatters';
 
 const initialForm = {
-  lote_id: 1,
+  lote_id: '',
   tipo: '',
   marca: '',
   modelo: '',
   numero_serie: '',
-  estado: 'bom'
+  estado: 'bom',
 };
 
 export default function EquipmentFormPage() {
   const [form, setForm] = useState(initialForm);
+  const [lotes, setLotes] = useState([]);
+  const [loadingLotes, setLoadingLotes] = useState(true);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    async function carregarLotes() {
+      try {
+        setLoadingLotes(true);
+        setError('');
+        setLotes(await listarLotes());
+      } catch (err) {
+        setError(err.message || 'Erro ao carregar lotes.');
+      } finally {
+        setLoadingLotes(false);
+      }
+    }
+
+    carregarLotes();
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -21,15 +41,21 @@ export default function EquipmentFormPage() {
     setError('');
 
     try {
+      if (!form.lote_id) {
+        setError('Selecione um lote.');
+        return;
+      }
+
       await api.createEquipamento({
         ...form,
-        lote_id: Number(form.lote_id)
+        lote_id: Number(form.lote_id),
+        numero_serie: form.numero_serie.trim() || null,
       });
 
       setMessage('Equipamento cadastrado com sucesso.');
       setForm(initialForm);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Erro ao cadastrar equipamento.');
     }
   }
 
@@ -47,8 +73,15 @@ export default function EquipmentFormPage() {
 
       <form className="form-grid" onSubmit={handleSubmit}>
         <label>
-          Lote ID
-          <input name="lote_id" value={form.lote_id} onChange={handleChange} required />
+          Lote
+          <select name="lote_id" value={form.lote_id} onChange={handleChange} required>
+            <option value="">{loadingLotes ? 'Carregando lotes...' : 'Selecione'}</option>
+            {lotes.map((lote) => (
+              <option key={lote.id} value={lote.id}>
+                Lote #{lote.id} - {lote.agencia_nome || 'Agência'} - {formatStatus(lote.status)}
+              </option>
+            ))}
+          </select>
         </label>
         <label>
           Tipo
@@ -79,7 +112,9 @@ export default function EquipmentFormPage() {
         {error && <div className="alert error full-span">{error}</div>}
 
         <div className="form-actions full-span">
-          <button className="primary-btn" type="submit">Salvar</button>
+          <button className="primary-btn" type="submit" disabled={loadingLotes}>
+            Salvar
+          </button>
         </div>
       </form>
     </section>

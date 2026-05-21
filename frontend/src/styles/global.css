@@ -15,15 +15,17 @@
 }
 
 :root[data-theme='dark'] {
-  --bg: #0f1720;
-  --panel: #16212b;
-  --panel-2: #101a23;
-  --text: #f3f6f4;
-  --muted: #b3c0bb;
-  --border: #243340;
+  --bg: #0b1117;
+  --panel: #16212d;
+  --panel-2: #101922;
+  --text: #f4f7f5;
+  --muted: #c3cec8;
+  --border: #344353;
   --accent: #22c55e;
   --accent-strong: #16a34a;
-  --accent-soft: #183325;
+  --accent-soft: #183b2a;
+  --error: #fca5a5;
+  --success: #86efac;
 }
 
 :root[data-contrast='high'] {
@@ -152,6 +154,19 @@ input, select {
 .donut::after {
   content: ''; position: absolute; inset: 1.9rem; background: var(--panel); border-radius: 50%;
 }
+.dashboard-page { display: grid; gap: 1rem; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.dashboard-bars { display: grid; gap: 0.9rem; }
+.dashboard-bar-row { display: grid; gap: 0.35rem; }
+.dashboard-bar-label { display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); }
+.dashboard-bar-label strong { color: var(--text); }
+.dashboard-bar-track {
+  height: 0.7rem; border-radius: 999px; overflow: hidden; background: var(--panel-2);
+  border: 1px solid var(--border);
+}
+.dashboard-bar-track span {
+  display: block; height: 100%; min-width: 0.35rem; border-radius: inherit; background: var(--accent);
+}
 .form-card { padding: 1.25rem; }
 .section-title h2 { margin: 0; }
 .section-title p { margin: 0.35rem 0 1rem; color: var(--muted); }
@@ -161,10 +176,158 @@ table { width: 100%; border-collapse: collapse; }
 th, td { text-align: left; padding: 0.85rem 0.75rem; border-bottom: 1px solid var(--border); }
 thead th { color: var(--muted); font-weight: 600; }
 
+:root[data-theme='dark'] body {
+  background: radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 24%), var(--bg);
+}
+
+:root[data-theme='dark'] .content-shell,
+:root[data-theme='dark'] .main-content {
+  color: var(--text);
+}
+
+:root[data-theme='dark'] .card,
+:root[data-theme='dark'] .responsive-grid > div,
+:root[data-theme='dark'] .page-grid > section,
+:root[data-theme='dark'] .dashboard-grid > section,
+:root[data-theme='dark'] .login-card {
+  background: var(--panel) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme='dark'] h1,
+:root[data-theme='dark'] h2,
+:root[data-theme='dark'] h3,
+:root[data-theme='dark'] td,
+:root[data-theme='dark'] li,
+:root[data-theme='dark'] .metric-card strong,
+:root[data-theme='dark'] .user-pill span {
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] p,
+:root[data-theme='dark'] label,
+:root[data-theme='dark'] th,
+:root[data-theme='dark'] small,
+:root[data-theme='dark'] .section-title p,
+:root[data-theme='dark'] .page-header p,
+:root[data-theme='dark'] .metric-card span,
+:root[data-theme='dark'] .dashboard-bar-label {
+  color: var(--muted) !important;
+}
+
+:root[data-theme='dark'] input,
+:root[data-theme='dark'] select {
+  background: var(--panel-2) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] input::placeholder {
+  color: #93a39b;
+}
+
+:root[data-theme='dark'] table {
+  color: var(--text);
+}
+
+:root[data-theme='dark'] thead {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+:root[data-theme='dark'] th,
+:root[data-theme='dark'] td {
+  border-color: var(--border) !important;
+}
+
+:root[data-theme='dark'] tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+:root[data-theme='dark'] button {
+  color: var(--text);
+}
+
+:root[data-theme='dark'] button[style*="background: rgb(255, 255, 255)"],
+:root[data-theme='dark'] button[style*="background: #fff"],
+:root[data-theme='dark'] .ghost-btn {
+  background: var(--panel-2) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] .primary-btn,
+:root[data-theme='dark'] button[style*="background: rgb(21, 128, 61)"],
+:root[data-theme='dark'] button[style*="background: #15803d"] {
+  background: var(--accent) !important;
+  color: #06120b !important;
+}
+
+:root[data-theme='dark'] button[style*="background: rgb(185, 28, 28)"],
+:root[data-theme='dark'] button[style*="background: #b91c1c"] {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+:root[data-theme='dark'] .alert.success,
+:root[data-theme='dark'] div[style*="background: rgb(220, 252, 231)"],
+:root[data-theme='dark'] div[style*="background: #dcfce7"],
+:root[data-theme='dark'] span[style*="background: rgb(220, 252, 231)"],
+:root[data-theme='dark'] span[style*="background: #dcfce7"] {
+  background: rgba(34, 197, 94, 0.16) !important;
+  color: var(--success) !important;
+  border: 1px solid rgba(134, 239, 172, 0.22);
+}
+
+:root[data-theme='dark'] .alert.error,
+:root[data-theme='dark'] div[style*="background: rgb(254, 226, 226)"],
+:root[data-theme='dark'] div[style*="background: #fee2e2"],
+:root[data-theme='dark'] span[style*="background: rgb(254, 226, 226)"],
+:root[data-theme='dark'] span[style*="background: #fee2e2"] {
+  background: rgba(239, 68, 68, 0.16) !important;
+  color: var(--error) !important;
+  border: 1px solid rgba(252, 165, 165, 0.22);
+}
+
+:root[data-theme='dark'] .main-content a,
+:root[data-theme='dark'] .content-shell a:not(.nav-item) {
+  color: var(--success) !important;
+}
+
+:root[data-theme='dark'] .sidebar {
+  background: linear-gradient(180deg, #07140d, #0f2f1f);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme='dark'] .nav-item {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme='dark'] .nav-item.active,
+:root[data-theme='dark'] .nav-item:hover {
+  background: rgba(34, 197, 94, 0.16);
+  color: #ffffff;
+}
+
+:root[data-theme='dark'] .user-pill,
+:root[data-theme='dark'] .dashboard-bar-track {
+  background: var(--panel-2) !important;
+  border-color: var(--border) !important;
+}
+
+:root[data-theme='dark'] .dashboard-bar-track span {
+  background: linear-gradient(90deg, var(--accent), #86efac);
+}
+
+:root[data-theme='dark'] .dashboard-bar-label strong {
+  color: var(--text) !important;
+}
+
 @media (max-width: 1100px) {
   .login-page { grid-template-columns: 1fr; }
   .login-hero { min-height: 18rem; }
   .app-shell { grid-template-columns: 1fr; }
   .sidebar { position: sticky; top: 0; z-index: 3; }
-  .page-grid, .metrics-grid { grid-template-columns: 1fr; }
+  .page-grid, .metrics-grid, .dashboard-grid { grid-template-columns: 1fr; }
 }

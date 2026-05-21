@@ -10,7 +10,7 @@ import UsersPage from './pages/UsersPage';
 import AgenciesPage from './pages/AgenciesPage';
 import LotsPage from './pages/LotsPage';
 import DestinationsPage from './pages/DestinationsPage';
-import ReportsPage from './pages/ReportsPage';
+import ReportsPage from './pages/Reports';
 import './styles/responsive.css';
 
 export default function App() {

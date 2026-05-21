@@ -132,7 +132,15 @@ const api = {
       body: payload,
     });
   },
+
+  getEquipamentos() {
+    return request('/equipamentos');
+  },
+
+  getDashboard() {
+    return request('/dashboard');
+  },
 };
 
 export default api;
-export { api };
+export { api, API_URL };
