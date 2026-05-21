@@ -7,6 +7,8 @@ GO
 USE EcoTrackWert;
 GO
 
+IF OBJECT_ID('dbo.relatorio', 'U') IS NOT NULL DROP TABLE dbo.relatorio;
+IF OBJECT_ID('dbo.destinacao', 'U') IS NOT NULL DROP TABLE dbo.destinacao;
 IF OBJECT_ID('dbo.equipamento', 'U') IS NOT NULL DROP TABLE dbo.equipamento;
 IF OBJECT_ID('dbo.lote', 'U') IS NOT NULL DROP TABLE dbo.lote;
 IF OBJECT_ID('dbo.agencia', 'U') IS NOT NULL DROP TABLE dbo.agencia;
@@ -65,13 +67,40 @@ CREATE TABLE dbo.equipamento (
     criado_em DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     atualizado_em DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     CONSTRAINT FK_equipamento_lote FOREIGN KEY (lote_id) REFERENCES dbo.lote(id),
-    CONSTRAINT UQ_equipamento_numero_serie UNIQUE (numero_serie),
     CONSTRAINT CK_equipamento_estado CHECK (estado IN ('bom', 'danificado', 'inutilizavel'))
+);
+GO
+
+CREATE TABLE dbo.destinacao (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    equipamento_id INT NOT NULL UNIQUE,
+    tipo_destino NVARCHAR(30) NOT NULL,
+    empresa NVARCHAR(150) NOT NULL,
+    data DATE NOT NULL,
+    certificado_url NVARCHAR(500) NULL,
+    criado_em DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    atualizado_em DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    CONSTRAINT FK_destinacao_equipamento FOREIGN KEY (equipamento_id) REFERENCES dbo.equipamento(id),
+    CONSTRAINT CK_destinacao_tipo CHECK (tipo_destino IN ('reciclagem', 'reuso', 'destruicao'))
+);
+GO
+
+CREATE TABLE dbo.relatorio (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    lote_id INT NOT NULL,
+    gerado_por INT NULL,
+    data_geracao DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    arquivo_pdf_url NVARCHAR(500) NOT NULL,
+    CONSTRAINT FK_relatorio_lote FOREIGN KEY (lote_id) REFERENCES dbo.lote(id),
+    CONSTRAINT FK_relatorio_usuario FOREIGN KEY (gerado_por) REFERENCES dbo.usuario(id)
 );
 GO
 
 CREATE INDEX IX_lote_agencia_id ON dbo.lote(agencia_id);
 CREATE INDEX IX_lote_tecnico_id ON dbo.lote(tecnico_id);
 CREATE INDEX IX_equipamento_lote_id ON dbo.equipamento(lote_id);
+CREATE UNIQUE INDEX UX_equipamento_numero_serie ON dbo.equipamento(numero_serie) WHERE numero_serie IS NOT NULL;
 CREATE INDEX IX_usuario_email ON dbo.usuario(email);
+CREATE INDEX IX_destinacao_equipamento_id ON dbo.destinacao(equipamento_id);
+CREATE INDEX IX_relatorio_lote_id ON dbo.relatorio(lote_id);
 GO

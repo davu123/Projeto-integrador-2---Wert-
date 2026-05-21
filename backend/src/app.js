@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
+console.log('[app] carregando rotas...');
+
 const authRoutes = require('./routes/authRoutes');
 const equipmentRoutes = require('./routes/equipmentRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -9,6 +11,7 @@ const agencyRoutes = require('./routes/agencyRoutes');
 const loteRoutes = require('./routes/loteRoutes');
 const destinacaoRoutes = require('./routes/destinacaoRoutes');
 const reportRoutes = require('./routes/reportRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express();
 
@@ -27,5 +30,8 @@ app.use('/agencias', agencyRoutes);
 app.use('/lotes', loteRoutes);
 app.use('/destinacoes', destinacaoRoutes);
 app.use('/relatorios', reportRoutes);
+app.use('/dashboard', dashboardRoutes);
+
+console.log('[app] rotas carregadas com sucesso.');
 
 module.exports = app;
