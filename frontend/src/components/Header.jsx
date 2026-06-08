@@ -1,5 +1,6 @@
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
+import logoWert from '../assets/logo-wert.png';
 
 export default function Header() {
   const { theme, toggleTheme, increaseFont, decreaseFont, highContrast, setHighContrast } = useTheme();
@@ -7,9 +8,14 @@ export default function Header() {
 
   return (
     <header className="page-header">
-      <div>
-        <h1>EcoTrack Wert</h1>
-        <p>Gestão de descarte eletrônico com foco em rastreabilidade.</p>
+      <div className="header-brand">
+        <span className="header-logo-frame">
+          <img className="brand-logo" src={logoWert} alt="Wert Ambiental" />
+        </span>
+        <div>
+          <h1>EcoTrack Wert</h1>
+          <p>Gestão de descarte eletrônico com foco em rastreabilidade.</p>
+        </div>
       </div>
 
       <div className="header-actions">

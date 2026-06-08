@@ -1,4 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000';
+const AUTH_EXPIRED_EVENT = 'ecotrack-auth-expired';
 
 function isPlainObject(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -10,6 +11,13 @@ function getStoredToken() {
     localStorage.getItem('ecotrack-token') ||
     ''
   );
+}
+
+function clearStoredAuth() {
+  localStorage.removeItem('ecotrack-token');
+  localStorage.removeItem('token');
+  localStorage.removeItem('ecotrack-user');
+  localStorage.removeItem('usuario');
 }
 
 function buildHeaders(customHeaders = {}, withAuth = true) {
@@ -62,6 +70,11 @@ async function request(path, rawOptions = {}) {
   }
 
   if (!response.ok) {
+    if (response.status === 401 && withAuth) {
+      clearStoredAuth();
+      window.dispatchEvent(new Event(AUTH_EXPIRED_EVENT));
+    }
+
     const message =
       (isJson && data?.message) ||
       (typeof data === 'string' && data) ||
@@ -143,4 +156,4 @@ const api = {
 };
 
 export default api;
-export { api, API_URL };
+export { api, API_URL, AUTH_EXPIRED_EVENT };

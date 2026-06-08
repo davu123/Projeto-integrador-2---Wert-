@@ -1,17 +1,38 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 const AuthContext = createContext(null);
+const AUTH_EXPIRED_EVENT = 'ecotrack-auth-expired';
+
+function clearStoredAuth() {
+  localStorage.removeItem('ecotrack-token');
+  localStorage.removeItem('token');
+  localStorage.removeItem('ecotrack-user');
+  localStorage.removeItem('usuario');
+}
+
+function getStoredToken() {
+  return localStorage.getItem('ecotrack-token') || localStorage.getItem('token') || '';
+}
+
+function getStoredUser() {
+  const raw =
+    localStorage.getItem('ecotrack-user') || localStorage.getItem('usuario');
+
+  if (!raw) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(raw);
+  } catch {
+    clearStoredAuth();
+    return null;
+  }
+}
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(
-    localStorage.getItem('ecotrack-token') || localStorage.getItem('token') || ''
-  );
-
-  const [user, setUser] = useState(() => {
-    const raw =
-      localStorage.getItem('ecotrack-user') || localStorage.getItem('usuario');
-    return raw ? JSON.parse(raw) : null;
-  });
+  const [user, setUser] = useState(getStoredUser);
+  const [token, setToken] = useState(getStoredToken);
 
   const login = (data) => {
     setToken(data.token);
@@ -28,12 +49,21 @@ export function AuthProvider({ children }) {
     setToken('');
     setUser(null);
 
-    localStorage.removeItem('ecotrack-token');
-    localStorage.removeItem('token');
-
-    localStorage.removeItem('ecotrack-user');
-    localStorage.removeItem('usuario');
+    clearStoredAuth();
   };
+
+  useEffect(() => {
+    function handleAuthExpired() {
+      setToken('');
+      setUser(null);
+    }
+
+    window.addEventListener(AUTH_EXPIRED_EVENT, handleAuthExpired);
+
+    return () => {
+      window.removeEventListener(AUTH_EXPIRED_EVENT, handleAuthExpired);
+    };
+  }, []);
 
   const value = useMemo(
     () => ({

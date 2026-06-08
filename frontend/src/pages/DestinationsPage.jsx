@@ -13,7 +13,6 @@ const FORM_INICIAL = {
   tipo_destino: 'reciclagem',
   empresa: '',
   data: '',
-  certificado_url: '',
 };
 
 const cardStyle = {
@@ -132,7 +131,6 @@ export default function DestinationsPage() {
       tipo_destino: destinacao.tipo_destino || 'reciclagem',
       empresa: destinacao.empresa || '',
       data: destinacao.data ? String(destinacao.data).slice(0, 10) : '',
-      certificado_url: destinacao.certificado_url || '',
     });
   }
 
@@ -152,7 +150,6 @@ export default function DestinationsPage() {
         tipo_destino: form.tipo_destino,
         empresa: form.empresa.trim(),
         data: form.data,
-        certificado_url: form.certificado_url?.trim() || null,
       };
 
       let response;
@@ -256,16 +253,6 @@ export default function DestinationsPage() {
                 type="date"
                 name="data"
                 value={form.data}
-                onChange={handleChange}
-                style={inputStyle}
-              />
-            </div>
-
-            <div>
-              <label>Certificado URL</label>
-              <input
-                name="certificado_url"
-                value={form.certificado_url}
                 onChange={handleChange}
                 style={inputStyle}
               />

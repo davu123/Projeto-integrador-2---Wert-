@@ -55,15 +55,45 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 }
 
 .brand {
-  display: inline-flex; align-items: center; gap: 0.75rem; font-size: 1.15rem;
+  display: inline-flex; align-items: center; gap: 0.75rem; font-size: 1.15rem; min-width: 0;
 }
 .brand strong, .brand span { display: block; }
-.brand-icon {
-  width: 2.5rem; height: 2.5rem; border-radius: 14px;
-  background: linear-gradient(135deg, var(--accent), #6dde91);
-  display: grid; place-items: center; color: white; font-size: 1.2rem;
+.brand .brand-logo-frame,
+.header-logo-frame {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 8px 24px rgba(15, 23, 32, 0.16);
 }
-
+.brand .brand-logo-frame {
+  width: 5.7rem;
+  height: 2.7rem;
+  padding: 0.32rem;
+  border-radius: 0.75rem;
+}
+.brand-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.brand .brand-copy {
+  display: grid;
+  min-width: 0;
+  line-height: 1.1;
+}
+.brand .brand-copy strong {
+  color: #ffffff;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+.brand .brand-copy span {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.82rem;
+  margin-top: 0.18rem;
+}
 .login-page {
   min-height: 100vh;
   display: grid; grid-template-columns: 1.1fr 0.9fr;
@@ -74,6 +104,22 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 }
 .hero-inner { max-width: 34rem; }
 .logo-block { font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; }
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.login-logo-frame {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 6.2rem;
+  height: 2.8rem;
+  padding: 0.32rem;
+  border-radius: 0.78rem;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
 .login-card {
   margin: auto; width: min(32rem, 90%); padding: 2rem;
 }
@@ -120,6 +166,19 @@ input, select {
 .page-header {
   display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start;
   margin-bottom: 1.5rem;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+.header-logo-frame {
+  width: 4.75rem;
+  height: 2.25rem;
+  padding: 0.25rem;
+  border-color: var(--border);
+  border-radius: 0.7rem;
 }
 .page-header h1 { margin: 0; }
 .page-header p { margin: 0.35rem 0 0; color: var(--muted); }
@@ -310,6 +369,12 @@ thead th { color: var(--muted); font-weight: 600; }
   color: #ffffff;
 }
 
+:root[data-theme='dark'] .brand .brand-logo-frame,
+:root[data-theme='dark'] .header-logo-frame {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+}
+
 :root[data-theme='dark'] .user-pill,
 :root[data-theme='dark'] .dashboard-bar-track {
   background: var(--panel-2) !important;
@@ -329,5 +394,11 @@ thead th { color: var(--muted); font-weight: 600; }
   .login-hero { min-height: 18rem; }
   .app-shell { grid-template-columns: 1fr; }
   .sidebar { position: sticky; top: 0; z-index: 3; }
+  .brand .brand-logo-frame { width: 5rem; height: 2.35rem; }
+  .header-brand { align-items: flex-start; }
   .page-grid, .metrics-grid, .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .header-logo-frame { display: none; }
 }

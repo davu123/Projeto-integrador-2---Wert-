@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import logoWert from '../assets/logo-wert.png';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('admin@wert.com.br');
@@ -31,7 +32,12 @@ export default function LoginPage() {
     <div className="login-page">
       <section className="login-hero">
         <div className="hero-inner">
-          <div className="logo-block">🌿 EcoTrack Wert</div>
+          <div className="logo-block login-brand">
+            <span className="login-logo-frame">
+              <img className="brand-logo" src={logoWert} alt="Wert Ambiental" />
+            </span>
+            <strong>EcoTrack Wert</strong>
+          </div>
           <h2>Tecnologia e sustentabilidade caminhando juntas.</h2>
           <p>Rastreie equipamentos, acompanhe lotes e tenha mais controle da operação.</p>
         </div>

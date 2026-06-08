@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { listarAgencias, criarAgencia, atualizarAgencia, excluirAgencia } from '../services/agencyService';
 
-const FORM_INICIAL = { nome: '', codigo_agencia: '', cidade: '', uf: '', responsavel: '', telefone: '' };
+const FORM_INICIAL = { nome: '', codigo_agencia: '', cidade: '', uf: '', responsavel: '' };
 const cardStyle = { background: '#fff', borderRadius: '16px', padding: '24px', border: '1px solid #e5e7eb' };
 const inputStyle = { width: '100%', marginTop: '6px', padding: '12px 14px', borderRadius: '10px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box' };
 const primaryButtonStyle = { padding: '10px 16px', borderRadius: '10px', border: 'none', background: '#15803d', color: '#fff', cursor: 'pointer' };
@@ -41,21 +41,38 @@ export default function AgenciesPage() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function limparFormulario() { setForm(FORM_INICIAL); setEditandoId(null); }
+  function limparFormulario() {
+    setForm(FORM_INICIAL);
+    setEditandoId(null);
+  }
 
   function iniciarEdicao(agencia) {
     setMensagem('');
     setErro('');
     setEditandoId(agencia.id);
-    setForm({ nome: agencia.nome || '', codigo_agencia: agencia.codigo_agencia || '', cidade: agencia.cidade || '', uf: agencia.uf || '', responsavel: agencia.responsavel || '', telefone: agencia.telefone || '' });
+    setForm({
+      nome: agencia.nome || '',
+      codigo_agencia: agencia.codigo_agencia || '',
+      cidade: agencia.cidade || '',
+      uf: agencia.uf || '',
+      responsavel: agencia.responsavel || '',
+    });
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
     setMensagem('');
     setErro('');
+
     try {
-      const payload = { ...form, uf: form.uf.toUpperCase() };
+      const payload = {
+        nome: form.nome,
+        codigo_agencia: form.codigo_agencia,
+        cidade: form.cidade,
+        uf: form.uf.toUpperCase(),
+        responsavel: form.responsavel,
+      };
+
       if (editandoId) {
         const response = await atualizarAgencia(editandoId, payload);
         setMensagem(response.message || 'Agência atualizada com sucesso.');
@@ -63,6 +80,7 @@ export default function AgenciesPage() {
         const response = await criarAgencia(payload);
         setMensagem(response.message || 'Agência criada com sucesso.');
       }
+
       limparFormulario();
       await carregarAgencias();
     } catch (error) {
@@ -74,6 +92,7 @@ export default function AgenciesPage() {
     if (!window.confirm('Deseja realmente excluir esta agência?')) return;
     setMensagem('');
     setErro('');
+
     try {
       const response = await excluirAgencia(id);
       setMensagem(response.message || 'Agência excluída com sucesso.');
@@ -98,7 +117,6 @@ export default function AgenciesPage() {
             <div><label>Cidade</label><input name="cidade" value={form.cidade} onChange={handleChange} placeholder="Brasília" style={inputStyle} /></div>
             <div><label>UF</label><input name="uf" value={form.uf} onChange={handleChange} placeholder="DF" maxLength={2} style={inputStyle} /></div>
             <div><label>Responsável</label><input name="responsavel" value={form.responsavel} onChange={handleChange} placeholder="Nome do responsável" style={inputStyle} /></div>
-            <div><label>Telefone</label><input name="telefone" value={form.telefone} onChange={handleChange} placeholder="61999999999" style={inputStyle} /></div>
             {mensagem && <div style={sucessoStyle}>{mensagem}</div>}
             {erro && <div style={erroStyle}>{erro}</div>}
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -112,12 +130,32 @@ export default function AgenciesPage() {
           {loading ? <p>Carregando...</p> : agencias.length === 0 ? <p>Nenhuma agência encontrada.</p> : (
             <div style={{ overflowX: 'auto' }}>
               <table style={tableStyle}>
-                <thead><tr><th style={thStyle}>ID</th><th style={thStyle}>Nome</th><th style={thStyle}>Código</th><th style={thStyle}>Cidade</th><th style={thStyle}>UF</th><th style={thStyle}>Responsável</th><th style={thStyle}>Telefone</th><th style={thStyle}>Ações</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th style={thStyle}>ID</th>
+                    <th style={thStyle}>Nome</th>
+                    <th style={thStyle}>Código</th>
+                    <th style={thStyle}>Cidade</th>
+                    <th style={thStyle}>UF</th>
+                    <th style={thStyle}>Responsável</th>
+                    <th style={thStyle}>Ações</th>
+                  </tr>
+                </thead>
                 <tbody>
                   {agencias.map((agencia) => (
                     <tr key={agencia.id}>
-                      <td style={tdStyle}>{agencia.id}</td><td style={tdStyle}>{agencia.nome}</td><td style={tdStyle}>{agencia.codigo_agencia}</td><td style={tdStyle}>{agencia.cidade}</td><td style={tdStyle}>{agencia.uf}</td><td style={tdStyle}>{agencia.responsavel || '-'}</td><td style={tdStyle}>{agencia.telefone || '-'}</td>
-                      <td style={tdStyle}><div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}><button onClick={() => iniciarEdicao(agencia)} style={secondaryButtonStyle}>Editar</button><button onClick={() => handleExcluir(agencia.id)} style={dangerButtonStyle}>Excluir</button></div></td>
+                      <td style={tdStyle}>{agencia.id}</td>
+                      <td style={tdStyle}>{agencia.nome}</td>
+                      <td style={tdStyle}>{agencia.codigo_agencia}</td>
+                      <td style={tdStyle}>{agencia.cidade}</td>
+                      <td style={tdStyle}>{agencia.uf}</td>
+                      <td style={tdStyle}>{agencia.responsavel || '-'}</td>
+                      <td style={tdStyle}>
+                        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                          <button onClick={() => iniciarEdicao(agencia)} style={secondaryButtonStyle}>Editar</button>
+                          <button onClick={() => handleExcluir(agencia.id)} style={dangerButtonStyle}>Excluir</button>
+                        </div>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
