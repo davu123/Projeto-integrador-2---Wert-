@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -17,6 +15,7 @@ services:
   backend:
     build:
       context: ./backend
+      dockerfile: dockerfile
     container_name: ecotrack_backend
     depends_on:
       - db
@@ -29,6 +28,7 @@ services:
       DB_DATABASE: EcoTrackWert
       DB_ENCRYPT: false
       DB_TRUST_SERVER_CERTIFICATE: true
+      RUNNING_IN_DOCKER: true
       JWT_SECRET: ecotrack_secret_2025
       JWT_EXPIRES_IN: 1d
     ports:
@@ -42,6 +42,7 @@ services:
   frontend:
     build:
       context: ./frontend
+      dockerfile: dockerfile
     container_name: ecotrack_frontend
     depends_on:
       - backend
@@ -61,4 +62,3 @@ volumes:
 networks:
   ecotrack_net:
     driver: bridge
-    
