@@ -160,7 +160,7 @@ async function criarDestinacao(req, res) {
   } catch (error) {
     if (error.number === 2601 || error.number === 2627) {
       return res.status(409).json({
-        message: 'Este equipamento ja possui destinacao cadastrada.',
+        message: 'Este equipamento já possui destinação cadastrada.',
       });
     }
 
@@ -269,7 +269,7 @@ async function atualizarDestinacao(req, res) {
   } catch (error) {
     if (error.number === 2601 || error.number === 2627) {
       return res.status(409).json({
-        message: 'Outro registro de destinacao ja usa este equipamento.',
+        message: 'Outro registro de destinação já usa este equipamento.',
       });
     }
 

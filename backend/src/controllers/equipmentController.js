@@ -68,7 +68,7 @@ async function cadastrarEquipamento(req, res) {
   } catch (error) {
     if (error.number === 2601 || error.number === 2627) {
       return res.status(409).json({
-        message: 'Ja existe um equipamento com este numero de serie.',
+        message: 'Já existe um equipamento com este número de série.',
       });
     }
 

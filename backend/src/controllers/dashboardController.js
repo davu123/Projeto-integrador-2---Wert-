@@ -2,7 +2,7 @@ const { getConnection } = require('../config/database');
 
 function mapCountRows(rows, keyField) {
   return rows.map((row) => ({
-    label: row[keyField] || 'Nao informado',
+    label: row[keyField] || 'Não informado',
     total: Number(row.total || 0),
   }));
 }

@@ -84,8 +84,7 @@ async function gerarRelatorio(req, res) {
           e.estado,
           d.tipo_destino,
           d.empresa,
-          d.data AS data_destinacao,
-          d.certificado_url
+          d.data AS data_destinacao
         FROM dbo.equipamento e
         LEFT JOIN dbo.destinacao d ON d.equipamento_id = e.id
         WHERE e.lote_id = @lote_id
@@ -141,7 +140,6 @@ async function gerarRelatorio(req, res) {
               : '-'
           }`
         );
-        doc.text(`   Certificado: ${equipamento.certificado_url || '-'}`);
         doc.moveDown(0.5);
       });
     }
