@@ -60,7 +60,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 - [ ] Fase 0 — congelar referência e esqueleto do app
 - [x] Tarefa 0.1 — copiar o sistema funcional para referencia/
 - [ ] Tarefa 0.2 — autor: Compose da referência sobe
-- [ ] Tarefa 0.3 — esqueleto Docker do app/
+- [x] Tarefa 0.3 — esqueleto Docker do app/
 - [ ] Tarefa 0.4 — autor: health do app
 - [ ] Tarefa 0.5 — decisão: duplicata na raiz
 - [ ] Fase 1 — login e agências
@@ -189,7 +189,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 
 **Commit sugerido:** `docs(0.2): registra que a referencia sobe no docker`
 
-### Tarefa 0.3 — esqueleto Docker do app/
+### Tarefa 0.3 — esqueleto Docker do app/ [x]
 
 - **Tipo:** agente
 - **Bloqueada por:** 0.1
