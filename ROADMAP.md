@@ -58,7 +58,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 ## Progresso
 
 - [ ] Fase 0 — congelar referência e esqueleto do app
-- [ ] Tarefa 0.1 — copiar o sistema funcional para referencia/
+- [x] Tarefa 0.1 — copiar o sistema funcional para referencia/
 - [ ] Tarefa 0.2 — autor: Compose da referência sobe
 - [ ] Tarefa 0.3 — esqueleto Docker do app/
 - [ ] Tarefa 0.4 — autor: health do app
@@ -133,7 +133,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 **Pronto quando:** 0.2 e 0.4 confirmados pelo autor; 0.1 e 0.3 commitados.
 **Depende de:** spec em `docs/context/` e `docs/reverse-engineering/`.
 
-### Tarefa 0.1 — copiar o sistema funcional para referencia/
+### Tarefa 0.1 — copiar o sistema funcional para referencia/ [x]
 
 - **Tipo:** agente
 - **Bloqueada por:** nada
