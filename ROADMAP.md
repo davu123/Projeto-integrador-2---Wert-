@@ -62,7 +62,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 - [ ] Tarefa 0.2 — autor: Compose da referência sobe
 - [x] Tarefa 0.3 — esqueleto Docker do app/
 - [ ] Tarefa 0.4 — autor: health do app
-- [ ] Tarefa 0.5 — decisão: duplicata na raiz
+- [x] Tarefa 0.5 — decisão: duplicata na raiz
 - [ ] Fase 1 — login e agências
 - [ ] Tarefa 1.1 — POST /auth/login e schema usuario
 - [ ] Tarefa 1.2 — tela de login e sessão
@@ -122,7 +122,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 
 | Tarefa | O que decidir | Registrada |
 |---|---|---|
-| 0.5 | Apagar `backend/` e `frontend/` da raiz após a referência existir? | `(pendente)` |
+| 0.5 | Apagar `backend/` e `frontend/` da raiz após a referência existir? | apagar (20/08/2026) |
 | horizonte | Ferramenta para copiar só `app/` ao GitHub novo | `(pendente)` |
 
 ---
@@ -242,24 +242,23 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 
 **Commit sugerido:** `docs(0.4): registra que o esqueleto do app sobe`
 
-### Tarefa 0.5 — decisão: duplicata na raiz
+### Tarefa 0.5 — decisão: duplicata na raiz [x]
 
 - **Tipo:** autor
 - **Bloqueada por:** 0.2
 - **Docs obrigatórios:** `docs/context/06-roadmap-briefing.md`
 - **Arquivos permitidos (editar):** `ROADMAP.md`, `README.md` (só depois da decisão)
 
-> **PARAR — decisão do autor.** Não implementar enquanto **Decisão registrada** for `(pendente)`.
+> Decisão do autor gravada. Não reabrir este fork.
 
 **Pergunta:** Apagar `backend/` e `frontend/` da raiz agora que `referencia/` existe, ou manter até o `app/` ser o dia a dia?
 **Opções:** apagar a duplicata da raiz / manter raiz + referencia + app / só atualizar o README raiz apontando os dois Compose
-**Decisão registrada:** `(pendente)`
+**Decisão registrada:** apagar a duplicata da raiz (20/08/2026)
 
 **Fazer:**
 
-1. Esperar a decisão.
-2. Se for só README: apontar `referencia/` (funcional) e `app/` (semestre), sem apagar pastas.
-3. Se for apagar: remover `backend/` e `frontend/` da raiz e o `docker-compose.yml` raiz, depois que 0.2 passou.
+1. Remover `backend/` e `frontend/` da raiz e o `docker-compose.yml` raiz (hashes iguais aos de `referencia/`).
+2. README raiz aponta `referencia/` (funcional) e `app/` (semestre).
 
 **Fora de escopo:** chutar a opção.
 
@@ -1317,6 +1316,5 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 
 - Copiar histórico só de `app/` para o GitHub novo do PI2 (ferramenta `(pendente)`).
 - GPS, atribuição automática, app nativo, integração BB.
-- Apagar `backend/` e `frontend/` da raiz sem a decisão 0.5.
 - Nove pastas com o app inteiro duplicado.
 - Reabrir Lean Inception / Artefato 2 nas tarefas de código.

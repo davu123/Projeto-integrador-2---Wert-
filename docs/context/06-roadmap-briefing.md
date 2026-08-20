@@ -13,7 +13,7 @@ Este documento **não é o roadmap**. É a instrução para produzir ou atualiza
 - **Não editar** `docs/lean-inception/` nem artefatos acadêmicos nas tarefas de código.
 - **Commits:** não mencionar PI1, legado, “já existia”, “cópia do PI1”. Mensagem = comportamento da sprint (`feat(1.1): autentica usuario com jwt`).
 - **Não criar** nove pastas `sprints/01`… com o app inteiro.
-- **Não apagar** `backend/` e `frontend/` da raiz até o autor gravar a decisão na tabela abaixo.
+- **Não recriar** `backend/` e `frontend/` na raiz: a fonte funcional é `referencia/`; a reconstrução é `app/`.
 - **Portas (já decididas):** referência 1433/3000/5173; app 1434/3001/5174. Banco do app: `EcoTrackWertApp`.
 - **npm** (já decidido). Sem fork de React/Express.
 - **SDD para modelo menor.** Uma tarefa = um objetivo, aceite testável, um commit. Sem “faça a sprint inteira”.
@@ -29,7 +29,7 @@ Lista executável, alinhada ao `roadmap-sdd`:
 - Fases: **0** freeze + esqueleto; **1–9** = sprints acadêmicas. Cada fase: objetivo, pronto quando, depende de.
 - Cada tarefa: tipo, bloqueio, docs obrigatórios, arquivos permitidos (novos/editar), fazer, fora de escopo, aceite, como testar, commit sugerido `type(id): descrição` em português, minúscula, sem ponto final.
 - Fim de cada fase 1–9: uma tarefa `autor` de verificação no browser/Docker.
-- **Fora do roadmap atual:** repo novo, GPS, apagar a raiz sem autorização.
+- **Fora do roadmap atual:** repo novo, GPS.
 
 Fatiar como no plano aprovado (API depois tela quando couber; extração quando o arquivo da referência mistura features):
 
@@ -50,7 +50,7 @@ Também criar (na mesma geração do ROADMAP, não são tarefas de código): `do
 
 | Tarefa futura (id sugerido) | O que decidir | Registrada |
 |---|---|---|
-| 0.5 (depois do 0.2) | Apagar `backend/` e `frontend/` da raiz agora que `referencia/` existe, ou manter os três trees até o `app/` substituir o dia a dia? | `(pendente)` |
+| 0.5 | Apagar duplicata `backend/` e `frontend/` na raiz | apagar (autor, 20/08/2026) |
 | horizonte | Ferramenta para levar só `app/` ao GitHub novo (filter-repo, cópia + commits refeitos, outro) | `(pendente)` |
 
 Portas, npm, React, Express, SQL Server: **não** estão pendentes.

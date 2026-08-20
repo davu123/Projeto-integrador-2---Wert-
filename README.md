@@ -107,18 +107,30 @@ O EcoTrack Wert seguirá uma arquitetura em camadas:
 
 Usuário → Interface Web → API → Banco de Dados
 
+## Onde está o código
+
+Duas árvores (não há `backend/` nem `frontend/` na raiz):
+
+| Pasta | O que é | Como subir |
+|---|---|---|
+| [`referencia/`](referencia/README.md) | Sistema funcional congelado | `cd referencia` → `docker compose up --build` (portas 1433 / 3000 / 5173) |
+| [`app/`](app/README.md) | Reconstrução do semestre (ROADMAP) | `cd app` → `docker compose up --build` (portas 1434 / 3001 / 5174) |
+
+Documentação da disciplina: [`docs/`](docs/README.md). Execução SDD: [`ROADMAP.md`](ROADMAP.md).
+
 ## Estrutura do projeto
 
-```bash
-ecotrack_mvp/
-├── backend/
-│   ├── src/
-│   ├── database/
-│   ├── package.json
-│   └── .env
-├── frontend/
-│   ├── src/
-│   ├── package.json
-│   └── .env
-├── docker-compose.yml
+```text
+.
+├── referencia/          ← sistema que já funciona (não editar)
+│   ├── backend/
+│   ├── frontend/
+│   └── docker-compose.yml
+├── app/                 ← reconstrução sprint a sprint
+│   ├── backend/
+│   ├── frontend/
+│   └── docker-compose.yml
+├── docs/
+├── ROADMAP.md
 └── README.md
+```

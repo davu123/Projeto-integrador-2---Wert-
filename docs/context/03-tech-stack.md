@@ -6,12 +6,12 @@ Separar **agora** e **quando**. Não scaffoldar o “quando”. Stack fechada no
 
 | Decisão | Escolha | Por quê |
 |---|---|---|
-| Front | React 18.3, Vite 5, react-router-dom 6, JavaScript | Já no `frontend/package.json` |
-| Back | Node 20, Express 4, mssql 11 | Já no `backend/package.json` |
+| Front | React 18.3, Vite 5, react-router-dom 6, JavaScript | Já no `referencia/frontend/package.json` |
+| Back | Node 20, Express 4, mssql 11 | Já no `referencia/backend/package.json` |
 | Auth | JWT (`jsonwebtoken`) + bcrypt | Artefato 1 / código |
 | PDF | PDFKit | Relatórios de conformidade |
 | Banco | SQL Server 2022 (`mcr.microsoft.com/mssql/server:2022-latest`) | Compose da raiz |
-| Schema | `ensureDatabaseSchema()` em `backend/src/config/schema.js` (idempotente, sem pasta `migrations/`) | Como a referência já sobe |
+| Schema | `ensureDatabaseSchema()` em `referencia/backend/src/config/schema.js` (idempotente, sem pasta `migrations/`) | Como a referência já sobe |
 | Pacotes | npm | `package-lock.json` nos dois lados |
 | Onde vive (após freeze) | `referencia/` (congelado) e `app/` (reconstrução) | Plano SDD |
 | Versionamento | Git neste repositório | Commits por tarefa do ROADMAP |

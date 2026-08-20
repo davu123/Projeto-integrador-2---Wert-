@@ -1,6 +1,6 @@
 # Mapa código → funcionalidade → sprint
 
-Fonte da cópia: `referencia/` (depois do freeze). Até a tarefa 0.1, os mesmos paths existem na raiz (`backend/`, `frontend/`).
+Fonte da cópia: `referencia/`. A raiz não tem `backend/` nem `frontend/` duplicados.
 
 Não copiar: `newequipment.jsx`, `reportsPage.jsx`, `frontend/src/.dockerfile`, `backend/src/dockerfile`, `authservice.js`, `equipmentservice.js`.
 
@@ -8,8 +8,8 @@ Não copiar: `newequipment.jsx`, `reportsPage.jsx`, `frontend/src/.dockerfile`, 
 
 | Destino em `app/` | Origem |
 |---|---|
-| Compose, dockerfiles, package.json dos dois lados | `docker-compose.yml`, `backend/dockerfile`, `frontend/dockerfile`, `package.json` / lock |
-| Casca API | `backend/src/server.js`, `app.js` (só `/health`), `config/database.js` |
+| Compose, dockerfiles, package.json dos dois lados | `referencia/docker-compose.yml`, `referencia/backend/dockerfile`, `referencia/frontend/dockerfile`, `package.json` / lock |
+| Casca API | `referencia/backend/src/server.js`, `app.js` (só `/health`), `config/database.js` |
 | Casca front | `index.html`, `vite.config.js`, `main.jsx`, casca `App.jsx`, `Layout`, `Header`, `Sidebar` (sem links de sprint futura), `ThemeContext`, `styles/*`, `assets/logo-wert.png` |
 
 Schema (`config/schema.js`) **cresce** nas sprints 1–5 (e 6–9 no app). Não copiar o arquivo inteiro na fase 0.

@@ -1,6 +1,6 @@
 # 04 — Sistema visual
 
-Direção **já existente** em `frontend/src/styles/global.css` (e, após o freeze, `referencia/frontend/src/styles/`). Não inventar tema. Não aplicar tokens novos nesta spec.
+Direção **já existente** em `referencia/frontend/src/styles/global.css`. Não inventar tema. Não aplicar tokens novos nesta spec.
 
 ## Intenção (quando houver UI)
 
@@ -29,7 +29,7 @@ Escuro: `--bg` `#0b1117`, `--panel` `#16212d`, `--accent` `#22c55e` (resto no me
 
 - Família: Inter, system-ui, Arial, sans-serif.
 - Escala: `--font-scale` no `:root` (controles A+/A− no Header).
-- Logo: `frontend/src/assets/logo-wert.png`.
+- Logo: `referencia/frontend/src/assets/logo-wert.png`.
 
 ## Fora (agora)
 

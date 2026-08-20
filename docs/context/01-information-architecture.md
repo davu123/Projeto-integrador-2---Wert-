@@ -4,17 +4,14 @@ Duas camadas. **Agora** = o que o repo precisa para achar código e spec. **Hori
 
 ## Agora
 
-Antes do freeze (fase 0 do ROADMAP), a fonte viva ainda é a raiz. Depois do freeze, a fonte viva do produto “já funciona” é `referencia/`; a fonte viva do semestre é `app/`.
+A fonte viva do produto que já funciona é `referencia/`; a fonte viva do semestre é `app/`. A raiz **não** tem `backend/` nem `frontend/` (duplicata removida na tarefa 0.5).
 
 ```text
 .
 ├── AGENTS.md
-├── ROADMAP.md                          ← execução SDD (quando existir)
+├── ROADMAP.md                          ← execução SDD
 ├── README.md
-├── docker-compose.yml                  ← sistema atual na raiz (até a fase 0 copiar)
-├── backend/                            ← fonte da cópia; não editar após freeze
-├── frontend/
-├── referencia/                         ← CONGELADO após tarefa 0.1
+├── referencia/                         ← CONGELADO (tarefa 0.1)
 │   ├── backend/
 │   ├── frontend/
 │   ├── docker-compose.yml              ← portas 1433 / 3000 / 5173
@@ -37,7 +34,6 @@ Antes do freeze (fase 0 do ROADMAP), a fonte viva ainda é a raiz. Depois do fre
 - **`docs/context/`** — spec do projeto de reconstrução. Não é backlog de tela.
 - **`docs/reverse-engineering/`** — mapa F/US → arquivos e uma receita por sprint. Fonte da verdade para “o que copiar nesta tarefa”.
 - **`docs/lean-inception/` e `docs/artefatos/`** — documentação da disciplina. Não listam implementação feita.
-- **Raiz `backend/` / `frontend/`** — originais. Permanecem até o autor autorizar remoção da duplicata (horizonte / decisão no `06`).
 
 ### Relações
 

@@ -31,7 +31,7 @@ Receitas de cópia: `docs/reverse-engineering/` (quando existirem). Produto acad
 
 ## Onde está o código
 
-- Sistema funcional congelado: `referencia/` (depois da fase 0). Até lá, a fonte é `backend/` e `frontend/` na raiz.
+- Sistema funcional congelado: `referencia/`.
 - Reconstrução do semestre: `app/`.
 - Spec ≠ conteúdo acadêmico. Não misturar tarefas de código com edição da Lean Inception.
 

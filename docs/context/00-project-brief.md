@@ -2,11 +2,11 @@
 
 ## O que é
 
-Repositório do **EcoTrack Wert** (PI2 / UniCEUB, parceria Wert). Hoje o software web completo de rastreabilidade (login, usuários, agências, lotes, equipamentos, destinação, PDF, dashboard) vive na raiz (`backend/`, `frontend/`, `docker-compose.yml`). Este brief descreve a **reconstrução acadêmica**: congelar esse sistema em `referencia/` e reconstruir o mesmo produto em `app/`, sprint a sprint, alinhado ao backlog (F01–F21).
+Repositório do **EcoTrack Wert** (PI2 / UniCEUB, parceria Wert). O software web completo de rastreabilidade (login, usuários, agências, lotes, equipamentos, destinação, PDF, dashboard) está congelado em `referencia/`. Este brief descreve a **reconstrução acadêmica**: reconstruir o mesmo produto em `app/`, sprint a sprint, alinhado ao backlog (F01–F21).
 
 ## Por que existe
 
-A disciplina pede desenvolvimento em nove sprints. O código da raiz já cobre o núcleo (ondas 1–5) e **não** cobre logística (ondas 6–9: motorista, RBAC, rotas, recolhimento). Sem um mapa arquivo → sprint e uma árvore `app/` que cresce por commits, não dá para executar o semestre como lista SDD nem levar só o histórico da reconstrução para o repositório novo do grupo.
+A disciplina pede desenvolvimento em nove sprints. O código em `referencia/` cobre o núcleo (ondas 1–5) e **não** cobre logística (ondas 6–9: motorista, RBAC, rotas, recolhimento). Sem um mapa arquivo → sprint e uma árvore `app/` que cresce por commits, não dá para executar o semestre como lista SDD nem levar só o histórico da reconstrução para o repositório novo do grupo.
 
 ## Para quem é (agora)
 
@@ -34,7 +34,7 @@ O grupo (Lucas, Davi, Artur, Eduardo) e o agente que executar o `ROADMAP.md`. A 
 - GPS, atribuição automática, app nativo, integração com o Banco do Brasil.
 - Reescrever a Lean Inception ou o Artefato 2 (já sanitizados).
 - Nove cópias físicas do app (uma pasta por sprint).
-- Apagar `backend/` e `frontend/` da raiz antes do autor confirmar que a referência sobe.
+- Voltar a ter `backend/` e `frontend/` duplicados na raiz.
 - Publicar o histórico no repositório novo do PI2 (horizonte).
 - Mencionar PI1, “já no código” ou legado nos commits e na spec de execução.
 
