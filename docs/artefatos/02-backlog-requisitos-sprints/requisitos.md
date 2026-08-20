@@ -3,8 +3,8 @@
 | Campo | Valor |
 |---|---|
 | Artefato | 2 — requisitos |
-| Origem | F01–F21, escopo da etapa 2, arquitetura do repositório |
-| Data desta versão | 19/08/2026 |
+| Origem | F01–F21, escopo da etapa 2, arquitetura prevista no Artefato 1 |
+| Data desta versão | 20/08/2026 |
 | Status | Preenchido |
 
 ---
@@ -55,7 +55,7 @@
 | RNF08 | Relatórios de conformidade devem ser gerados em PDF armazenável e reutilizável. | Auditoria |
 | RNF09 | O produto não deve exigir GPS, mapa ao vivo nem aplicativo nativo para cumprir as histórias do PI2. | Escopo / restrição |
 | RNF10 | Telas de cadastro da triagem devem priorizar fluxo curto (Camila: poucos campos obrigatórios além dos já definidos). | Usabilidade |
-| RNF11 | O sistema deve registrar data de criação/atualização nas entidades principais (já no esquema). | Auditoria |
+| RNF11 | O sistema deve registrar data de criação/atualização nas entidades principais. | Auditoria |
 | RNF12 | Comunicação frontend–API em ambiente local via URL configurável (variável de ambiente). | Configuração |
 
 ---

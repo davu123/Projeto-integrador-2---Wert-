@@ -55,10 +55,10 @@ flowchart LR
 
 | # | Passo | Ponto de contato | Emoção | Pensamento / oportunidade |
 |---|---|---|---|---|
-| 1.1 | Abre o dashboard no início do dia | Web — dashboard | Satisfeito se há números; frustrado se precisa montar resumo no Excel | “Onde estão os gargalos desta semana?” Oportunidade: indicadores já existentes (lotes, equipamentos, destinações, status) |
+| 1.1 | Abre o dashboard no início do dia | Web — dashboard | Satisfeito se há números; frustrado se precisa montar resumo no Excel | “Onde estão os gargalos desta semana?” Indicadores de lotes, equipamentos, destinações e status |
 | 1.2 | Confere agências que precisam de coleta e abre ou seleciona o lote | Web — agências e lotes | Satisfeito se a agência já está cadastrada | Lote ligado à agência, data de coleta, técnico, status (`pendente` / `em_triagem` / `concluido`) |
 | 1.3 | Monta a **rota da coleta**: pontos (agências/lotes) do dia ou da semana | Web — planejamento de rotas | Satisfeito se cabe numa tela; frustrado se ainda depende de planilha + zap | Oportunidade central da expansão: cadastrar rota, lista ordenada de paradas, sem GPS |
-| 1.4 | **Atribui** Paulo (motorista) à rota / aos lotes | Web — atribuição | Satisfeito quando o nome aparece na rota | Atribuição **manual** (não automática). O lote hoje já tem `tecnico_id`; falta o motorista da coleta |
+| 1.4 | **Atribui** Paulo (motorista) à rota / aos lotes | Web — atribuição | Satisfeito quando o nome aparece na rota | Atribuição **manual** (não automática). O lote tem técnico responsável; o motorista da coleta é outra atribuição |
 | 1.5 | Comunica a rota pelo sistema (Paulo vê na base), não por recado tardio | Web | Aliviado se Paulo confirma no sistema | Oportunidade: rota visível para o motorista **antes** de sair; evita mudança informal depois que o caminhão saiu |
 
 ---
@@ -79,9 +79,9 @@ flowchart LR
 | # | Passo | Ponto de contato | Emoção | Pensamento / oportunidade |
 |---|---|---|---|---|
 | 3.1 | Recebe o lote físico no galpão e localiza o mesmo lote no sistema | Físico + web — listagem de lotes | Satisfeita se o lote já existe e está “pendente” ou “em triagem” | Marcos (ou o fluxo) atualiza o lote para `em_triagem` |
-| 3.2 | Confere cada peça na bancada e cadastra o equipamento no lote: tipo, marca, modelo, número de série, estado | Físico + web — cadastro de equipamentos | Satisfeita se for rápido; frustrada com papel sujo ou série ilegível | Núcleo já existente. Oportunidade: busca por lote, série opcional, estado `bom` / `danificado` / `inutilizavel` |
+| 3.2 | Confere cada peça na bancada e cadastra o equipamento no lote: tipo, marca, modelo, número de série, estado | Físico + web — cadastro de equipamentos | Satisfeita se for rápido; frustrada com papel sujo ou série ilegível | Cadastro no lote; série opcional; estado `bom` / `danificado` / `inutilizavel` |
 | 3.3 | Lista o que já entrou no lote antes de fechar a conferência | Web — listagem de equipamentos | Satisfeita se bate com o físico | Evita equipamento “sumido” entre agência e laudo |
-| 3.4 | Registra a destinação de cada item (reciclagem, reúso ou destruição), empresa e data | Web — destinação | Satisfeita se for no mesmo fluxo do equipamento | Núcleo já existente (1 destinação por equipamento). Oportunidade: certificado_url quando houver comprovante |
+| 3.4 | Registra a destinação de cada item (reciclagem, reúso ou destruição), empresa e data | Web — destinação | Satisfeita se for no mesmo fluxo do equipamento | Uma destinação por equipamento; comprovante opcional |
 | 3.5 | Encerra a triagem do lote (`concluido`) quando o físico e o sistema batem | Web — status do lote | Alívio ao fechar o lote | Oportunidade: não concluir lote com equipamento sem destinação (regra de consistência) |
 
 ---
@@ -92,7 +92,7 @@ flowchart LR
 |---|---|---|---|---|
 | 4.1 | Entra com perfil de **auditora** (consulta) | Web — login | Tranquila se não consegue alterar operação | Oportunidade: autorização por perfil — Helena não cadastra lote nem destinação no dia a dia |
 | 4.2 | Localiza o lote / o ativo: agência → lote → equipamentos → destinação | Web — lotes, equipamentos, destinações | Satisfeita se o fio é contínuo; frustrada se faltar um elo | Rastreabilidade ponta a ponta, objetivo 2 |
-| 4.3 | Gera ou baixa o **relatório PDF** do lote | Web — relatórios | Satisfeita se o PDF já traz técnico, agência, itens e destinação | Núcleo já existente (PDFKit). Oportunidade: PDF também refletir rota/motorista quando a expansão existir |
+| 4.3 | Gera ou baixa o **relatório PDF** do lote | Web — relatórios | Satisfeita se o PDF traz técnico, agência, itens e destinação | Depois das rotas, o PDF também deve refletir motorista e paradas |
 | 4.4 | Arquiva o PDF para o ciclo de verificação | Web + arquivo local/impresso | Segura para inspeção | Substitui o laudo montado à mão |
 
 ---
@@ -101,9 +101,9 @@ flowchart LR
 
 Lista de capacidades que a etapa 6 (brainstorm) deve cobrir. Marcação:
 
-- **Núcleo** — já no código do PI1  
-- **Expansão** — planejamento e atribuição (escopo fechado na etapa 2)  
-- **Complemento** — qualidade do núcleo (ex.: perfil valendo de verdade)
+- **Núcleo** — rastreabilidade e operação básica (ondas 1–5)  
+- **Complemento** — governança e consistência (onda 6)  
+- **Expansão** — planejamento e atribuição de coletas (ondas 7–9)
 
 | Capacidade | Origem |
 |---|---|

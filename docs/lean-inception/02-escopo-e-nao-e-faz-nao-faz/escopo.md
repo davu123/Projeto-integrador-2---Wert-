@@ -15,11 +15,11 @@
 | Quadrante | Significa | Não significa |
 |---|---|---|
 | **É** | Atributos que o produto deve ter | Lista de telas |
-| **Não é** | Evitar confusão com outro sistema | Item ainda não implementado |
-| **Faz** | Capacidades do produto | Só o que já está no código do PI1 |
-| **Não faz** | Fora do escopo deste produto | Dívida técnica pontual |
+| **Não é** | Evitar confusão com outro sistema | Item de outra disciplina ou outro produto |
+| **Faz** | Capacidades que o produto deve ter | Lista de telas da sprint atual |
+| **Não faz** | Fora do escopo deste produto | Item para sprint posterior dentro do mesmo produto |
 
-O núcleo de rastreabilidade (itens 1–7 de **Faz**) já está no código. Planejamento de rotas e atribuição de motoristas (item 8) fazem parte do produto e entram nas sprints de expansão.
+O produto cobre rastreabilidade (itens 1–7 de **Faz**) e planejamento de rotas com atribuição de motoristas (item 8). A ordem de construção está no sequenciador (sprints 1 a 9).
 
 ---
 

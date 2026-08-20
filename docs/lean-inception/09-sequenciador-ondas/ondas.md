@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Etapa | 9 — Priorização em ondas |
-| Data desta versão | 19/08/2026 |
+| Data desta versão | 20/08/2026 |
 | Status | Validado na sessão (19/08/2026) |
 | Depende de | [Pesos](../08-esforco-negocio-ux/pesos.md) e [Semáforo](../07-semaforo-tecnico-negocio/semaforo.md) |
 
@@ -16,30 +16,32 @@
 3. Uma onda **não** tem três cartões só amarelos/vermelhos  
 4. Soma de E ≤ **5** (E=1, EE=2, EEE=3)  
 5. Soma de $ ≥ **4** e de ♥ ≥ **4**  
-6. Origem em onda anterior. Exceção documentada: na **mesma onda** só o que é um único módulo entregue em sequência (ex.: gerar PDF e listar PDF; montar rota e atribuir motorista)
+6. Origem em onda anterior. Exceção: na **mesma onda** só o que é um único módulo entregue em sequência (ex.: gerar PDF e listar PDF; montar rota e atribuir motorista)
 
 ---
 
 ## Corte MVP × incrementos
 
-| Bloco | Ondas | Sprints na simulação | Significado |
-|---|---|---|---|
-| **Núcleo (PI1)** | 1 a 5 | Sprints 1 a 5 — **já executadas** | O que o código já entrega |
-| **Complemento (PI2)** | 6 | Sprint 6 — **a executar** | Perfil motorista, autorização por perfil, consistência do lote |
-| **Expansão logística (PI2)** | 7 a 9 | Sprints 7 a 9 — **a executar** | Rotas, atribuição, recolhimento, PDF completo |
+Todas as nove ondas serão desenvolvidas neste semestre (PI2).
 
-GPS e atribuição automática continuam fora deste sequenciador (escopo da etapa 2).
+| Bloco | Ondas | Sprints | Significado |
+|---|---|---|---|
+| **Núcleo** (MVP de rastreabilidade) | 1 a 5 | 1 a 5 | Login, cadastros, destinação, PDF, dashboard |
+| **Complemento** (governança) | 6 | 6 | Perfil motorista, permissões, consistência do lote |
+| **Expansão** (logística) | 7 a 9 | 7 a 9 | Rotas, atribuição, recolhimento, PDF completo |
+
+GPS e atribuição automática ficam fora deste sequenciador (escopo da etapa 2).
 
 ```mermaid
 flowchart LR
-  subgraph pi1 [Já no código]
+  subgraph nucleo [Núcleo]
     O1[Onda 1]
     O2[Onda 2]
     O3[Onda 3]
     O4[Onda 4]
     O5[Onda 5]
   end
-  subgraph pi2 [PI2]
+  subgraph resto [Complemento e expansão]
     O6[Onda 6]
     O7[Onda 7]
     O8[Onda 8]
@@ -52,25 +54,25 @@ flowchart LR
 
 ## Onda 1 — Acesso e pontos de coleta
 
-Sprint 1 (já executada). **E 4 · $ 6 · ♥ 4** · 2 verdes.
+Sprint 1. **E 4 · $ 6 · ♥ 4** · 2 verdes.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F01 | Autenticar com e-mail e senha | Verde | EE | $$$ | ♥♥ | sim |
-| F05 | Cadastrar e manter agências | Verde | EE | $$$ | ♥♥ | sim |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F01 | Autenticar com e-mail e senha | Verde | EE | $$$ | ♥♥ |
+| F05 | Cadastrar e manter agências | Verde | EE | $$$ | ♥♥ |
 
-Por quê: dá para entrar no sistema e existir o lugar da coleta. Login e agência não dependem um do outro além da sessão.
+Por quê: dá para entrar no sistema e existir o lugar da coleta.
 
 ---
 
 ## Onda 2 — Usuários e lotes
 
-Sprint 2 (já executada). **E 4 · $ 6 · ♥ 5** · 2 verdes.
+Sprint 2. **E 4 · $ 6 · ♥ 5** · 2 verdes.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F02 | Cadastrar, editar e desativar usuários | Verde | EE | $$$ | ♥♥ | sim |
-| F06 | Cadastrar e manter lotes | Verde | EE | $$$ | ♥♥♥ | sim |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F02 | Cadastrar, editar e desativar usuários | Verde | EE | $$$ | ♥♥ |
+| F06 | Cadastrar e manter lotes | Verde | EE | $$$ | ♥♥♥ |
 
 Por quê: Renata governa contas; Marcos passa a ter o lote ligado à agência da onda 1.
 
@@ -78,13 +80,13 @@ Por quê: Renata governa contas; Marcos passa a ter o lote ligado à agência da
 
 ## Onda 3 — Equipamentos e status do lote
 
-Sprint 3 (já executada). **E 4 · $ 7 · ♥ 7** · 3 verdes.
+Sprint 3. **E 4 · $ 7 · ♥ 7** · 3 verdes.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F07 | Atualizar status do lote | Verde | E | $$ | ♥♥ | sim |
-| F08 | Cadastrar equipamento no lote | Verde | EE | $$$ | ♥♥♥ | sim |
-| F09 | Listar equipamentos do lote | Verde | E | $$ | ♥♥ | sim |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F07 | Atualizar status do lote | Verde | E | $$ | ♥♥ |
+| F08 | Cadastrar equipamento no lote | Verde | EE | $$$ | ♥♥♥ |
+| F09 | Listar equipamentos do lote | Verde | E | $$ | ♥♥ |
 
 Por quê: Camila opera o lote da onda 2. Cadastro e listagem saem juntos (mesmo módulo).
 
@@ -92,12 +94,12 @@ Por quê: Camila opera o lote da onda 2. Cadastro e listagem saem juntos (mesmo 
 
 ## Onda 4 — Destinação e PDF
 
-Sprint 4 (já executada). **E 4 · $ 6 · ♥ 6** · 2 verdes.
+Sprint 4. **E 4 · $ 6 · ♥ 6** · 2 verdes.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F11 | Registrar destinação | Verde | EE | $$$ | ♥♥♥ | sim |
-| F14 | Gerar PDF de conformidade | Verde | EE | $$$ | ♥♥♥ | sim |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F11 | Registrar destinação | Verde | EE | $$$ | ♥♥♥ |
+| F14 | Gerar PDF de conformidade | Verde | EE | $$$ | ♥♥♥ |
 
 Por quê: fecha o ciclo ambiental e a evidência da Helena. PDF depois do equipamento (onda 3).
 
@@ -105,52 +107,52 @@ Por quê: fecha o ciclo ambiental e a evidência da Helena. PDF depois do equipa
 
 ## Onda 5 — Dashboard e arquivo de PDFs
 
-Sprint 5 (já executada). **E 3 · $ 5 · ♥ 5** · 2 verdes.
+Sprint 5. **E 3 · $ 5 · ♥ 5** · 2 verdes.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F13 | Dashboard de indicadores | Verde | EE | $$$ | ♥♥♥ | sim |
-| F15 | Listar e baixar PDFs | Verde | E | $$ | ♥♥ | sim |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F13 | Dashboard de indicadores | Verde | EE | $$$ | ♥♥♥ |
+| F15 | Listar e baixar PDFs | Verde | E | $$ | ♥♥ |
 
-Por quê: Marcos vê números; Helena reabre laudos. F15 exige F14 (onda 4). **Núcleo do PI1 completo nesta onda.**
+Por quê: Marcos vê números; Helena reabre laudos. F15 exige F14 (onda 4). Encerra o MVP de rastreabilidade.
 
 ---
 
-## Onda 6 — Complemento de governança e consistência
+## Onda 6 — Governança e consistência
 
-Sprint 6 (a executar). **E 4 · $ 7 · ♥ 6** · 2 verdes + 1 amarelo.
+Sprint 6. **E 4 · $ 7 · ♥ 6** · 2 verdes + 1 amarelo.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F03 | Incluir perfil motorista | Verde | E | $$ | ♥ | não |
-| F04 | Restringir telas e APIs por perfil | Amarelo | EE | $$$ | ♥♥♥ | não |
-| F12 | Não concluir lote sem destinação | Verde | E | $$ | ♥♥ | não |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F03 | Incluir perfil motorista | Verde | E | $$ | ♥ |
+| F04 | Restringir telas e APIs por perfil | Amarelo | EE | $$$ | ♥♥♥ |
+| F12 | Não concluir lote sem destinação | Verde | E | $$ | ♥♥ |
 
-Por quê: destrava a expansão (motorista), atende Renata/Helena (permissões) e impede lote “fechado” oco. F04 é o único amarelo; as duas verdes impedem onda só de incerteza. F03 depois de F02 (onda 2).
+Por quê: destrava a logística (motorista), atende Renata/Helena (permissões) e impede lote “fechado” oco. F03 depois de F02 (onda 2).
 
 ---
 
 ## Onda 7 — Planejar rota e atribuir motorista
 
-Sprint 7 (a executar). **E 5 · $ 6 · ♥ 6** · 2 amarelos.
+Sprint 7. **E 5 · $ 6 · ♥ 6** · 2 amarelos.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F17 | Montar rota com paradas e ordem | Amarelo | EEE | $$$ | ♥♥♥ | não |
-| F18 | Atribuir motorista à rota | Amarelo | EE | $$$ | ♥♥♥ | não |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F17 | Montar rota com paradas e ordem | Amarelo | EEE | $$$ | ♥♥♥ |
+| F18 | Atribuir motorista à rota | Amarelo | EE | $$$ | ♥♥♥ |
 
-Por quê: coração do O3. Dois amarelos (não três). Esforço no teto (5). Na sprint: primeiro o modelo da rota, depois a atribuição (F03 e F05/F06 já existiam). Sem GPS.
+Por quê: coração do O3. Dois amarelos (não três). Esforço no teto (5). Na sprint: primeiro o modelo da rota, depois a atribuição (F03, F05 e F06 já terão saído nas ondas anteriores). Sem GPS.
 
 ---
 
 ## Onda 8 — Execução da coleta
 
-Sprint 8 (a executar). **E 4 · $ 5 · ♥ 6** · 2 amarelos.
+Sprint 8. **E 4 · $ 5 · ♥ 6** · 2 amarelos.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F19 | Motorista consultar a rota do dia | Amarelo | EE | $$ | ♥♥♥ | não |
-| F20 | Status de recolhimento | Amarelo | EE | $$$ | ♥♥♥ | não |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F19 | Motorista consultar a rota do dia | Amarelo | EE | $$ | ♥♥♥ |
+| F20 | Status de recolhimento | Amarelo | EE | $$$ | ♥♥♥ |
 
 Por quê: Paulo deixa o papel e o zap. Depende da rota atribuída (onda 7). Tela na **base**, sem mapa ao vivo.
 
@@ -158,15 +160,15 @@ Por quê: Paulo deixa o papel e o zap. Depende da rota atribuída (onda 7). Tela
 
 ## Onda 9 — Fechamento para o gestor e a auditora
 
-Sprint 9 (a executar). **E 3 · $ 6 · ♥ 6** · 1 verde + 2 amarelos.
+Sprint 9. **E 3 · $ 6 · ♥ 6** · 1 verde + 2 amarelos.
 
-| ID | Funcionalidade | Cor | E | $ | ♥ | No código? |
-|---|---|---|---|---|---|---|
-| F10 | Editar equipamento já lançado | Verde | E | $ | ♥ | não |
-| F16 | Incluir rota e motorista no PDF | Amarelo | E | $$ | ♥♥ | não |
-| F21 | Gestor ver se as coletas foram feitas | Amarelo | E | $$$ | ♥♥♥ | não |
+| ID | Funcionalidade | Cor | E | $ | ♥ |
+|---|---|---|---|---|---|
+| F10 | Editar equipamento já lançado | Verde | E | $ | ♥ |
+| F16 | Incluir rota e motorista no PDF | Amarelo | E | $$ | ♥♥ |
+| F21 | Gestor ver se as coletas foram feitas | Amarelo | E | $$$ | ♥♥♥ |
 
-Por quê: F21 depois de F20; F16 depois de F14+F17+F18. F10 (verde fraco) entra aqui para não formar onda de três amarelos e para cobrir o complemento que restava. Valor da onda é carregado por F16 e F21.
+Por quê: F21 depois de F20; F16 depois de F14+F17+F18. F10 entra para não formar onda de três amarelos. Valor da onda é carregado por F16 e F21.
 
 ---
 
@@ -192,4 +194,5 @@ Por quê: F21 depois de F20; F16 depois de F14+F17+F18. F10 (verde fraco) entra 
 
 | Data | O quê |
 |---|---|
-| 19/08/2026 | Nove ondas montadas com as Regras de Ouro. Ondas 1–5 = PI1; 6–9 = PI2. |
+| 19/08/2026 | Nove ondas montadas com as Regras de Ouro. |
+| 20/08/2026 | Todas as sprints descritas como plano do semestre. |

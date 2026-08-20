@@ -52,7 +52,7 @@ Mapas ilustrados: `docs/lean-inception/04-personas/imagens/`.
 
 ## Backlog priorizado por ondas
 
-Nove sprints. **1–5 já no código (PI1). 6–9 a executar (PI2).**
+Nove sprints a desenvolver no PI2.
 
 | Sprint | Entrega |
 |---|---|
@@ -72,7 +72,7 @@ Nove sprints. **1–5 já no código (PI1). 6–9 a executar (PI2).**
 
 ## Canvas MVP (síntese)
 
-O núcleo de rastreabilidade **já está entregue** (ondas 1–5). O PI2 **fecha a visão** em quatro sprints (ondas 6–9): permissões, consistência do lote e logística de planejamento/atribuição, sem GPS. Time de quatro pessoas; duração sugerida de 2 semanas por sprint restante.
+O produto será construído em nove sprints: ondas 1–5 (rastreabilidade), onda 6 (permissões e consistência), ondas 7–9 (logística de planejamento/atribuição, sem GPS). Time de quatro pessoas; duração sugerida de 2 semanas por sprint.
 
 Métricas: cadastro no sistema (não na planilha); histórico agência → lote → equipamento → destinação; PDF gerado; rota atribuída antes de sair; status de recolhimento visível; cada perfil vê o que deve.
 

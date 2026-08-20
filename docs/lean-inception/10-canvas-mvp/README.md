@@ -6,4 +6,4 @@
 | **Formato PDF** | [pdf/canvas-mvp.pdf](pdf/canvas-mvp.pdf) (pendente) |
 | **Status** | Validado na sessão (19/08/2026) |
 
-Núcleo (ondas 1–5) já entregue; PI2 fecha a visão nas ondas 6–9.
+Núcleo nas ondas 1–5; complemento e logística nas ondas 6–9. Nove sprints no PI2.

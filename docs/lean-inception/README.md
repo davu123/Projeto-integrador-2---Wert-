@@ -2,7 +2,7 @@
 
 Roteiro seguido: *Guia de Lean Inception: Do Conceito ao Backlog e ao Canvas MVP* (versão ajustada para execução com IA).
 
-**Adaptação deste projeto:** o software já existe (PI1). Na disciplina, o time **desconstrói** o código, documenta como se o desenvolvimento começasse agora, **complementa** o que falta e **simula** as sprints. O código é evidência; não substitui a validação do grupo.
+Este dossiê prepara o **desenvolvimento do EcoTrack Wert no Projeto Integrador II**: visão, escopo, personas, backlog em ondas e Canvas MVP. O software é construído nas sprints do Artefato 2.
 
 ---
 

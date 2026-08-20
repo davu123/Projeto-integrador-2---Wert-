@@ -8,7 +8,7 @@ Registro das decisões de 19/08/2026 (etapas 0–2) e ponte para o material fina
 
 | # | Tema | Decisão |
 |---|---|---|
-| 1 | Kick-off | Validado: problema (planilhas e processos manuais); PI2 documenta, desconstrói e simula o desenvolvimento |
+| 1 | Kick-off | Validado: problema (planilhas e processos manuais); o PI2 planeja e desenvolve o EcoTrack em sprints |
 | 2 | Visão | Cliente do produto = **Wert**. Banco do Brasil não é cliente; agências entram só como pontos de coleta |
 | 3 | Escopo de logística | Rotas e motoristas **entram** como planejamento e atribuição. **GPS** e **atribuição automática** ficam **fora** do produto |
 

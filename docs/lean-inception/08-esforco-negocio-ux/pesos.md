@@ -7,7 +7,7 @@
 | Status | Validado na sessão (19/08/2026) |
 | Depende de | [Semáforo](../07-semaforo-tecnico-negocio/semaforo.md) |
 
-Esforço = custo de **construir** a funcionalidade (na simulação do PI2 o núcleo também tem peso: já foi pago nas sprints passadas).
+Esforço = custo de **construir** a funcionalidade nas sprints do PI2.
 
 - **Esforço (E):** E (baixo) = 1 · EE (médio) = 2 · EEE (alto) = 3  
 - **Negócio ($):** $ = 1 · $$ = 2 · $$$ = 3  
@@ -34,8 +34,8 @@ Esforço = custo de **construir** a funcionalidade (na simulação do PI2 o núc
 | F13 | Dashboard de indicadores | EE | $$$ | ♥♥♥ | Verde | Marcos pela manhã; O1 e O2 |
 | F14 | Gerar PDF de conformidade | EE | $$$ | ♥♥♥ | Verde | Helena e auditoria |
 | F15 | Listar e baixar PDFs | E | $$ | ♥♥ | Verde | Arquivo do ciclo |
-| F16 | Incluir rota e motorista no PDF | E | $$ | ♥♥ | Amarelo | Laudo completo depois da expansão |
-| F17 | Montar rota com paradas e ordem | EEE | $$$ | ♥♥♥ | Amarelo | Maior peça nova; O3 |
+| F16 | Incluir rota e motorista no PDF | E | $$ | ♥♥ | Amarelo | Laudo completo depois das sprints de rota |
+| F17 | Montar rota com paradas e ordem | EEE | $$$ | ♥♥♥ | Amarelo | Maior peça do O3 |
 | F18 | Atribuir motorista à rota | EE | $$$ | ♥♥♥ | Amarelo | Substitui o zap de “quem vai” |
 | F19 | Motorista consultar a rota do dia | EE | $$ | ♥♥♥ | Amarelo | Tela do Paulo na base; evita papel |
 | F20 | Status de recolhimento | EE | $$$ | ♥♥♥ | Amarelo | Fecha a dor do atraso invisível |
@@ -62,4 +62,5 @@ Lembrete das Regras de Ouro (etapa 9): no máximo 3 cartões por onda; soma de E
 
 | Data | O quê |
 |---|---|
-| 19/08/2026 | Pesos estimados na sessão a partir da jornada, dos objetivos e do tamanho real de cada peça no repositório. |
+| 19/08/2026 | Pesos estimados a partir da jornada, dos objetivos e do tamanho de cada peça. |
+| 20/08/2026 | Esforço descrito como custo a construir nas sprints do semestre. |

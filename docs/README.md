@@ -39,8 +39,8 @@ docs/
 │   ├── 10-canvas-mvp/
 │   └── 11-showcase/
 └── artefatos/                         ← entregas da disciplina
-    ├── 01-contexto-problema-solucao/  ← já entregue
-    └── 02-backlog-requisitos-sprints/ ← próxima entrega
+    ├── 01-contexto-problema-solucao/  ← Artefato 1 (entregue à disciplina)
+    └── 02-backlog-requisitos-sprints/ ← Artefato 2
 ```
 
 ---
@@ -49,9 +49,9 @@ docs/
 
 | Nome | Papel neste PI2 |
 |---|---|
-| Lucas Gonçalves Balduino | Condução da engenharia reversa e da documentação Lean Inception |
-| Davi Oliveira Maia | Autor do software no PI1; contato com a Wert |
-| Artur Feitoza | Integrante (entra no PI2) |
+| Lucas Gonçalves Balduino | Integrante; documentação Lean Inception |
+| Davi Oliveira Maia | Integrante; contato com a Wert |
+| Artur Feitoza | Integrante |
 | Eduardo Martins | Integrante (ingressou entre o Artefato 1 e o Artefato 2) |
 
 **Orientadora:** Adriana Falcomer Pontes — UniCEUB, Ciência da Computação.
@@ -62,7 +62,7 @@ docs/
 
 | Bloco | Situação |
 |---|---|
-| Artefato 1 | Entregue (base: README do repositório) |
+| Artefato 1 | Entregue à disciplina |
 | Lean Inception 0, 1 e 2 | Validadas pelo grupo (19/08/2026) |
 | Lean Inception 3 | Validada na sessão |
 | Lean Inception 4 | Validada na sessão (cinco fichas + cinco mapas ilustrados) |

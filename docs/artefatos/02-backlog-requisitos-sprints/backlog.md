@@ -4,10 +4,10 @@
 |---|---|
 | Artefato | 2 — backlog |
 | Origem | Funcionalidades F01–F21 e [ondas](../../lean-inception/09-sequenciador-ondas/ondas.md) |
-| Data desta versão | 19/08/2026 |
+| Data desta versão | 20/08/2026 |
 | Status | Preenchido |
 
-Histórias no formato *Como [persona], quero [ação], para [benefício]*. Tarefas agrupadas por sprint.
+Histórias no formato *Como [persona], quero [ação], para [benefício]*. Todas as histórias serão desenvolvidas nas sprints do PI2. Tarefas agrupadas por sprint.
 
 ---
 
@@ -26,21 +26,21 @@ Histórias no formato *Como [persona], quero [ação], para [benefício]*. Taref
 
 | ID | História | Feature | Sprint | Situação |
 |---|---|---|---|---|
-| US01 | Como usuário da Wert, quero entrar com e-mail e senha, para acessar só o que me compete. | F01 | 1 | Feita |
-| US02 | Como Renata, quero cadastrar, editar e desativar usuários com perfil, para manter as contas em ordem. | F02 | 2 | Feita |
+| US01 | Como usuário da Wert, quero entrar com e-mail e senha, para acessar só o que me compete. | F01 | 1 | A fazer |
+| US02 | Como Renata, quero cadastrar, editar e desativar usuários com perfil, para manter as contas em ordem. | F02 | 2 | A fazer |
 | US03 | Como Renata, quero o perfil motorista no cadastro, para o Paulo existir no sistema. | F03 | 6 | A fazer |
 | US04 | Como Renata / Helena, quero que cada perfil só veja e altere o que pode, para a auditoria não mudar operação e o admin controlar o acesso. | F04 | 6 | A fazer |
-| US05 | Como Marcos, quero cadastrar agências, para os pontos de coleta existirem no EcoTrack. | F05 | 1 | Feita |
-| US06 | Como Marcos, quero abrir e manter lotes ligados a uma agência, para organizar cada coleta. | F06 | 2 | Feita |
-| US07 | Como Marcos / Camila, quero mudar o status do lote (pendente, em triagem, concluído), para o fluxo aparecer no sistema. | F07 | 3 | Feita |
-| US08 | Como Camila, quero lançar o equipamento no lote (tipo, marca, modelo, série, estado), para o ativo ficar rastreável. | F08 | 3 | Feita |
-| US09 | Como Camila, quero listar os equipamentos do lote, para conferir com o físico. | F09 | 3 | Feita |
+| US05 | Como Marcos, quero cadastrar agências, para os pontos de coleta existirem no EcoTrack. | F05 | 1 | A fazer |
+| US06 | Como Marcos, quero abrir e manter lotes ligados a uma agência, para organizar cada coleta. | F06 | 2 | A fazer |
+| US07 | Como Marcos / Camila, quero mudar o status do lote (pendente, em triagem, concluído), para o fluxo aparecer no sistema. | F07 | 3 | A fazer |
+| US08 | Como Camila, quero lançar o equipamento no lote (tipo, marca, modelo, série, estado), para o ativo ficar rastreável. | F08 | 3 | A fazer |
+| US09 | Como Camila, quero listar os equipamentos do lote, para conferir com o físico. | F09 | 3 | A fazer |
 | US10 | Como Camila, quero editar um equipamento já lançado, para corrigir erro de digitação. | F10 | 9 | A fazer |
-| US11 | Como Camila, quero registrar a destinação (reciclagem, reúso ou destruição, empresa e data), para fechar o ciclo ambiental. | F11 | 4 | Feita |
+| US11 | Como Camila, quero registrar a destinação (reciclagem, reúso ou destruição, empresa e data), para fechar o ciclo ambiental. | F11 | 4 | A fazer |
 | US12 | Como Marcos / Helena, quero que o lote não seja concluído sem destinação em todos os itens, para o PDF não sair oco. | F12 | 6 | A fazer |
-| US13 | Como Marcos, quero um dashboard com totais e quebras, para ver gargalos sem montar planilha. | F13 | 5 | Feita |
-| US14 | Como Helena, quero gerar o relatório de conformidade do lote em PDF, para arquivar evidência. | F14 | 4 | Feita |
-| US15 | Como Helena, quero listar e baixar os PDFs já gerados, para reabrir o laudo do ciclo. | F15 | 5 | Feita |
+| US13 | Como Marcos, quero um dashboard com totais e quebras, para ver gargalos sem montar planilha. | F13 | 5 | A fazer |
+| US14 | Como Helena, quero gerar o relatório de conformidade do lote em PDF, para arquivar evidência. | F14 | 4 | A fazer |
+| US15 | Como Helena, quero listar e baixar os PDFs já gerados, para reabrir o laudo do ciclo. | F15 | 5 | A fazer |
 | US16 | Como Helena, quero ver rota e motorista no PDF, quando existirem, para o laudo cobrir a coleta. | F16 | 9 | A fazer |
 | US17 | Como Marcos, quero montar uma rota com data, paradas e ordem, para planejar a semana de coletas. | F17 | 7 | A fazer |
 | US18 | Como Marcos, quero atribuir um motorista à rota na mão, para o Paulo saber o que é dele. | F18 | 7 | A fazer |
@@ -50,9 +50,38 @@ Histórias no formato *Como [persona], quero [ação], para [benefício]*. Taref
 
 ---
 
-## Tarefas (por sprint a executar)
+## Tarefas (por sprint)
 
-Tarefas das sprints 1–5 já realizadas no PI1 (código no repositório). Abaixo, o que resta.
+Todas as nove sprints serão desenvolvidas neste semestre.
+
+### Sprint 1 — E1, E2
+
+- Autenticação com e-mail e senha (JWT, hash bcrypt)
+- Tela de login e sessão
+- CRUD de agências (código, cidade, UF, responsável, telefone)
+- Rotas da API de agências protegidas por token
+
+### Sprint 2 — E1, E2
+
+- CRUD de usuários (nome, e-mail, perfil, desativar)
+- CRUD de lotes ligados a uma agência (data, técnico, observações, status)
+- Telas de usuários e de lotes
+
+### Sprint 3 — E2
+
+- Atualizar status do lote (`pendente`, `em_triagem`, `concluido`)
+- Cadastro de equipamento no lote (tipo, marca, modelo, série, estado)
+- Listagem de equipamentos do lote
+
+### Sprint 4 — E2, E3
+
+- Registro de destinação por equipamento (reciclagem, reúso ou destruição, empresa, data)
+- Geração de relatório de conformidade do lote em PDF
+
+### Sprint 5 — E3
+
+- Dashboard com totais e quebras (status, tipo, estado, destino)
+- Listar e baixar os PDFs gerados
 
 ### Sprint 6 — E1, E2
 

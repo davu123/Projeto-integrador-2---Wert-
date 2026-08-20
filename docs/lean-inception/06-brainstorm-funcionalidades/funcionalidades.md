@@ -7,7 +7,7 @@
 | Status | Validado na sessão (19/08/2026) |
 | Depende de | [Jornada](../05-jornada-do-usuario/jornada.md) e [Objetivos](../03-objetivos-do-produto/objetivos.md) |
 
-Cada item: **uma frase objetiva**. Origem: **núcleo** (já no código), **expansão** (rotas e motoristas) ou **complemento** (qualidade do núcleo).
+Cada item: **uma frase objetiva**. Origem: **núcleo** (rastreabilidade, ondas 1–5), **complemento** (governança, onda 6) ou **expansão** (rotas e motoristas, ondas 7–9).
 
 Objetivos: **O1** centralizar a operação · **O2** rastreabilidade e conformidade · **O3** planejamento das coletas.
 
@@ -81,7 +81,7 @@ Todas as linhas acima **mantêm = sim**: são o produto definido na visão, no e
 | Expansão | 6 | F16–F21 |
 | **Total** | **21** | |
 
-Na simulação do PI2, o **núcleo** vira sprints já executadas; **complemento** e **expansão** viram sprints seguintes. A etapa 7 (semáforo) pontua cada ID.
+O **núcleo** ocupa as sprints 1–5; **complemento** a sprint 6; **expansão** as sprints 7–9. A etapa 7 (semáforo) pontua cada ID.
 
 ---
 
@@ -89,4 +89,5 @@ Na simulação do PI2, o **núcleo** vira sprints já executadas; **complemento*
 
 | Data | O quê |
 |---|---|
-| 19/08/2026 | Lista candidata extraída da jornada ponta a ponta e dos três objetivos, cruzada com as rotas do código. |
+| 19/08/2026 | Lista candidata extraída da jornada ponta a ponta e dos três objetivos. |
+| 20/08/2026 | Origem descrita como sequência de sprints do semestre, sem status de implementação. |

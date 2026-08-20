@@ -4,7 +4,7 @@ Sistema web para gestão de descarte eletrônico, com foco em rastreabilidade, c
 
 ## Sobre o projeto
 
-O **EcoTrack Wert** foi desenvolvido no contexto da disciplina **Projeto Integrador II** do curso de **Ciência da Computação do UniCEUB**, em parceria com a empresa **Wert**, sediada em Brasília/DF.
+O **EcoTrack Wert** será desenvolvido no contexto da disciplina **Projeto Integrador II** do curso de **Ciência da Computação do UniCEUB**, em parceria com a empresa **Wert**, sediada em Brasília/DF.
 
 A proposta do sistema é digitalizar e centralizar o processo de gestão de descarte de equipamentos eletroeletrônicos, especialmente no contexto de atendimento ao **Banco do Brasil**, permitindo controle de lotes, equipamentos, destinação final, relatórios de conformidade e indicadores gerenciais.
 
@@ -41,7 +41,7 @@ O sistema foi pensado para os seguintes perfis:
 - **Gestor operacional**: acompanha lotes, indicadores e relatórios
 - **Auditor/consultor**: consulta relatórios e rastreabilidade dos ativos
 
-## Funcionalidades principais
+## Funcionalidades previstas
 
 - autenticação de usuários com controle de acesso
 - cadastro e gerenciamento de usuários
@@ -53,7 +53,7 @@ O sistema foi pensado para os seguintes perfis:
 - dashboard gerencial com indicadores
 - interface responsiva para desktop
 
-## Tecnologias utilizadas
+## Tecnologias previstas
 
 ### Front-end
 - React.js
@@ -78,7 +78,7 @@ O sistema foi pensado para os seguintes perfis:
 
 ## Modelagem de dados
 
-O sistema foi estruturado com as seguintes entidades principais:
+A modelagem prevista inclui as seguintes entidades principais:
 
 - **Usuário**
 - **Agência**
@@ -97,7 +97,7 @@ O sistema foi estruturado com as seguintes entidades principais:
 
 ## Arquitetura da solução
 
-O EcoTrack Wert segue uma arquitetura em camadas:
+O EcoTrack Wert seguirá uma arquitetura em camadas:
 
 - **Front-end**: interface web
 - **Back-end**: API com regras de negócio

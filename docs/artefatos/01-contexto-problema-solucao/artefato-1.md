@@ -23,7 +23,7 @@
 
 O **EcoTrack Wert** é um sistema web voltado para a gestão centralizada do descarte de equipamentos eletroeletrônicos, focado em rastreabilidade, conformidade ambiental e suporte ao controle operacional.
 
-O projeto foi idealizado e desenvolvido no contexto da disciplina *Projeto Integrador I* do curso de Ciência da Computação do UniCEUB, em parceria com a empresa **Wert**, sediada em Brasília/DF. A finalidade principal da plataforma é digitalizar os processos operacionais de descarte eletrônico, com ênfase no atendimento às demandas operacionais e regulatórias associadas ao Banco do Brasil.
+O projeto foi idealizado no contexto da disciplina *Projeto Integrador II* do curso de Ciência da Computação do UniCEUB, em parceria com a empresa **Wert**, sediada em Brasília/DF. A finalidade principal da plataforma é digitalizar os processos operacionais de descarte eletrônico, com ênfase no atendimento às demandas operacionais e regulatórias associadas ao Banco do Brasil.
 
 ---
 
@@ -76,12 +76,12 @@ O **EcoTrack Wert** é uma plataforma web para gestão logística e rastreabilid
 
 ### 5.3 Aspectos Técnicos e Arquitetura
 
-Para garantir escalabilidade, segurança e bom desempenho, o sistema foi estruturado em uma arquitetura em camadas:
+Para garantir escalabilidade, segurança e bom desempenho, o sistema será estruturado em uma arquitetura em camadas:
 
 | Camada / Componente | Tecnologia / Descrição |
 | :--- | :--- |
-| **Front-end** | Desenvolvido em **React.js**, **JavaScript** e **CSS**, oferecendo uma interface web responsiva e focada na usabilidade desktop. |
-| **Back-end** | API REST desenvolvida em **Node.js** com **Express.js**, utilizando **JWT** para autenticação e **bcrypt** para proteção de credenciais. |
+| **Front-end** | **React.js**, **JavaScript** e **CSS**, com interface web focada na usabilidade desktop. |
+| **Back-end** | API REST em **Node.js** com **Express.js**, utilizando **JWT** para autenticação e **bcrypt** para proteção de credenciais. |
 | **Banco de Dados** | Modelagem relacional estruturada em **SQL Server**. |
 | **Ambiente & Deploy** | Suporte a containerização com **Docker** e **Docker Compose**, facilidade no versionamento via **Git/GitHub**. |
 

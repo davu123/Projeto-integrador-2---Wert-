@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Etapa | 10 — Canvas MVP |
-| Data desta versão | 19/08/2026 |
+| Data desta versão | 20/08/2026 |
 | Status | Validado na sessão (19/08/2026) |
 | Depende de | Etapas 1, 3, 4, 5 e 9 |
 
@@ -51,17 +51,15 @@ Fonte: [jornada](../05-jornada-do-usuario/jornada.md)
 
 ## Funcionalidades do MVP
 
-Dois recortes, os dois oficiais neste canvas:
-
-### Já entregue — ondas 1 a 5 (Sprints 1–5, PI1)
+### MVP de rastreabilidade — ondas 1 a 5 (Sprints 1–5)
 
 Login, usuários, agências, lotes e status, equipamentos, destinação, PDF, dashboard.
 
 IDs: F01, F02, F05, F06, F07, F08, F09, F11, F13, F14, F15.
 
-Isso cobre **O1** (plataforma única) e **O2** (rastreio + evidência), ainda sem logística de campo.
+Cobre **O1** (plataforma única) e **O2** (rastreio + evidência).
 
-### A entregar no PI2 para fechar a visão — ondas 6 a 9 (Sprints 6–9)
+### Incrementos para fechar a visão — ondas 6 a 9 (Sprints 6–9)
 
 | Onda | IDs | Entrega |
 |---|---|---|
@@ -82,10 +80,9 @@ Fonte: [ondas](../09-sequenciador-ondas/ondas.md) · [funcionalidades](../06-bra
 |---|---|
 | Quem desenvolve | Lucas Gonçalves Balduino, Davi Oliveira Maia, Artur Feitoza, Eduardo Martins |
 | Natureza | Projeto acadêmico (PI2 / UniCEUB), parceria Wert — sem orçamento comercial à parte |
-| Stack (já definida) | React + Vite, Node/Express, SQL Server, Docker |
-| Agenda já consumida | Sprints 1–5 (ondas 1–5) — núcleo no repositório |
-| Agenda restante | Sprints 6–9 (ondas 6–9) — 4 sprints; duração sugerida **2 semanas** cada (8 semanas de calendário, ajustável pelo grupo) |
-| Entrega acadêmica | Artefato 2: backlog, RF/RNF e este cronograma em sprints |
+| Stack prevista | React + Vite, Node/Express, SQL Server, Docker (Artefato 1) |
+| Agenda do semestre | Sprints 1–9 (ondas 1–9); duração sugerida **2 semanas** cada (ajustável pelo grupo) |
+| Entrega acadêmica | Artefato 2: backlog, RF/RNF e cronograma em sprints |
 
 Fonte: [cronograma](../../artefatos/02-backlog-requisitos-sprints/cronograma-sprints.md)
 
@@ -106,7 +103,7 @@ Fonte: [cronograma](../../artefatos/02-backlog-requisitos-sprints/cronograma-spr
 
 ## Leitura em um parágrafo
 
-O EcoTrack Wert já tem o **MVP de rastreabilidade** (ondas 1–5). O PI2 completa o **MVP da visão**: permissões reais, consistência do lote e planejamento/atribuição de coletas sem GPS (ondas 6–9), em quatro sprints, com o time de quatro pessoas, até o produto cobrir a jornada Marcos → Paulo → Camila → Helena.
+O EcoTrack Wert será desenvolvido em **nove sprints**. As ondas 1–5 entregam o MVP de rastreabilidade; as ondas 6–9 fecham a visão (permissões, consistência do lote e planejamento/atribuição de coletas, sem GPS). Time de quatro pessoas; duração sugerida de 2 semanas por sprint.
 
 ---
 
@@ -115,3 +112,4 @@ O EcoTrack Wert já tem o **MVP de rastreabilidade** (ondas 1–5). O PI2 comple
 | Data | O quê |
 |---|---|
 | 19/08/2026 | Canvas preenchido com visão, personas, jornada, ondas 1–9, agenda das sprints e métricas dos três objetivos. |
+| 20/08/2026 | Agenda descrita como nove sprints a desenvolver no semestre. |

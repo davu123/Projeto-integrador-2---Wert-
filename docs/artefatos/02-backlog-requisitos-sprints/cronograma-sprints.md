@@ -4,36 +4,36 @@
 |---|---|
 | Artefato | 2 — cronograma |
 | Origem | [Ondas da Lean Inception](../../lean-inception/09-sequenciador-ondas/ondas.md) |
-| Data desta versão | 19/08/2026 |
+| Data desta versão | 20/08/2026 |
 | Status | Preenchido a partir da etapa 9 |
 
-Cada onda vira **uma sprint**. Duração sugerida na disciplina: **2 semanas** por sprint (ajustável pelo grupo).
+Cada onda vira **uma sprint**. As nove sprints serão desenvolvidas neste semestre. Duração sugerida na disciplina: **2 semanas** por sprint (ajustável pelo grupo).
 
 ---
 
 ## Visão geral
 
-| Sprint | Onda | Foco | Situação na simulação |
+| Sprint | Onda | Foco | Situação |
 |---|---|---|---|
-| 1 | 1 | Login e agências | Já executada (PI1) |
-| 2 | 2 | Usuários e lotes | Já executada (PI1) |
-| 3 | 3 | Equipamentos e status do lote | Já executada (PI1) |
-| 4 | 4 | Destinação e PDF | Já executada (PI1) |
-| 5 | 5 | Dashboard e arquivo de PDFs | Já executada (PI1) |
-| 6 | 6 | Perfil motorista, permissões, consistência do lote | A executar (PI2) |
-| 7 | 7 | Planejar rota e atribuir motorista | A executar (PI2) |
-| 8 | 8 | Consulta da rota na base e status de recolhimento | A executar (PI2) |
-| 9 | 9 | PDF com rota/motorista, visão do gestor, editar equipamento | A executar (PI2) |
+| 1 | 1 | Login e agências | A executar |
+| 2 | 2 | Usuários e lotes | A executar |
+| 3 | 3 | Equipamentos e status do lote | A executar |
+| 4 | 4 | Destinação e PDF | A executar |
+| 5 | 5 | Dashboard e arquivo de PDFs | A executar |
+| 6 | 6 | Perfil motorista, permissões, consistência do lote | A executar |
+| 7 | 7 | Planejar rota e atribuir motorista | A executar |
+| 8 | 8 | Consulta da rota na base e status de recolhimento | A executar |
+| 9 | 9 | PDF com rota/motorista, visão do gestor, editar equipamento | A executar |
 
 ---
 
-## Sprints já executadas (PI1)
+## Sprints do semestre
 
 ### Sprint 1 — F01, F05
 Autenticação (JWT) e CRUD de agências.
 
 ### Sprint 2 — F02, F06
-CRUD de usuários (perfis atuais) e CRUD de lotes.
+CRUD de usuários (perfis) e CRUD de lotes.
 
 ### Sprint 3 — F07, F08, F09
 Status do lote; cadastro e listagem de equipamentos.
@@ -43,10 +43,6 @@ Destinação do equipamento; geração de relatório PDF.
 
 ### Sprint 5 — F13, F15
 Dashboard gerencial; listagem/download dos PDFs.
-
----
-
-## Sprints a executar (PI2)
 
 ### Sprint 6 — F03, F04, F12
 Perfil motorista; autorização por perfil nas telas e APIs; não concluir lote sem destinação.

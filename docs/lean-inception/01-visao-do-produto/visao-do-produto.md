@@ -40,9 +40,9 @@ Segue o formato do guia da disciplina.
 
 ---
 
-## 4. Relação com o que já está implementado
+## 4. Recorte da visão neste PI2
 
-O núcleo de rastreabilidade (agência, lote, equipamento, destinação, relatório, dashboard) já existe no código do PI1. Planejamento de rotas e atribuição de motoristas fazem parte do produto e entram nas sprints de expansão.
+O produto inclui rastreabilidade (agência, lote, equipamento, destinação, relatório, dashboard) **e** planejamento de rotas com atribuição de motoristas. GPS e atribuição automática ficam fora (etapa 2).
 
 ---
 
