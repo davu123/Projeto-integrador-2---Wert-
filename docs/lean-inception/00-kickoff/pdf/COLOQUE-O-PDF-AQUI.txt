@@ -1,0 +1,5 @@
+Coloque nesta pasta o PDF formal desta etapa.
+
+Nome esperado: kickoff.pdf
+
+O Markdown correspondente (fonte da verdade) está um nível acima: kickoff.md
