@@ -6,4 +6,4 @@
 | **Formato PDF** | [pdf/canvas-mvp.pdf](pdf/canvas-mvp.pdf) (pendente) |
 | **Status** | Validado na sessão (19/08/2026) |
 
-Núcleo nas ondas 1–5; complemento e logística nas ondas 6–9. Nove sprints no PI2.
+Núcleo nas ondas 1–5; complemento e logística nas ondas 6–9. Nove sprints no PI2 (calendário no [cronograma](../../artefatos/02-backlog-requisitos-sprints/cronograma-sprints.md)).

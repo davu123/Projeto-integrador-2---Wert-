@@ -3,41 +3,41 @@
 | Campo | Valor |
 |---|---|
 | Artefato | 2 — requisitos |
-| Origem | F01–F21, escopo da etapa 2, arquitetura prevista no Artefato 1 |
-| Data desta versão | 20/08/2026 |
+| Fonte | F01–F21, escopo da etapa 2, arquitetura prevista no Artefato 1 |
+| Data desta versão | 25/08/2026 |
 | Status | Preenchido |
 
 ---
 
 ## Requisitos funcionais
 
-| ID | Requisito | Feature | Origem |
+| ID | Requisito | Feature | Categoria |
 |---|---|---|---|
-| RF01 | O sistema deve autenticar o usuário por e-mail e senha e manter sessão por token. | F01 | Núcleo |
-| RF02 | O sistema deve permitir cadastrar, consultar, editar e desativar usuários, com nome, e-mail e perfil. | F02 | Núcleo |
-| RF03 | Os perfis válidos devem ser: administrador, gestor, técnico, auditor e motorista. | F03 | Complemento |
-| RF04 | O sistema deve restringir telas e operações da API conforme o perfil. | F04 | Complemento |
-| RF05 | O administrador deve cadastrar, editar e desativar qualquer usuário. | F04 | Complemento |
-| RF06 | O auditor deve consultar lotes, equipamentos, destinações e relatórios, sem criar nem alterar operação. | F04 | Complemento |
-| RF07 | O motorista deve consultar apenas a rota a ele atribuída e registrar status de recolhimento. | F04, F19, F20 | Expansão |
-| RF08 | O sistema deve permitir cadastrar e manter agências (código único, cidade, UF, responsável, telefone). | F05 | Núcleo |
-| RF09 | O sistema deve permitir cadastrar e manter lotes ligados a uma agência, com data de coleta, técnico, status e observações. | F06 | Núcleo |
-| RF10 | O status do lote deve ser pendente, em_triagem ou concluido. | F07 | Núcleo |
-| RF11 | O sistema deve permitir cadastrar equipamento em um lote (tipo, marca, modelo, número de série, estado). | F08 | Núcleo |
-| RF12 | O estado do equipamento deve ser bom, danificado ou inutilizavel. | F08 | Núcleo |
-| RF13 | O sistema deve listar os equipamentos de um lote. | F09 | Núcleo |
-| RF14 | O sistema deve permitir editar um equipamento já cadastrado. | F10 | Complemento |
-| RF15 | O sistema deve registrar uma destinação por equipamento (reciclagem, reuso ou destruicao, empresa, data, certificado opcional). | F11 | Núcleo |
-| RF16 | O sistema não deve aceitar status concluido no lote se algum equipamento estiver sem destinação. | F12 | Complemento |
-| RF17 | O sistema deve exibir dashboard com totais de equipamentos, lotes, agências e destinações, e quebras por status, tipo, estado e tipo de destino. | F13 | Núcleo |
-| RF18 | O sistema deve gerar relatório de conformidade do lote em PDF. | F14 | Núcleo |
-| RF19 | O sistema deve listar os relatórios gerados e permitir download do PDF. | F15 | Núcleo |
-| RF20 | Quando a rota e o motorista existirem, o PDF deve incluí-los. | F16 | Expansão |
-| RF21 | O gestor deve montar rota de coleta com data, paradas (agências/lotes) e ordem. | F17 | Expansão |
-| RF22 | O gestor deve atribuir manualmente um motorista à rota. | F18 | Expansão |
-| RF23 | O motorista deve consultar, em tela web na base, a rota do dia a ele atribuída. | F19 | Expansão |
-| RF24 | O sistema deve registrar status de recolhimento por parada ou lote: recolhido, nao_recolhido ou parcial. | F20 | Expansão |
-| RF25 | O gestor deve visualizar no sistema se as coletas da rota foram feitas. | F21 | Expansão |
+| RF01 | O sistema deve autenticar o usuário por e-mail e senha e manter sessão por token. | F01 | Autenticação |
+| RF02 | O sistema deve permitir cadastrar, consultar, editar e desativar usuários, com nome, e-mail e perfil. | F02 | Cadastro |
+| RF03 | Os perfis válidos devem ser: administrador, gestor, técnico, auditor e motorista. | F03 | Acesso |
+| RF04 | O sistema deve restringir telas e operações da API conforme o perfil. | F04 | Acesso |
+| RF05 | O administrador deve cadastrar, editar e desativar qualquer usuário. | F04 | Acesso |
+| RF06 | O auditor deve consultar lotes, equipamentos, destinações e relatórios, sem criar nem alterar operação. | F04 | Acesso |
+| RF07 | O motorista deve consultar apenas a rota a ele atribuída e registrar status de recolhimento. | F04, F19, F20 | Acesso |
+| RF08 | O sistema deve permitir cadastrar e manter agências (código único, cidade, UF, responsável, telefone). | F05 | Cadastro |
+| RF09 | O sistema deve permitir cadastrar e manter lotes ligados a uma agência, com data de coleta, técnico, status e observações. | F06 | Cadastro |
+| RF10 | O status do lote deve ser pendente, em_triagem ou concluido. | F07 | Cadastro |
+| RF11 | O sistema deve permitir cadastrar equipamento em um lote (tipo, marca, modelo, número de série, estado). | F08 | Cadastro |
+| RF12 | O estado do equipamento deve ser bom, danificado ou inutilizavel. | F08 | Cadastro |
+| RF13 | O sistema deve listar os equipamentos de um lote. | F09 | Cadastro |
+| RF14 | O sistema deve permitir editar um equipamento já cadastrado. | F10 | Cadastro |
+| RF15 | O sistema deve registrar uma destinação por equipamento (reciclagem, reuso ou destruicao, empresa, data, certificado opcional). | F11 | Conformidade |
+| RF16 | O sistema não deve aceitar status concluido no lote se algum equipamento estiver sem destinação. | F12 | Conformidade |
+| RF17 | O sistema deve exibir dashboard com totais de equipamentos, lotes, agências e destinações, e quebras por status, tipo, estado e tipo de destino. | F13 | Indicadores |
+| RF18 | O sistema deve gerar relatório de conformidade do lote em PDF. | F14 | Auditoria |
+| RF19 | O sistema deve listar os relatórios gerados e permitir download do PDF. | F15 | Auditoria |
+| RF20 | Quando a rota e o motorista existirem, o PDF deve incluí-los. | F16 | Auditoria |
+| RF21 | O gestor deve montar rota de coleta com data, paradas (agências/lotes) e ordem. | F17 | Logística |
+| RF22 | O gestor deve atribuir manualmente um motorista à rota. | F18 | Logística |
+| RF23 | O motorista deve consultar, em tela web na base, a rota do dia a ele atribuída. | F19 | Logística |
+| RF24 | O sistema deve registrar status de recolhimento por parada ou lote: recolhido, nao_recolhido ou parcial. | F20 | Logística |
+| RF25 | O gestor deve visualizar no sistema se as coletas da rota foram feitas. | F21 | Logística |
 
 ---
 

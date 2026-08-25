@@ -72,7 +72,7 @@ Nove sprints a desenvolver no PI2.
 
 ## Canvas MVP (síntese)
 
-O produto será construído em nove sprints: ondas 1–5 (rastreabilidade), onda 6 (permissões e consistência), ondas 7–9 (logística de planejamento/atribuição, sem GPS). Time de quatro pessoas; duração sugerida de 2 semanas por sprint.
+O produto será construído em nove sprints até **01/12/2026**: sprints 1–5 (rastreabilidade, 1 semana cada), sprint 6 (permissões e consistência, 2 semanas), sprints 7–9 (logística de planejamento/atribuição, sem GPS, 2 semanas cada). Time de quatro pessoas.
 
 Métricas: cadastro no sistema (não na planilha); histórico agência → lote → equipamento → destinação; PDF gerado; rota atribuída antes de sair; status de recolhimento visível; cada perfil vê o que deve.
 
@@ -93,3 +93,4 @@ Próximo uso: exportar os Markdown para PDF nas pastas `pdf/` de cada etapa, se 
 | Data | O quê |
 |---|---|
 | 19/08/2026 | Showcase redigido; Lean Inception encerrada nesta trilha. |
+| 25/08/2026 | Duração das sprints alinhada ao cronograma (término 01/12/2026). |

@@ -81,7 +81,7 @@ Fonte: [ondas](../09-sequenciador-ondas/ondas.md) · [funcionalidades](../06-bra
 | Quem desenvolve | Lucas Gonçalves Balduino, Davi Oliveira Maia, Artur Feitoza, Eduardo Martins |
 | Natureza | Projeto acadêmico (PI2 / UniCEUB), parceria Wert — sem orçamento comercial à parte |
 | Stack prevista | React + Vite, Node/Express, SQL Server, Docker (Artefato 1) |
-| Agenda do semestre | Sprints 1–9 (ondas 1–9); duração sugerida **2 semanas** cada (ajustável pelo grupo) |
+| Agenda do semestre | Sprints 1–9 até **01/12/2026**: sprints 1–5 com **1 semana** cada; sprints 6–9 com **2 semanas** cada. Ver [cronograma](../../artefatos/02-backlog-requisitos-sprints/cronograma-sprints.md). |
 | Entrega acadêmica | Artefato 2: backlog, RF/RNF e cronograma em sprints |
 
 Fonte: [cronograma](../../artefatos/02-backlog-requisitos-sprints/cronograma-sprints.md)
@@ -103,7 +103,7 @@ Fonte: [cronograma](../../artefatos/02-backlog-requisitos-sprints/cronograma-spr
 
 ## Leitura em um parágrafo
 
-O EcoTrack Wert será desenvolvido em **nove sprints**. As ondas 1–5 entregam o MVP de rastreabilidade; as ondas 6–9 fecham a visão (permissões, consistência do lote e planejamento/atribuição de coletas, sem GPS). Time de quatro pessoas; duração sugerida de 2 semanas por sprint.
+O EcoTrack Wert será desenvolvido em **nove sprints**, com término em **01/12/2026**. As sprints 1–5 (MVP de rastreabilidade) ocupam uma semana cada; as sprints 6–9 (permissões, consistência do lote e planejamento/atribuição de coletas, sem GPS) ocupam duas semanas cada. Time de quatro pessoas.
 
 ---
 
@@ -113,3 +113,4 @@ O EcoTrack Wert será desenvolvido em **nove sprints**. As ondas 1–5 entregam 
 |---|---|
 | 19/08/2026 | Canvas preenchido com visão, personas, jornada, ondas 1–9, agenda das sprints e métricas dos três objetivos. |
 | 20/08/2026 | Agenda descrita como nove sprints a desenvolver no semestre. |
+| 25/08/2026 | Agenda alinhada ao cronograma: sprints 1–5 com 1 semana; 6–9 com 2 semanas; término 01/12/2026. |

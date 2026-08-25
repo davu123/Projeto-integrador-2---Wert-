@@ -22,7 +22,7 @@
 
 ## Corte MVP × incrementos
 
-Todas as nove ondas serão desenvolvidas neste semestre (PI2).
+Todas as nove ondas serão desenvolvidas neste semestre (PI2). O calendário (semanas de execução e totais $ / E / U) está no [cronograma do Artefato 2](../../artefatos/02-backlog-requisitos-sprints/cronograma-sprints.md): sprints 1–5 com 1 semana; sprints 6–9 com 2 semanas; última sprint termina em **01/12/2026**.
 
 | Bloco | Ondas | Sprints | Significado |
 |---|---|---|---|
@@ -196,3 +196,4 @@ Por quê: F21 depois de F20; F16 depois de F14+F17+F18. F10 entra para não form
 |---|---|
 | 19/08/2026 | Nove ondas montadas com as Regras de Ouro. |
 | 20/08/2026 | Todas as sprints descritas como plano do semestre. |
+| 25/08/2026 | Ponte para o calendário do Artefato 2 (duração desigual; término 01/12/2026). |

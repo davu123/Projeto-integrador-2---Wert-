@@ -1,4 +1,4 @@
-# CENTRO UNIVERSITÁRIO DE BRASÍLIA - CEUB
+﻿# CENTRO UNIVERSITÁRIO DE BRASÍLIA - CEUB
 ## CURSO DE CIÊNCIA DA COMPUTAÇÃO
 
 ---
@@ -144,37 +144,37 @@ Os itens a seguir são os elementos novos desta entrega: requisitos, backlog e c
 
 ## 6. Requisitos funcionais e não funcionais
 
-Origem: funcionalidades F01–F21, escopo da etapa 2 da Lean Inception e arquitetura prevista no Artefato 1.
+Fonte: funcionalidades F01–F21, escopo da etapa 2 da Lean Inception e arquitetura prevista no Artefato 1.
 
 ### 6.1 Requisitos funcionais
 
-| ID | Requisito | Feature | Origem |
+| ID | Requisito | Feature | Categoria |
 |---|---|---|---|
-| RF01 | O sistema deve autenticar o usuário por e-mail e senha e manter sessão por token. | F01 | Núcleo |
-| RF02 | O sistema deve permitir cadastrar, consultar, editar e desativar usuários, com nome, e-mail e perfil. | F02 | Núcleo |
-| RF03 | Os perfis válidos devem ser: administrador, gestor, técnico, auditor e motorista. | F03 | Complemento |
-| RF04 | O sistema deve restringir telas e operações da API conforme o perfil. | F04 | Complemento |
-| RF05 | O administrador deve cadastrar, editar e desativar qualquer usuário. | F04 | Complemento |
-| RF06 | O auditor deve consultar lotes, equipamentos, destinações e relatórios, sem criar nem alterar operação. | F04 | Complemento |
-| RF07 | O motorista deve consultar apenas a rota a ele atribuída e registrar status de recolhimento. | F04, F19, F20 | Expansão |
-| RF08 | O sistema deve permitir cadastrar e manter agências (código único, cidade, UF, responsável, telefone). | F05 | Núcleo |
-| RF09 | O sistema deve permitir cadastrar e manter lotes ligados a uma agência, com data de coleta, técnico, status e observações. | F06 | Núcleo |
-| RF10 | O status do lote deve ser pendente, em_triagem ou concluido. | F07 | Núcleo |
-| RF11 | O sistema deve permitir cadastrar equipamento em um lote (tipo, marca, modelo, número de série, estado). | F08 | Núcleo |
-| RF12 | O estado do equipamento deve ser bom, danificado ou inutilizavel. | F08 | Núcleo |
-| RF13 | O sistema deve listar os equipamentos de um lote. | F09 | Núcleo |
-| RF14 | O sistema deve permitir editar um equipamento já cadastrado. | F10 | Complemento |
-| RF15 | O sistema deve registrar uma destinação por equipamento (reciclagem, reuso ou destruicao, empresa, data, certificado opcional). | F11 | Núcleo |
-| RF16 | O sistema não deve aceitar status concluido no lote se algum equipamento estiver sem destinação. | F12 | Complemento |
-| RF17 | O sistema deve exibir dashboard com totais de equipamentos, lotes, agências e destinações, e quebras por status, tipo, estado e tipo de destino. | F13 | Núcleo |
-| RF18 | O sistema deve gerar relatório de conformidade do lote em PDF. | F14 | Núcleo |
-| RF19 | O sistema deve listar os relatórios gerados e permitir download do PDF. | F15 | Núcleo |
-| RF20 | Quando a rota e o motorista existirem, o PDF deve incluí-los. | F16 | Expansão |
-| RF21 | O gestor deve montar rota de coleta com data, paradas (agências/lotes) e ordem. | F17 | Expansão |
-| RF22 | O gestor deve atribuir manualmente um motorista à rota. | F18 | Expansão |
-| RF23 | O motorista deve consultar, em tela web na base, a rota do dia a ele atribuída. | F19 | Expansão |
-| RF24 | O sistema deve registrar status de recolhimento por parada ou lote: recolhido, nao_recolhido ou parcial. | F20 | Expansão |
-| RF25 | O gestor deve visualizar no sistema se as coletas da rota foram feitas. | F21 | Expansão |
+| RF01 | O sistema deve autenticar o usuário por e-mail e senha e manter sessão por token. | F01 | Autenticação |
+| RF02 | O sistema deve permitir cadastrar, consultar, editar e desativar usuários, com nome, e-mail e perfil. | F02 | Cadastro |
+| RF03 | Os perfis válidos devem ser: administrador, gestor, técnico, auditor e motorista. | F03 | Acesso |
+| RF04 | O sistema deve restringir telas e operações da API conforme o perfil. | F04 | Acesso |
+| RF05 | O administrador deve cadastrar, editar e desativar qualquer usuário. | F04 | Acesso |
+| RF06 | O auditor deve consultar lotes, equipamentos, destinações e relatórios, sem criar nem alterar operação. | F04 | Acesso |
+| RF07 | O motorista deve consultar apenas a rota a ele atribuída e registrar status de recolhimento. | F04, F19, F20 | Acesso |
+| RF08 | O sistema deve permitir cadastrar e manter agências (código único, cidade, UF, responsável, telefone). | F05 | Cadastro |
+| RF09 | O sistema deve permitir cadastrar e manter lotes ligados a uma agência, com data de coleta, técnico, status e observações. | F06 | Cadastro |
+| RF10 | O status do lote deve ser pendente, em_triagem ou concluido. | F07 | Cadastro |
+| RF11 | O sistema deve permitir cadastrar equipamento em um lote (tipo, marca, modelo, número de série, estado). | F08 | Cadastro |
+| RF12 | O estado do equipamento deve ser bom, danificado ou inutilizavel. | F08 | Cadastro |
+| RF13 | O sistema deve listar os equipamentos de um lote. | F09 | Cadastro |
+| RF14 | O sistema deve permitir editar um equipamento já cadastrado. | F10 | Cadastro |
+| RF15 | O sistema deve registrar uma destinação por equipamento (reciclagem, reuso ou destruicao, empresa, data, certificado opcional). | F11 | Conformidade |
+| RF16 | O sistema não deve aceitar status concluido no lote se algum equipamento estiver sem destinação. | F12 | Conformidade |
+| RF17 | O sistema deve exibir dashboard com totais de equipamentos, lotes, agências e destinações, e quebras por status, tipo, estado e tipo de destino. | F13 | Indicadores |
+| RF18 | O sistema deve gerar relatório de conformidade do lote em PDF. | F14 | Auditoria |
+| RF19 | O sistema deve listar os relatórios gerados e permitir download do PDF. | F15 | Auditoria |
+| RF20 | Quando a rota e o motorista existirem, o PDF deve incluí-los. | F16 | Auditoria |
+| RF21 | O gestor deve montar rota de coleta com data, paradas (agências/lotes) e ordem. | F17 | Logística |
+| RF22 | O gestor deve atribuir manualmente um motorista à rota. | F18 | Logística |
+| RF23 | O motorista deve consultar, em tela web na base, a rota do dia a ele atribuída. | F19 | Logística |
+| RF24 | O sistema deve registrar status de recolhimento por parada ou lote: recolhido, nao_recolhido ou parcial. | F20 | Logística |
+| RF25 | O gestor deve visualizar no sistema se as coletas da rota foram feitas. | F21 | Logística |
 
 ### 6.2 Requisitos não funcionais
 
@@ -197,11 +197,29 @@ Origem: funcionalidades F01–F21, escopo da etapa 2 da Lean Inception e arquite
 
 ## 7. Backlog
 
-Histórias no formato *Como [persona], quero [ação], para [benefício]*. Todas as histórias serão desenvolvidas nas sprints do PI2. Tarefas agrupadas por sprint.
+Histórias no formato *Como [persona], quero [ação], para [benefício]*. Todas as histórias serão desenvolvidas nas sprints do PI2.
 
-Origem: funcionalidades F01–F21 e sequenciador de ondas da Lean Inception.
+### Legenda — valor, factível e usabilidade
 
-### 7.1 Épicos
+Pesos da etapa 8 da Lean Inception. Cada símbolo vale **1**; a repetição indica 2 ou 3.
+
+| Símbolo | Significado | Escala |
+|---|---|---|
+| `$` `$$` `$$$` | **Valor** de negócio | 1 / 2 / 3 |
+| `E` `EE` `EEE` | **Factível** (esforço de construção) | 1 / 2 / 3 — mais letras = maior esforço |
+| `U` `UU` `UUU` | **Usabilidade** | 1 / 2 / 3 |
+
+Na Lean Inception a usabilidade aparece como ♥; neste artefato usa-se **U** com a mesma escala.
+
+### 7.1 Objetivos do produto
+
+Os épicos referenciam estes três objetivos (O1–O3):
+
+1. **O1 — Centralizar a operação** — a Wert controla o ciclo de descarte eletrônico em uma única plataforma web, no lugar de planilhas e processos manuais.
+2. **O2 — Garantir rastreabilidade e conformidade** — cada ativo tem histórico auditável da agência até a destinação, com relatório em PDF e indicadores no dashboard.
+3. **O3 — Organizar o planejamento das coletas** — rotas e motoristas são planejados e atribuídos no sistema, com status de recolhimento, sem depender de controle informal.
+
+### 7.2 Épicos
 
 | ID | Épico | Objetivo | Sprints |
 |---|---|---|---|
@@ -210,141 +228,161 @@ Origem: funcionalidades F01–F21 e sequenciador de ondas da Lean Inception.
 | E3 | Conformidade e visibilidade (dashboard e PDF) | O2 | 4, 5, 9 |
 | E4 | Planejamento e recolhimento de coletas | O3 | 6, 7, 8, 9 |
 
-### 7.2 Histórias de usuário
+### 7.3 Histórias de usuário
 
-| ID | História | Feature | Sprint | Situação |
+| ID | História | Feature | Sprint | $ | E | U |
+|---|---|---|---|---|---|---|
+| US01 | Como usuário da Wert, quero entrar com e-mail e senha, para acessar só o que me compete. | F01 | 1 | $$$ | EE | UU |
+| US02 | Como Renata, quero cadastrar, editar e desativar usuários com perfil, para manter as contas em ordem. | F02 | 2 | $$$ | EE | UU |
+| US03 | Como Renata, quero o perfil motorista no cadastro, para o Paulo existir no sistema. | F03 | 6 | $$ | E | U |
+| US04 | Como Renata / Helena, quero que cada perfil só veja e altere o que pode, para a auditoria não mudar operação e o admin controlar o acesso. | F04 | 6 | $$$ | EE | UUU |
+| US05 | Como Marcos, quero cadastrar agências, para os pontos de coleta existirem no EcoTrack. | F05 | 1 | $$$ | EE | UU |
+| US06 | Como Marcos, quero abrir e manter lotes ligados a uma agência, para organizar cada coleta. | F06 | 2 | $$$ | EE | UUU |
+| US07 | Como Marcos / Camila, quero mudar o status do lote (pendente, em triagem, concluído), para o fluxo aparecer no sistema. | F07 | 3 | $$ | E | UU |
+| US08 | Como Camila, quero lançar o equipamento no lote (tipo, marca, modelo, série, estado), para o ativo ficar rastreável. | F08 | 3 | $$$ | EE | UUU |
+| US09 | Como Camila, quero listar os equipamentos do lote, para conferir com o físico. | F09 | 3 | $$ | E | UU |
+| US10 | Como Camila, quero editar um equipamento já lançado, para corrigir erro de digitação. | F10 | 9 | $ | E | U |
+| US11 | Como Camila, quero registrar a destinação (reciclagem, reúso ou destruição, empresa e data), para fechar o ciclo ambiental. | F11 | 4 | $$$ | EE | UUU |
+| US12 | Como Marcos / Helena, quero que o lote não seja concluído sem destinação em todos os itens, para o PDF não sair oco. | F12 | 6 | $$ | E | UU |
+| US13 | Como Marcos, quero um dashboard com totais e quebras, para ver gargalos sem montar planilha. | F13 | 5 | $$$ | EE | UUU |
+| US14 | Como Helena, quero gerar o relatório de conformidade do lote em PDF, para arquivar evidência. | F14 | 4 | $$$ | EE | UUU |
+| US15 | Como Helena, quero listar e baixar os PDFs já gerados, para reabrir o laudo do ciclo. | F15 | 5 | $$ | E | UU |
+| US16 | Como Helena, quero ver rota e motorista no PDF, quando existirem, para o laudo cobrir a coleta. | F16 | 9 | $$ | E | UU |
+| US17 | Como Marcos, quero montar uma rota com data, paradas e ordem, para planejar a semana de coletas. | F17 | 7 | $$$ | EEE | UUU |
+| US18 | Como Marcos, quero atribuir um motorista à rota na mão, para o Paulo saber o que é dele. | F18 | 7 | $$$ | EE | UUU |
+| US19 | Como Paulo, quero ver na base a rota do dia já atribuída, para não depender de papel ou zap. | F19 | 8 | $$ | EE | UUU |
+| US20 | Como Paulo, quero marcar recolhido / não recolhido / parcial, para o status existir no sistema. | F20 | 8 | $$$ | EE | UUU |
+| US21 | Como Marcos, quero ver se as coletas da rota foram feitas, para não cobrar a equipe no WhatsApp. | F21 | 9 | $$$ | E | UUU |
+
+### 7.4 Tarefas (por sprint)
+
+Os pesos de cada tarefa somam o total da sprint. Quando duas tarefas pertencem à mesma funcionalidade, o peso da F é repartido.
+
+#### Sprint 1 — E1, E2 · total **$ 6 · E 4 · U 4**
+
+| Tarefa | F | $ | E | U |
 |---|---|---|---|---|
-| US01 | Como usuário da Wert, quero entrar com e-mail e senha, para acessar só o que me compete. | F01 | 1 | A fazer |
-| US02 | Como Renata, quero cadastrar, editar e desativar usuários com perfil, para manter as contas em ordem. | F02 | 2 | A fazer |
-| US03 | Como Renata, quero o perfil motorista no cadastro, para o Paulo existir no sistema. | F03 | 6 | A fazer |
-| US04 | Como Renata / Helena, quero que cada perfil só veja e altere o que pode, para a auditoria não mudar operação e o admin controlar o acesso. | F04 | 6 | A fazer |
-| US05 | Como Marcos, quero cadastrar agências, para os pontos de coleta existirem no EcoTrack. | F05 | 1 | A fazer |
-| US06 | Como Marcos, quero abrir e manter lotes ligados a uma agência, para organizar cada coleta. | F06 | 2 | A fazer |
-| US07 | Como Marcos / Camila, quero mudar o status do lote (pendente, em triagem, concluído), para o fluxo aparecer no sistema. | F07 | 3 | A fazer |
-| US08 | Como Camila, quero lançar o equipamento no lote (tipo, marca, modelo, série, estado), para o ativo ficar rastreável. | F08 | 3 | A fazer |
-| US09 | Como Camila, quero listar os equipamentos do lote, para conferir com o físico. | F09 | 3 | A fazer |
-| US10 | Como Camila, quero editar um equipamento já lançado, para corrigir erro de digitação. | F10 | 9 | A fazer |
-| US11 | Como Camila, quero registrar a destinação (reciclagem, reúso ou destruição, empresa e data), para fechar o ciclo ambiental. | F11 | 4 | A fazer |
-| US12 | Como Marcos / Helena, quero que o lote não seja concluído sem destinação em todos os itens, para o PDF não sair oco. | F12 | 6 | A fazer |
-| US13 | Como Marcos, quero um dashboard com totais e quebras, para ver gargalos sem montar planilha. | F13 | 5 | A fazer |
-| US14 | Como Helena, quero gerar o relatório de conformidade do lote em PDF, para arquivar evidência. | F14 | 4 | A fazer |
-| US15 | Como Helena, quero listar e baixar os PDFs já gerados, para reabrir o laudo do ciclo. | F15 | 5 | A fazer |
-| US16 | Como Helena, quero ver rota e motorista no PDF, quando existirem, para o laudo cobrir a coleta. | F16 | 9 | A fazer |
-| US17 | Como Marcos, quero montar uma rota com data, paradas e ordem, para planejar a semana de coletas. | F17 | 7 | A fazer |
-| US18 | Como Marcos, quero atribuir um motorista à rota na mão, para o Paulo saber o que é dele. | F18 | 7 | A fazer |
-| US19 | Como Paulo, quero ver na base a rota do dia já atribuída, para não depender de papel ou zap. | F19 | 8 | A fazer |
-| US20 | Como Paulo, quero marcar recolhido / não recolhido / parcial, para o status existir no sistema. | F20 | 8 | A fazer |
-| US21 | Como Marcos, quero ver se as coletas da rota foram feitas, para não cobrar a equipe no WhatsApp. | F21 | 9 | A fazer |
+| Autenticação com e-mail e senha (JWT, hash bcrypt) | F01 | $$ | E | U |
+| Tela de login e sessão | F01 | $ | E | U |
+| CRUD de agências (código, cidade, UF, responsável, telefone) | F05 | $$ | E | U |
+| Rotas da API de agências protegidas por token | F05 | $ | E | U |
 
-### 7.3 Tarefas (por sprint)
+#### Sprint 2 — E1, E2 · total **$ 6 · E 4 · U 5**
 
-Todas as nove sprints serão desenvolvidas neste semestre.
+| Tarefa | F | $ | E | U |
+|---|---|---|---|---|
+| CRUD de usuários (nome, e-mail, perfil, desativar) | F02 | $$ | E | U |
+| CRUD de lotes ligados a uma agência (data, técnico, observações, status) | F06 | $$ | E | UU |
+| Telas de usuários e de lotes | F02, F06 | $$ | EE | UU |
 
-#### Sprint 1 — E1, E2
+#### Sprint 3 — E2 · total **$ 7 · E 4 · U 7**
 
-- Autenticação com e-mail e senha (JWT, hash bcrypt)
-- Tela de login e sessão
-- CRUD de agências (código, cidade, UF, responsável, telefone)
-- Rotas da API de agências protegidas por token
+| Tarefa | F | $ | E | U |
+|---|---|---|---|---|
+| Atualizar status do lote (`pendente`, `em_triagem`, `concluido`) | F07 | $$ | E | UU |
+| Cadastro de equipamento no lote (tipo, marca, modelo, série, estado) | F08 | $$$ | EE | UUU |
+| Listagem de equipamentos do lote | F09 | $$ | E | UU |
 
-#### Sprint 2 — E1, E2
+#### Sprint 4 — E2, E3 · total **$ 6 · E 4 · U 6**
 
-- CRUD de usuários (nome, e-mail, perfil, desativar)
-- CRUD de lotes ligados a uma agência (data, técnico, observações, status)
-- Telas de usuários e de lotes
+| Tarefa | F | $ | E | U |
+|---|---|---|---|---|
+| Registro de destinação por equipamento (reciclagem, reúso ou destruição, empresa, data) | F11 | $$$ | EE | UUU |
+| Geração de relatório de conformidade do lote em PDF | F14 | $$$ | EE | UUU |
 
-#### Sprint 3 — E2
+#### Sprint 5 — E3 · total **$ 5 · E 3 · U 5**
 
-- Atualizar status do lote (`pendente`, `em_triagem`, `concluido`)
-- Cadastro de equipamento no lote (tipo, marca, modelo, série, estado)
-- Listagem de equipamentos do lote
+| Tarefa | F | $ | E | U |
+|---|---|---|---|---|
+| Dashboard com totais e quebras (status, tipo, estado, destino) | F13 | $$$ | EE | UUU |
+| Listar e baixar os PDFs gerados | F15 | $$ | E | UU |
 
-#### Sprint 4 — E2, E3
+#### Sprint 6 — E1, E2 · total **$ 7 · E 4 · U 6**
 
-- Registro de destinação por equipamento (reciclagem, reúso ou destruição, empresa, data)
-- Geração de relatório de conformidade do lote em PDF
+| Tarefa | F | $ | E | U |
+|---|---|---|---|---|
+| Incluir `motorista` no CHECK de perfil (banco, API, tela de usuários) | F03 | $$ | E | U |
+| Definir matriz de permissões (admin, gestor, técnico, motorista, auditor) | F04 | $ | E | U |
+| Middleware de autorização nas rotas da API | F04 | $ | E | U |
+| Filtrar menu e rotas no frontend por perfil | F04 | $ | — | U |
+| Validar `PATCH` de status `concluido`: todos os equipamentos do lote com destinação | F12 | $$ | E | UU |
 
-#### Sprint 5 — E3
+#### Sprint 7 — E4 · total **$ 6 · E 5 · U 6**
 
-- Dashboard com totais e quebras (status, tipo, estado, destino)
-- Listar e baixar os PDFs gerados
+| Tarefa | F | $ | E | U |
+|---|---|---|---|---|
+| Tabelas de rota e parada (agência/lote, ordem) | F17 | $ | E | U |
+| CRUD de rota (data, paradas) | F17 | $ | E | U |
+| Telas de planejamento para o Marcos | F17 | $ | E | U |
+| Atribuir `usuario` com perfil motorista à rota | F18 | $$$ | EE | UUU |
+| Sem GPS e sem algoritmo de atribuição | — | — | — | — |
 
-#### Sprint 6 — E1, E2
+(A última linha é restrição de escopo, sem peso.)
 
-- Incluir `motorista` no CHECK de perfil (banco, API, tela de usuários)
-- Definir matriz de permissões (admin, gestor, técnico, motorista, auditor)
-- Middleware de autorização nas rotas da API
-- Filtrar menu e rotas no frontend por perfil
-- Validar `PATCH` de status `concluido`: todos os equipamentos do lote com destinação
+#### Sprint 8 — E4 · total **$ 5 · E 4 · U 6**
 
-#### Sprint 7 — E4
+| Tarefa | F | $ | E | U |
+|---|---|---|---|---|
+| Tela do Paulo: rota do dia filtrada pelo usuário logado (uso na base) | F19 | $$ | EE | UUU |
+| Status de recolhimento por parada ou lote (`recolhido`, `nao_recolhido`, `parcial`) | F20 | $$ | E | UU |
+| `PATCH` simples, poucos campos | F20 | $ | E | U |
 
-- Tabelas de rota e parada (agência/lote, ordem)
-- CRUD de rota (data, paradas)
-- Atribuir `usuario` com perfil motorista à rota
-- Telas de planejamento para o Marcos
-- Sem GPS e sem algoritmo de atribuição
+#### Sprint 9 — E2, E3, E4 · total **$ 6 · E 3 · U 6**
 
-#### Sprint 8 — E4
-
-- Tela do Paulo: rota do dia filtrada pelo usuário logado (uso na base)
-- Status de recolhimento por parada ou lote (`recolhido`, `nao_recolhido`, `parcial`)
-- `PATCH` simples, poucos campos
-
-#### Sprint 9 — E2, E3, E4
-
-- `PUT /equipamentos/:id`
-- Incluir motorista e rota no PDFKit
-- Indicador ou lista para o gestor: coletas feitas vs pendentes (a partir do status da sprint 8)
+| Tarefa | F | $ | E | U |
+|---|---|---|---|---|
+| `PUT /equipamentos/:id` | F10 | $ | E | U |
+| Incluir motorista e rota no PDFKit | F16 | $$ | E | UU |
+| Indicador ou lista para o gestor: coletas feitas vs pendentes (a partir do status da sprint 8) | F21 | $$$ | E | UUU |
 
 ---
 
 ## 8. Cronograma em sprints
 
-Cada onda da Lean Inception vira **uma sprint**. As nove sprints serão desenvolvidas neste semestre. Duração sugerida na disciplina: **2 semanas** por sprint (ajustável pelo grupo).
+As nove sprints cabem no semestre com término em **01/12/2026**. Nove sprints de duas semanas ultrapassariam essa data: as sprints 1–5 (rastreabilidade) ocupam **uma semana** cada; as sprints 6–9 (governança e logística) ocupam **duas semanas** cada. Início: **01/09/2026**. Totais **$ / E / U** = soma das histórias da sprint (legenda na seção 7).
 
 ### 8.1 Visão geral
 
-| Sprint | Onda | Foco | Situação |
-|---|---|---|---|
-| 1 | 1 | Login e agências | A executar |
-| 2 | 2 | Usuários e lotes | A executar |
-| 3 | 3 | Equipamentos e status do lote | A executar |
-| 4 | 4 | Destinação e PDF | A executar |
-| 5 | 5 | Dashboard e arquivo de PDFs | A executar |
-| 6 | 6 | Perfil motorista, permissões, consistência do lote | A executar |
-| 7 | 7 | Planejar rota e atribuir motorista | A executar |
-| 8 | 8 | Consulta da rota na base e status de recolhimento | A executar |
-| 9 | 9 | PDF com rota/motorista, visão do gestor, editar equipamento | A executar |
+| Sprint | Foco | Semanas | $ | E | U |
+|---|---|---|---|---|---|
+| 1 | Login e agências | 01/09/2026 – 07/09/2026 | 6 | 4 | 4 |
+| 2 | Usuários e lotes | 08/09/2026 – 14/09/2026 | 6 | 4 | 5 |
+| 3 | Equipamentos e status do lote | 15/09/2026 – 21/09/2026 | 7 | 4 | 7 |
+| 4 | Destinação e PDF | 22/09/2026 – 28/09/2026 | 6 | 4 | 6 |
+| 5 | Dashboard e arquivo de PDFs | 29/09/2026 – 05/10/2026 | 5 | 3 | 5 |
+| 6 | Perfil motorista, permissões, consistência do lote | 06/10/2026 – 19/10/2026 | 7 | 4 | 6 |
+| 7 | Planejar rota e atribuir motorista | 20/10/2026 – 02/11/2026 | 6 | 5 | 6 |
+| 8 | Consulta da rota na base e status de recolhimento | 03/11/2026 – 16/11/2026 | 5 | 4 | 6 |
+| 9 | PDF com rota/motorista, visão do gestor, editar equipamento | 17/11/2026 – 01/12/2026 | 6 | 3 | 6 |
 
 ### 8.2 Sprints do semestre
 
-#### Sprint 1 — F01, F05
-Autenticação (JWT) e CRUD de agências.
+#### Sprint 1 — F01, F05 · $ 6 · E 4 · U 4
+Autenticação (JWT) e CRUD de agências. **01/09/2026 – 07/09/2026** (1 semana).
 
-#### Sprint 2 — F02, F06
-CRUD de usuários (perfis) e CRUD de lotes.
+#### Sprint 2 — F02, F06 · $ 6 · E 4 · U 5
+CRUD de usuários (perfis) e CRUD de lotes. **08/09/2026 – 14/09/2026** (1 semana).
 
-#### Sprint 3 — F07, F08, F09
-Status do lote; cadastro e listagem de equipamentos.
+#### Sprint 3 — F07, F08, F09 · $ 7 · E 4 · U 7
+Status do lote; cadastro e listagem de equipamentos. **15/09/2026 – 21/09/2026** (1 semana).
 
-#### Sprint 4 — F11, F14
-Destinação do equipamento; geração de relatório PDF.
+#### Sprint 4 — F11, F14 · $ 6 · E 4 · U 6
+Destinação do equipamento; geração de relatório PDF. **22/09/2026 – 28/09/2026** (1 semana).
 
-#### Sprint 5 — F13, F15
-Dashboard gerencial; listagem/download dos PDFs.
+#### Sprint 5 — F13, F15 · $ 5 · E 3 · U 5
+Dashboard gerencial; listagem/download dos PDFs. **29/09/2026 – 05/10/2026** (1 semana).
 
-#### Sprint 6 — F03, F04, F12
-Perfil motorista; autorização por perfil nas telas e APIs; não concluir lote sem destinação.
+#### Sprint 6 — F03, F04, F12 · $ 7 · E 4 · U 6
+Perfil motorista; autorização por perfil nas telas e APIs; não concluir lote sem destinação. **06/10/2026 – 19/10/2026** (2 semanas).
 
-#### Sprint 7 — F17, F18
-Modelo e tela de rota (paradas e ordem); atribuição **manual** de motorista. Sem GPS e sem atribuição automática.
+#### Sprint 7 — F17, F18 · $ 6 · E 5 · U 6
+Modelo e tela de rota (paradas e ordem); atribuição **manual** de motorista. Sem GPS e sem atribuição automática. **20/10/2026 – 02/11/2026** (2 semanas).
 
-#### Sprint 8 — F19, F20
-Motorista consulta a rota do dia na base; status simples de recolhimento (recolhido / não / parcial).
+#### Sprint 8 — F19, F20 · $ 5 · E 4 · U 6
+Motorista consulta a rota do dia na base; status simples de recolhimento (recolhido / não / parcial). **03/11/2026 – 16/11/2026** (2 semanas).
 
-#### Sprint 9 — F10, F16, F21
-Editar equipamento; PDF com rota e motorista; gestor vê no sistema se a coleta foi feita.
+#### Sprint 9 — F10, F16, F21 · $ 6 · E 3 · U 6
+Editar equipamento; PDF com rota e motorista; gestor vê no sistema se a coleta foi feita. **17/11/2026 – 01/12/2026** (2 semanas).
 
 ### 8.3 Fora deste cronograma
 

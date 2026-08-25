@@ -13,6 +13,8 @@ Esforço = custo de **construir** a funcionalidade nas sprints do PI2.
 - **Negócio ($):** $ = 1 · $$ = 2 · $$$ = 3  
 - **UX (♥):** ♥ = 1 · ♥♥ = 2 · ♥♥♥ = 3  
 
+No Artefato 2 (backlog e cronograma) a usabilidade usa **U / UU / UUU** no lugar de ♥, com a mesma escala. O esforço **E** aparece lá como **factível** (mais letras = maior esforço de construção).  
+
 ---
 
 ## Tabela
@@ -64,3 +66,4 @@ Lembrete das Regras de Ouro (etapa 9): no máximo 3 cartões por onda; soma de E
 |---|---|
 | 19/08/2026 | Pesos estimados a partir da jornada, dos objetivos e do tamanho de cada peça. |
 | 20/08/2026 | Esforço descrito como custo a construir nas sprints do semestre. |
+| 25/08/2026 | Nota: no Artefato 2, ♥ vira U e E é chamado de factível. |

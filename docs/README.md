@@ -69,7 +69,7 @@ docs/
 | Lean Inception 5 | Validada na sessão (jornada ponta a ponta) |
 | Lean Inception 6 | Validada na sessão (21 funcionalidades) |
 | Lean Inception 7 | Validada na sessão (14 verdes, 7 amarelos) |
-| Lean Inception 8 | Validada na sessão (pesos E / $ / ♥) |
+| Lean Inception 8 | Validada na sessão (pesos E / $ / ♥; no Artefato 2, ♥ = U) |
 | Lean Inception 9 | Validada na sessão (9 ondas = 9 sprints) |
 | Lean Inception 10 | Validada na sessão (Canvas MVP) |
 | Lean Inception 11 | Validada na sessão (showcase) |
