@@ -17,6 +17,7 @@ O Markdown é a **fonte da verdade**. O PDF é a **versão de apresentação**, 
 2. Depois o índice em [lean-inception/README.md](lean-inception/README.md).
 3. Etapas **0 a 11** fechadas (Lean Inception completa).
 4. Artefato 2: [artefatos/02-backlog-requisitos-sprints/](artefatos/02-backlog-requisitos-sprints/README.md).
+5. Artefato 3: [artefatos/03-gestao-do-produto/](artefatos/03-gestao-do-produto/README.md).
 
 ---
 
@@ -40,7 +41,8 @@ docs/
 │   └── 11-showcase/
 └── artefatos/                         ← entregas da disciplina
     ├── 01-contexto-problema-solucao/  ← Artefato 1 (entregue à disciplina)
-    └── 02-backlog-requisitos-sprints/ ← Artefato 2
+    ├── 02-backlog-requisitos-sprints/ ← Artefato 2
+    └── 03-gestao-do-produto/          ← Artefato 3
 ```
 
 ---
@@ -74,5 +76,6 @@ docs/
 | Lean Inception 10 | Validada na sessão (Canvas MVP) |
 | Lean Inception 11 | Validada na sessão (showcase) |
 | Artefato 2 | Completo: backlog, RF/RNF, cronograma |
+| Artefato 3 | Completo: IA, arquitetura, testes, protótipo, storyboard |
 
-Entrega em [artefatos/02-backlog-requisitos-sprints/](artefatos/02-backlog-requisitos-sprints/README.md).
+Entrega em [artefatos/02-backlog-requisitos-sprints/](artefatos/02-backlog-requisitos-sprints/README.md) e [artefatos/03-gestao-do-produto/](artefatos/03-gestao-do-produto/README.md).
