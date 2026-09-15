@@ -9,7 +9,7 @@ O colega **não inventa** nome de branch, commit ou PR: copia o que está no REA
 | Tipo | Padrão | Exemplo real |
 |---|---|---|
 | Branch de código | `feature/<numero-issue>-descricao` | `feature/50-auth-login-api` |
-| Branch de docs | `docs/<numero-issue>-descricao` | `docs/49-planejar-sprint-01` |
+| Branch de docs | `docs/<numero-issue>-descricao` | `docs/56-pdfs-lean-inception` |
 | Commit | `tipo: descrição` em português, sem `feat(1.1)` | `feat: autentica usuario com jwt` |
 | PR | título = commit; corpo com `Closes #<n>` | [PR #54](https://github.com/CAMPUSCEUB/EcoTrack/pull/54) |
 | Hierarquia | Epic → Feature → PBI → **Task** | uma Task, uma branch, um PR |
@@ -21,7 +21,7 @@ Não commitar direto em `main`. Pedir review de um colega que **não** seja o au
 1. Esperar o merge das Tasks que bloqueiam a sua (veja a tabela da sprint).
 2. Em `CAMPUSCEUB/EcoTrack`: `git checkout main && git pull`.
 3. `git checkout -b` **exatamente** o nome da branch do README da pasta.
-4. Copiar o conteúdo de `src/` **desta pasta** para `src/` no EcoTrack (criar `src/` só na Task #55). Sobrescrever arquivos de mesmo caminho.
+4. **Código:** copiar o conteúdo de `src/` **desta pasta** para `src/` no EcoTrack (criar `src/` só na Task #55). Sobrescrever arquivos de mesmo caminho. **Documentação (#56):** não copiar `src/`; seguir o README da pasta (Google Docs → PDF).
 5. `git add` só o que o README listar.
 6. `git commit -m` **exatamente** a mensagem do README.
 7. `git push -u origin HEAD` e abrir PR colando o corpo do README.
