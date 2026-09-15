@@ -64,7 +64,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 - [ ] Tarefa 0.4 — autor: health do app
 - [x] Tarefa 0.5 — decisão: duplicata na raiz
 - [ ] Fase 1 — login e agências
-- [ ] Tarefa 1.1 — POST /auth/login e schema usuario
+- [x] Tarefa 1.1 — POST /auth/login e schema usuario
 - [ ] Tarefa 1.2 — tela de login e sessão
 - [ ] Tarefa 1.3 — CRUD de agências na API
 - [ ] Tarefa 1.4 — tela de agências
@@ -280,7 +280,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 **Pronto quando:** 1.5 confirmado.
 **Depende de:** fase 0 (0.3 no mínimo; 0.4 preferível).
 
-### Tarefa 1.1 — POST /auth/login e schema usuario
+### Tarefa 1.1 — POST /auth/login e schema usuario [x]
 
 - **Tipo:** agente
 - **Bloqueada por:** 0.3
