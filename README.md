@@ -115,6 +115,7 @@ Duas árvores (não há `backend/` nem `frontend/` na raiz):
 |---|---|---|
 | [`referencia/`](referencia/README.md) | Sistema funcional congelado | `cd referencia` → `docker compose up --build` (portas 1433 / 3000 / 5173) |
 | [`app/`](app/README.md) | Reconstrução do semestre (ROADMAP) | `cd app` → `docker compose up --build` (portas 1434 / 3001 / 5174) |
+| [`kit-campusceub/`](kit-campusceub/README.md) | Roteiro para o grupo colar código no [CAMPUSCEUB/EcoTrack](https://github.com/CAMPUSCEUB/EcoTrack) | copiar `src/` da pasta da Task |
 
 Documentação da disciplina: [`docs/`](docs/README.md). Execução SDD: [`ROADMAP.md`](ROADMAP.md).
 
@@ -130,6 +131,7 @@ Documentação da disciplina: [`docs/`](docs/README.md). Execução SDD: [`ROADM
 │   ├── backend/
 │   ├── frontend/
 │   └── docker-compose.yml
+├── kit-campusceub/      ← o que copiar para o EcoTrack institucional
 ├── docs/
 ├── ROADMAP.md
 └── README.md

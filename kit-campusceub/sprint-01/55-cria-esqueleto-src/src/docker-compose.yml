@@ -1,0 +1,64 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: ecotrack_sqlserver_app
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Admin@12345"
+    ports:
+      - "1434:1433"
+    volumes:
+      - sqlserver_data_app:/var/opt/mssql
+    networks:
+      - ecotrack_net_app
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    container_name: ecotrack_backend_app
+    depends_on:
+      - db
+    environment:
+      PORT: 3000
+      DB_USER: sa
+      DB_PASSWORD: Admin@12345
+      DB_SERVER: db
+      DB_PORT: 1433
+      DB_DATABASE: EcoTrackWertApp
+      DB_ENCRYPT: false
+      DB_TRUST_SERVER_CERTIFICATE: true
+      RUNNING_IN_DOCKER: true
+      JWT_SECRET: ecotrack_secret_2025
+      JWT_EXPIRES_IN: 1d
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - ecotrack_net_app
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    container_name: ecotrack_frontend_app
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://localhost:3001
+    ports:
+      - "5174:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - ecotrack_net_app
+
+volumes:
+  sqlserver_data_app:
+
+networks:
+  ecotrack_net_app:
+    driver: bridge
