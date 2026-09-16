@@ -3,6 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Issue | https://github.com/CAMPUSCEUB/EcoTrack/issues/55 |
+| Quem | — (já mergeada) |
 | Tipo | Task (infra; sem PBI pai) |
 | Milestone | Sprint 01 - Login e agências |
 | Branch | `feature/55-cria-esqueleto-src` |

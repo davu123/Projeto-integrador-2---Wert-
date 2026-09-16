@@ -3,6 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Issue | https://github.com/CAMPUSCEUB/EcoTrack/issues/52 |
+| Quem | Artur (catch-up Sprint 01) |
 | PBI | #27 US01 |
 | Milestone | Sprint 01 - Login e agências |
 | Branch | `feature/52-tela-login-sessao` |
@@ -29,6 +30,8 @@ Home autenticada = placeholder. **Não** copiar DashboardPage.
 ## PR
 
 Título: `feat: adiciona tela de login e sessao`
+
+Cole o bloco abaixo no PR (`gh pr create --body`). **Não crie issue nova.**
 
 ```text
 Closes #52

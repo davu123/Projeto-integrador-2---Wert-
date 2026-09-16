@@ -3,6 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Issue | https://github.com/CAMPUSCEUB/EcoTrack/issues/50 |
+| Quem | Artur (catch-up Sprint 01) |
 | PBI | #27 US01 |
 | Milestone | Sprint 01 - Login e agências |
 | Branch | `feature/50-auth-login-api` |
@@ -25,6 +26,8 @@ Seed: `admin@wert.com.br` / `ecotrack2025`.
 ## PR
 
 Título: `feat: autentica usuario com jwt`
+
+Cole o bloco abaixo no PR (`gh pr create --body`). **Não crie issue nova.**
 
 ```text
 Closes #50

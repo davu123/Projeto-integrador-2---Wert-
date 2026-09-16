@@ -3,6 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Issue | https://github.com/CAMPUSCEUB/EcoTrack/issues/53 |
+| Quem | Artur (catch-up Sprint 01) |
 | PBI | #31 US05 |
 | Milestone | Sprint 01 - Login e agências |
 | Branch | `feature/53-tela-agencias` |
@@ -20,6 +21,8 @@
 ## PR
 
 Título: `feat: adiciona tela de agencias`
+
+Cole o bloco abaixo no PR (`gh pr create --body`). **Não crie issue nova.**
 
 ```text
 Closes #53

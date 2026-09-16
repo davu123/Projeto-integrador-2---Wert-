@@ -3,12 +3,13 @@
 | Campo | Valor |
 |---|---|
 | Issue | https://github.com/CAMPUSCEUB/EcoTrack/issues/56 |
+| Quem | Artur |
 | Tipo | Task de documentação (sem PBI pai) |
 | Milestone | Sprint 01 - Login e agências |
 | Branch | `docs/56-pdfs-lean-inception` |
 | Commit | `docs: publica pdfs formais da lean inception` |
 | Destino no EcoTrack | só PDFs em `docs/lean-inception/` + índice + registro em `entregas/` |
-| Depende de | nada das Tasks de código (#50–#55). Pode ir em paralelo |
+| Depende de | depois das Tasks de código #50–#53 |
 
 **Um único PR** com as 12 etapas (`Closes #56`). Sem Markdown de conteúdo no EcoTrack.
 
@@ -64,6 +65,8 @@ Não adicionar `.md` das etapas, `PARA-O-GRUPO.md`, prompts de imagem nem a past
 ## PR
 
 Título: `docs: publica pdfs formais da lean inception`
+
+Cole o bloco abaixo no PR (`gh pr create --body`). **Não crie issue nova.**
 
 ```text
 Closes #56

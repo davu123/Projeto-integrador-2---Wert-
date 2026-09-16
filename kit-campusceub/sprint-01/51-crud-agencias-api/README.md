@@ -3,6 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Issue | https://github.com/CAMPUSCEUB/EcoTrack/issues/51 |
+| Quem | Artur (catch-up Sprint 01) |
 | PBI | #31 US05 |
 | Milestone | Sprint 01 - Login e agências |
 | Branch | `feature/51-crud-agencias-api` |
@@ -22,6 +23,8 @@ JWT em todas as rotas `/agencias`.
 ## PR
 
 Título: `feat: cadastra agencias na api`
+
+Cole o bloco abaixo no PR (`gh pr create --body`). **Não crie issue nova.**
 
 ```text
 Closes #51
