@@ -9,7 +9,7 @@
 | Branch | `feature/82-tela-lotes` |
 | Commit | `feat: adiciona tela de lotes` |
 | Destino | só `src/frontend` |
-| Depende de | merge da #80 e da #81 |
+| Depende de | merge da #80, da #81 e da #53 |
 
 ## O que copiar (sobrescrever)
 
@@ -19,7 +19,7 @@
 - `src/frontend/src/services/lotService.js` (novo)
 - `src/frontend/src/utils/formatters.js` (novo)
 
-Rota `/lotes`. Create grava status `pendente`. **Não** há botão de ciclo nem chamada a `/lotes/:id/status`.
+Rota `/lotes`. Create grava status `pendente`. **Não** há botão Concluir, ciclo de status nem chamada a `/lotes/:id/status` (isso é a #84). Usa `agencyService` (#53) e `userService` (#81).
 
 ## PR
 
