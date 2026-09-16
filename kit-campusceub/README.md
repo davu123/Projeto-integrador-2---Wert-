@@ -25,7 +25,7 @@ Sequencial, um integrante por sprint, para treinar o workflow:
 |---|---|---|
 | 01 | Artur | #50–#53 (kit abaixo). #56 depois do código |
 | 02 | Davi | #79–#82 |
-| 03 | Eduardo | #83–#84 (kit ainda não publicado) |
+| 03 | Eduardo | #83–#84 |
 
 Ainda vale **um PR por Task**. API e tela não se misturam no mesmo PR. A partir da Sprint 04: Davi só API, Eduardo só tela, Artur só docs.
 
@@ -61,4 +61,4 @@ Sem `Closes #<n>`, a issue não fecha no merge.
 |---|---|---|
 | 01 — Login e agências | [sprint-01/README.md](sprint-01/README.md) | #50–#53, #55, #56 |
 | 02 — Usuários e lotes | [sprint-02/README.md](sprint-02/README.md) | #79–#82 |
-| 03 — Equipamentos e status | ainda sem kit | #83–#84 |
+| 03 — Equipamentos e status | [sprint-03/README.md](sprint-03/README.md) | #83–#84 |
