@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Formato Markdown** | [kickoff.md](kickoff.md) |
-| **Formato PDF** | [pdf/kickoff.pdf](pdf/kickoff.pdf) (pendente) |
+| **Formato PDF** | [pdf/kickoff.pdf](pdf/kickoff.pdf) |
 | **Status** | Validado pelo grupo (19/08/2026) |
 
 Documento de alinhamento inicial: problema, time, parceria Wert e objetivo do Artefato 2.

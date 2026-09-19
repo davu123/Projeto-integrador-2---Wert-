@@ -35,7 +35,7 @@ Ainda vale **um PR por Task**. API e tela não se misturam no mesmo PR. A partir
 2. Esperar o merge das Tasks que bloqueiam a sua (tabela da sprint).
 3. Em `CAMPUSCEUB/EcoTrack`: `git checkout main && git pull`.
 4. `git checkout -b` **exatamente** a branch do README.
-5. **Código:** copiar o `src/` **desta pasta** para `src/` no EcoTrack (criar `src/` só na #55). Sobrescrever o mesmo caminho. **Documentação (#56):** não copiar `src/`; seguir o README da pasta.
+5. **Código:** copiar o `src/` **desta pasta** para `src/` no EcoTrack (criar `src/` só na #55). Sobrescrever o mesmo caminho. **Documentação (#56):** copiar `docs/` e `entregas/` da pasta da Task (PDFs + READMEs já prontos). Não copiar `src/`.
 6. `git add` só o que o README listar.
 7. `git commit -m` **exatamente** a mensagem do README.
 8. `git push -u origin HEAD`.

@@ -1,5 +1,0 @@
-Coloque nesta pasta o PDF formal desta etapa.
-
-Nome esperado: visao-do-produto.pdf
-
-O Markdown correspondente (fonte da verdade) está um nível acima: visao-do-produto.md

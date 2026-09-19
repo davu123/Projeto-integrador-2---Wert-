@@ -1,5 +1,0 @@
-Coloque nesta pasta o PDF formal desta etapa.
-
-Nome esperado: escopo.pdf
-
-O Markdown correspondente (fonte da verdade) está um nível acima: escopo.md

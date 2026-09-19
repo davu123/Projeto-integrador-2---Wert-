@@ -7,7 +7,7 @@ Este diretório guarda a documentação do **Projeto Integrador II**. Cada item 
 | **Markdown** | `*.md` na pasta da etapa | Grupo + Cursor/IA | Leitura no GitHub, edição e continuidade do trabalho |
 | **PDF** | `pdf/*.pdf` na mesma pasta | Professora e apresentação formal | Entrega e reunião de alinhamento |
 
-O Markdown é a **fonte da verdade**. O PDF é a **versão de apresentação**, exportada a partir do Markdown (ou de um documento Word equivalente). Enquanto o PDF não existir, a pasta `pdf/` fica só com o arquivo `COLOQUE-O-PDF-AQUI.txt`.
+O Markdown é a **fonte da verdade**. O PDF é a **versão de apresentação**, exportada no padrão CEUB. As 12 etapas da Lean Inception já têm PDF em `lean-inception/*/pdf/`.
 
 ---
 
@@ -75,6 +75,7 @@ docs/
 | Lean Inception 9 | Validada na sessão (9 ondas = 9 sprints) |
 | Lean Inception 10 | Validada na sessão (Canvas MVP) |
 | Lean Inception 11 | Validada na sessão (showcase) |
+| Lean Inception (PDF) | 12 PDFs formais no padrão CEUB (set/2026) |
 | Artefato 2 | Completo: backlog, RF/RNF, cronograma |
 | Artefato 3 | Completo: IA, arquitetura, testes, protótipo, storyboard |
 

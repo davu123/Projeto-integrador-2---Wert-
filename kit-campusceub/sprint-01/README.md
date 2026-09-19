@@ -28,4 +28,4 @@ Pais: US01 ([#27](https://github.com/CAMPUSCEUB/EcoTrack/issues/27)) nas Tasks #
 - Não criar `src/` de novo nas Tasks #50–#53: só copiar por cima.
 - Não copiar Dashboard, usuários, lotes, equipamentos.
 - Não abrir o PR sem `Closes #<n>` no corpo.
-- Na #56: não versionar Markdown das etapas no EcoTrack; só PDF.
+- Na #56: não versionar Markdown das etapas no EcoTrack; só PDF + índice + registro em `entregas/`. Copiar o que já está na pasta do kit.

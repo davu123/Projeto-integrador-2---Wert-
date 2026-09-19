@@ -20,4 +20,5 @@ Autores do Artefato 2: Lucas Gonçalves Balduino, Artur Feitoza, Davi Oliveira M
 
 - Showcase: [11-showcase/showcase.md](11-showcase/showcase.md)
 - Canvas MVP: [10-canvas-mvp/canvas-mvp.md](10-canvas-mvp/canvas-mvp.md)
+- PDFs formais (etapas 0–11): índice em [README.md](README.md)
 - Artefato 2: [../artefatos/02-backlog-requisitos-sprints/README.md](../artefatos/02-backlog-requisitos-sprints/README.md)
