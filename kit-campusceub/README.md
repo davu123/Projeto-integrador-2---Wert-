@@ -21,9 +21,9 @@ Não commitar em `main`. Review de um colega que **não** é o autor; aceite do 
 
 Decisão de 22/09/2026. Vale da Sprint 04 em diante. A Sprint 03 não é modelo de corte.
 
-- Uma Task implementa **um** PBI. O README da pasta cita um único número de PBI.
+- Uma Task tem **um** PBI pai. O README da pasta cita um único número de PBI. Quantas Tasks cabem naquele PBI depende do tamanho do trabalho: pode ser uma, duas ou mais. Não há cota fixa.
 - No GitHub, a Task nasce com `--parent` nesse PBI. Uma issue só aceita um pai.
-- API e tela continuam em PRs separados. O mesmo PBI pode ter duas Tasks (uma de API, uma de tela). Duas histórias não entram na mesma Task.
+- O escopo de cada Task cabe em um PR. API e tela não entram no mesmo PR, então, quando os dois existem, viram Tasks separadas. Isso é consequência do escopo, não uma regra de "duas por PBI". Duas histórias não entram na mesma Task.
 - O PR traz `Closes #<task>`. Isso fecha a Task. Não fecha o PBI nem a Feature. Quando todas as Tasks daquele PBI estiverem na `main`, fechar o PBI. Quando os PBIs da Feature estiverem fechados, fechar a Feature.
 - Infra e documentação sem história (como a #55 e a #56) seguem sem PBI pai.
 
@@ -74,3 +74,4 @@ Sem `Closes #<n>`, a issue não fecha no merge.
 | 01 — Login e agências | [sprint-01/README.md](sprint-01/README.md) | #50–#53, #55, #56 |
 | 02 — Usuários e lotes | [sprint-02/README.md](sprint-02/README.md) | #79–#82 |
 | 03 — Equipamentos e status | [sprint-03/README.md](sprint-03/README.md) | #83–#84 |
+| 04 — Destinação e PDF | [sprint-04/README.md](sprint-04/README.md) | #97–#100 |
