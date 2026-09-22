@@ -45,6 +45,7 @@ Receitas de cópia: `docs/reverse-engineering/` (quando existirem). Produto acad
 - Não scaffoldar telas de sprint futura.
 - Não escolher sozinho fork (já fechados no `03`/`06`, salvo a tabela pendente).
 - Uma tarefa do ROADMAP por conversa; não `git add -A`; não amend; não `--no-verify`.
+- Kit institucional (`kit-campusceub/`): ao abrir sprint nova, uma Task implementa um único PBI. API e tela desse PBI são duas Tasks. Não repetir a Sprint 03, em que #83 e #84 cobrem US07, US08 e US09. Regra: `kit-campusceub/README.md`, seção "Corte ao criar um kit novo".
 
 ## Comandos esperados
 

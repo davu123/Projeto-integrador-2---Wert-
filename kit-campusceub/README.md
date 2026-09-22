@@ -13,9 +13,21 @@ O colega **não inventa** issue, branch, commit nem título de PR: copia o READM
 | Branch de docs | `docs/<numero-issue>-descricao` | `docs/56-pdfs-lean-inception` |
 | Commit | `tipo: descrição` em português, sem `feat(1.1)` | `feat: cadastra usuarios na api` |
 | PR | título = commit; corpo com `Closes #<n>` | fecha a issue da pasta |
-| Hierarquia | Epic → Feature → PBI → **Task** | uma Task, uma branch, um PR |
+| Hierarquia | Epic → Feature → PBI → **Task** | uma Task, um PBI, uma branch, um PR |
 
 Não commitar em `main`. Review de um colega que **não** é o autor; aceite do Code Review (Lucas) antes do merge.
+
+## Corte ao criar um kit novo
+
+Decisão de 22/09/2026. Vale da Sprint 04 em diante. A Sprint 03 não é modelo de corte.
+
+- Uma Task implementa **um** PBI. O README da pasta cita um único número de PBI.
+- No GitHub, a Task nasce com `--parent` nesse PBI. Uma issue só aceita um pai.
+- API e tela continuam em PRs separados. O mesmo PBI pode ter duas Tasks (uma de API, uma de tela). Duas histórias não entram na mesma Task.
+- O PR traz `Closes #<task>`. Isso fecha a Task. Não fecha o PBI nem a Feature. Quando todas as Tasks daquele PBI estiverem na `main`, fechar o PBI. Quando os PBIs da Feature estiverem fechados, fechar a Feature.
+- Infra e documentação sem história (como a #55 e a #56) seguem sem PBI pai.
+
+A Sprint 03 colocou US07, US08 e US09 nas Tasks #83 e #84. O GitHub guardou só a US07 como pai. Não repetir.
 
 ## Catch-up (Sprints 01–03)
 

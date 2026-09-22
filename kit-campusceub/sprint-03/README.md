@@ -15,6 +15,8 @@ Catch-up: **Eduardo** faz as duas Tasks, um PR por vez, **depois** do merge da S
 
 A `#83` só precisa da API de lotes (`#80`). A `#84` sobrepõe a tela de lotes (`#82`) e chama o PATCH/POST da `#83`.
 
+Este corte junta três PBIs em duas Tasks. Kit novo não copia esse modelo: [uma Task, um PBI](../README.md#corte-ao-criar-um-kit-novo).
+
 Pais: US07 ([#33](https://github.com/CAMPUSCEUB/EcoTrack/issues/33)), US08 ([#34](https://github.com/CAMPUSCEUB/EcoTrack/issues/34)) e US09 ([#35](https://github.com/CAMPUSCEUB/EcoTrack/issues/35)) nas duas Tasks.
 
 ## O que não fazer
