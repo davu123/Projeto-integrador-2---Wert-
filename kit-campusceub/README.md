@@ -75,3 +75,4 @@ Sem `Closes #<n>`, a issue não fecha no merge.
 | 02 — Usuários e lotes | [sprint-02/README.md](sprint-02/README.md) | #79–#82 |
 | 03 — Equipamentos e status | [sprint-03/README.md](sprint-03/README.md) | #83–#84 |
 | 04 — Destinação e PDF | [sprint-04/README.md](sprint-04/README.md) | #97–#100 |
+| 05 — Dashboard e arquivo de PDFs | [sprint-05/README.md](sprint-05/README.md) | #111–#114 |
