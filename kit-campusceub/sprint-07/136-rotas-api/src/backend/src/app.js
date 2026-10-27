@@ -1,0 +1,35 @@
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+
+const authRoutes = require('./routes/authRoutes');
+const agencyRoutes = require('./routes/agencyRoutes');
+const userRoutes = require('./routes/userRoutes');
+const loteRoutes = require('./routes/loteRoutes');
+const destinacaoRoutes = require('./routes/destinacaoRoutes');
+const equipmentRoutes = require('./routes/equipmentRoutes');
+const reportRoutes = require('./routes/reportRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
+const rotaRoutes = require('./routes/rotaRoutes');
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+
+app.get('/health', (req, res) => {
+  res.json({ message: 'API EcoTrack Wert online.' });
+});
+
+app.use('/auth', authRoutes);
+app.use('/agencias', agencyRoutes);
+app.use('/usuarios', userRoutes);
+app.use('/lotes', loteRoutes);
+app.use('/destinacoes', destinacaoRoutes);
+app.use('/relatorios', reportRoutes);
+app.use('/dashboard', dashboardRoutes);
+app.use('/equipamentos', equipmentRoutes);
+app.use('/rotas', rotaRoutes);
+
+module.exports = app;
