@@ -63,9 +63,9 @@ Como validar: GET /usuarios sem token → 401; com token, criar/listar/editar e 
 "@
 ```
 
-10. No template do EcoTrack: tipo Requisito (código) ou Documentação (#56). Pedir review (Lucas + um colega).
+10. No EcoTrack, o corpo do PR é o arquivo `.github/PULL_REQUEST_TEMPLATE.md` inteiro: Issue relacionada, Resumo, Tipo de mudança, Como validar, Evidências e Checklist. O exemplo acima só mostra onde vai o `Closes #<n>`. Corpo só com essa linha não serve. Tipo Requisito para código, Documentação para ata ou relatório. Pedir review (Lucas + um colega).
 
-Sem `Closes #<n>`, a issue não fecha no merge.
+Sem `Closes #<n>`, a issue não fecha no merge. `Refs #<n>` não fecha. `Closes` na Task não fecha o PBI nem a Feature.
 
 ## Sprints
 
