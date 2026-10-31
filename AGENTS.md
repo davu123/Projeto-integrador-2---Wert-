@@ -41,6 +41,12 @@ Receitas de cópia: `docs/reverse-engineering/` (quando existirem). Produto acad
 - Kit institucional: `kit-campusceub/`. Uma pasta por Task. O colega copia o `src/` da pasta para o `src/` do EcoTrack.
 - Spec ≠ conteúdo acadêmico. Não misturar tarefas de código com edição da Lean Inception.
 
+Estado real em 31/10/2026: o `app/` parou na Tarefa 1.1 do ROADMAP (login, commit `8c2addd`). Só ela e a Fase 0 (0.1, 0.3, 0.5) estão `[x]`. Os kits andaram sem o `app/`: as Sprints 01–05 saíram da `referencia/`, e as Sprints 06–07 (`requirePerfil.js`, `acesso.js`, rotas) são código novo, escrito direto na pasta do kit em cima da `main` do EcoTrack. Hoje o código mais completo do produto é o `src/` da `main` do EcoTrack, não o `app/`. Não há kit da Sprint 08 ainda.
+
+Pendente, decisão do Lucas: o `app/` e o ROADMAP seguem (alcançar o EcoTrack) ou ficam parados. Até ele decidir, não avançar o ROADMAP por conta própria e não usar o `app/` como base de kit.
+
+A `main` local deste repositório é o sistema antigo (último commit `37b42d6`) e a branch `DocumentacaoLeanPI2` é anterior ao kit. Não mexer em nenhuma das duas.
+
 ### Regras da reconstrução
 
 - Não editar `referencia/` depois do freeze.
@@ -68,9 +74,9 @@ O par deste arquivo no EcoTrack é `C:\Users\Lucas\Programas\EcoTrack\AGENTS.md`
 
 Os dois arquivos descrevem o mesmo estado de sprint. A reconstrução (`app/`, `referencia/`, `ROADMAP.md`) fica neste. O fluxo de issue, PR e merge fica nos dois. Se a data ou o número divergir, o `gh` manda.
 
-Lucas Gonçalves Balduino (GitHub `Lucas-Balduino`) é o Scrum Master e o Code Review. Está aprendendo issues, PRs e Projects. Explique o passo antes de decidir por ele. O `gh` desta máquina age como Lucas. Não deixe rastro de Cursor (`Co-authored-by`, commit de IA, “gerado por”).
+Lucas Gonçalves Balduino (GitHub `Lucas-Balduino`) é o Scrum Master e o Code Review. Está aprendendo issues, PRs e Projects. Explique o passo antes de decidir por ele. O `gh` desta máquina age como Lucas. Não deixe rastro de IA (Cursor, Claude Code ou outro): nada de `Co-authored-by`, “Generated with Claude Code”, commit de IA ou “gerado por” em commit, PR, comentário, issue ou README do kit. Vale mesmo que a ferramenta peça a linha de atribuição.
 
-No EcoTrack o agente não faz `git commit` nem `git push`. Deixa os arquivos prontos e entrega os comandos. A exceção histórica é o primeiro commit, feito antes da regra. Não repetir. Quem mergeia é o Lucas, com merge commit, sem squash, para o autor do código continuar sendo o aluno. O autor do PR não mergeia o próprio PR. Se o PR for do Lucas, um colega revisa e o merge não é ele.
+No EcoTrack o agente não faz `git commit` nem `git push`. Faz a mudança, deixa em stage só os arquivos da Task e entrega a mensagem do commit para o Lucas commitar. No PR, entrega título e corpo no template inteiro, e o Lucas abre. A exceção histórica é o primeiro commit, feito antes da regra. Não repetir. Quem mergeia é o Lucas, com merge commit, sem squash, para o autor do código continuar sendo o aluno. O autor do PR não mergeia o próprio PR. Se o PR for do Lucas, um colega revisa e o merge não é ele. Nos PRs de documentação do Lucas (#127, #130, #142), quem revisa e mergeia é o Artur.
 
 Commit neste repositório, quando o Lucas pedir documentação do kit, sai com o autor que o Git já usa (`Lucas <lucas.balduino@sempreceub.com>`). Não mudar o `git config`. Correção pedida na branch de um colega no EcoTrack, quando o Lucas pedir para ser ele o autor: `git -c user.name="Lucas Gonçalves Balduino" -c user.email="165683227+Lucas-Balduino@users.noreply.github.com"`, sem `Co-authored-by`. Correção feita pelo Eduardo na branch do Davi fica no nome do Eduardo.
 
@@ -151,7 +157,9 @@ Não abrir issue nova se ela já existe. A #101 foi duplicata da #67 e foi fecha
 
 Template no EcoTrack: `docs/reunioes/template-reuniao.md`. Planning #61, #63, #65, #67, #69, #71, #73, #75, #77. Review #62, #64, #66, #68, #70, #72, #74, #76, #78.
 
-- Planning: Lucas organiza e a ata é escrita com ele. Não entregar essa ata ao Artur. O relatório `sprints/sprint-NN.md` também sai nessa entrega. A ata lista quem fechou o plano e os encaminhamentos de quem executa. Não inventar presença. Não colocar na planning um fato que só apareceu na review.
+As reuniões acontecem nas aulas de terça-feira à noite: review da sprint que fecha e planning da seguinte no mesmo dia. A planning é preparada antes da aula pelo Lucas com o agente: issues, kit e quem faz o quê. Na aula ele só indica as Tasks. Às vezes a sprint anterior ainda está atrasada no dia, mas a seguinte já fica pronta. Por isso o kit da próxima sprint precisa estar pronto antes da terça.
+
+- Planning: Lucas organiza e a ata é escrita com ele. Não entregar essa ata ao Artur, mesmo quando o texto da issue (#73, #75, #77) diz “Documentação redige a ata”: vale a prática, não o texto. O relatório `sprints/sprint-NN.md` também sai nessa entrega. A ata lista quem fechou o plano e os encaminhamentos de quem executa. Não inventar presença. Não colocar na planning um fato que só apareceu na review.
 - Review: Artur redige a ata e abre o PR. A issue pede a ata e a atualização de `sprints/sprint-NN.md` com issues concluídas, PRs aceitos e evidências. Checklist marcado sem essas seções preenchidas é pedido de mudança. Não fechar a review antes da reunião e da ata aceita.
 - O índice `docs/reunioes/README.md` lista só arquivo que já está na branch. A review não entra no índice da planning enquanto o PR dela não tiver o arquivo.
 - Plannings 01–03: uma ata, `docs/reunioes/2026-09-15-sprint-planning-01-02-03.md`, issues #61, #63, #65.
@@ -170,7 +178,7 @@ Quando o Lucas disser que a sprint de produto está completa:
 
 Está no `kit-campusceub/README.md`. O agente não commita o kit no EcoTrack. O colega copia a pasta, na branch do README, com a mensagem exata, sem `feat(4.1)`. Esse prefixo é só da reconstrução neste repositório. Branch `feature/<n>-descricao` para código, `docs/<n>-descricao` para documentação. Sem commit em `main`. Review de quem não é o autor, aceite do Lucas, merge do Lucas.
 
-### Estado em 28/10/2026
+### Estado em 31/10/2026
 
 Sprint 01 na `main`: #50–#53, #55, #56. Features e PBIs fechados. Review #62 fechada (ata 22/09).
 
@@ -197,7 +205,19 @@ A #136 vem antes da #138 porque as duas alteram `rotaController.js` e `rotaRoute
 
 Pais já fechados na mão: Sprints 01–06, Features e PBIs das Tasks que estão na `main`. Não fechar de novo.
 
-Docker local ainda não foi validado pelo grupo.
+Em 31/10/2026: o #141 do Artur continua sem commit novo depois do pedido de mudança de 28/10. O #142 aguarda review do Artur. A Planning 07 (#73) ainda não tem ata nem `sprints/sprint-07.md`.
+
+Docker local ainda não foi validado pelo grupo. Em 31/10/2026 o Docker não está instalado na máquina do Lucas, então nem a Tarefa 0.2 nem a 0.4 do ROADMAP foram confirmadas. O `src/docker-compose.yml` do EcoTrack e o `app/docker-compose.yml` usam os mesmos nomes de container (`ecotrack_*_app`) e as mesmas portas 1434 / 3001 / 5174: subir um de cada vez. O compose não espera o SQL Server ficar pronto e a API tenta só 3 vezes (2 s), então a primeira subida pode derrubar o backend.
+
+### Conversas
+
+Desde 31/10/2026 o Lucas usa o Claude Code em vez do Cursor. Uma conversa principal por repositório:
+
+- Aqui (Opus): kit das sprints e desenvolvimento. Criar kit e issues de sprint nova pede o modelo mais forte.
+- No EcoTrack (Opus): visão institucional, estado da sprint, decisões.
+- Tarefas de rotina (revisar PR, ata, relatório, fechar pais) em conversas separadas, que podem usar Sonnet.
+
+As conversas não se veem. O que liga as duas é este arquivo e o par no EcoTrack. Quando uma conversa mudar o estado da sprint, atualizar os dois.
 
 ### O que não repetir
 
