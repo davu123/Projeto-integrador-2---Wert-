@@ -6,7 +6,7 @@ Uma pasta = uma Task = uma branch = um PR. Cada Task tem **um** PBI pai. Um PBI 
 
 Não criar issue nova: #136–#139 já existem. Não juntar US17 e US18 na mesma Task.
 
-**Davi** só API. **Eduardo** só tela. Começar **depois** do merge da Sprint 06. Código **novo**: não há fonte na `referencia/` para esta sprint.
+**Davi** só API. **Eduardo** só tela. Começar **depois** do merge da Sprint 06. Código novo.
 
 ## Ordem
 

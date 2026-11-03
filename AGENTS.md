@@ -190,7 +190,7 @@ Quando o Lucas disser que a sprint de produto está completa:
 
 Está no `kit-campusceub/README.md`. O agente não commita o kit no EcoTrack. O colega copia a pasta, na branch do README, com a mensagem exata, sem `feat(4.1)`. Esse prefixo é só da reconstrução neste repositório. Branch `feature/<n>-descricao` para código, `docs/<n>-descricao` para documentação. Sem commit em `main`. Review de quem não é o autor, aceite do Lucas, merge do Lucas.
 
-### Estado em 31/10/2026
+### Estado em 03/11/2026
 
 Sprint 01 na `main`: #50–#53, #55, #56. Features e PBIs fechados. Review #62 fechada (ata 22/09).
 
@@ -202,9 +202,20 @@ Sprint 04 na `main`: #97–#100 (PRs #107–#110). Planning: relatório no #102,
 
 Sprint 05 na `main`: #111–#114. PRs #118 (o #117 foi fechado sem merge), #119, #120, #121. Planning: relatório no #115, fecha #69. Pais fechados na mão em 10/10/2026: US13 #39, F13 #18, US15 #41, F15 #20. Review #70 fechada (ata 09/10, PR #128). #111 antes da #112, porque as duas alteram `app.js`.
 
-Sprint 06 na `main`: #122–#125 (PRs #131–#134). A #126 (PR #135) foi mergeada em 27/10 como `8036e09`, mas um force push do `arturflr5` em 28/10 03:10 voltou a `main` para `fd02e13` e tirou da `main` os commits do #135 (`App.jsx`, `auth/acesso.js`, `ProtectedRoute.jsx`, `Sidebar.jsx`). A issue #126 continua fechada. Em 02/11/2026 a `main` já contém `8036e09` de novo, seguida dos merges #142, #141 e #143. A `main` continua sem proteção contra force push. Pais fechados na mão em 27/10/2026: US03 #29, US04 #30, US12 #38, F03 #8, F04 #9, F12 #17. Planning: relatório no #127, fecha #71. Review #72 aberta. PR do Artur: #141. A ata está no template. O `sprints/sprint-06.md` ainda está no texto do planejamento (“Nenhuma no início da sprint”, “Nenhum ainda”). Pedido de ajuste: preencher issues concluídas, PRs aceitos, evidências e próximas ações; no índice, só a linha da review 06; sem BOM. Não pedir a ele as atas de planning. Não fechar a #72 antes da ata aceita.
+Sprint 06 na `main`: #122–#126 (PRs #131–#135). Um force push do `arturflr5` em 28/10 03:10 UTC tirou o #135 da `main`. Em 31/10 o Lucas restaurou a `main` para `8036e09`, sem force. A `main` continua sem proteção contra force push, e o assunto é pauta da Review 07. Pais fechados na mão em 27/10/2026: US03 #29, US04 #30, US12 #38, F03 #8, F04 #9, F12 #17. Planning: relatório no #127, fecha #71. Atas de planning 04–06: PR #142, mergeado pelo Artur em 01/11. Review 06: PR #141, corrigido pelo Lucas na branch do Artur (conflito do índice, BOM, links) e mergeado pelo Lucas em 01/11. A #72 está fechada.
 
-Sprint 07, código ainda não começou. Issues criadas, pai único, `blocked by` igual ao kit. Milestone: `Sprint 07 - Rotas e atribuição de motorista`. Kit neste repositório, pastas `136`–`139`, commit `60ed079`, branch `docs/lean-inception-sprints`.
+Planning 07: PR #143, autor Lucas, mergeado pelo Artur em 02/11. A #73 está fechada.
+
+Sprint 07: a #136 está na `main` pelo PR #144 do Davi, mergeado pelo Lucas em 03/11 02:49 UTC (merge `f654a5e`). A #137, a #138 e a #139 continuam abertas. O código do #144 é diferente da pasta `136-rotas-api`, e vale a `main`:
+- `salvarRota` no POST e no PUT;
+- `carregarRotas` com `FOR JSON`;
+- `router.use` de perfil e `router.param('id')`;
+- `CK_parada_ordem` no schema, sem `IX_parada_rota_id`.
+
+A pasta 136 não foi alterada. A pasta 138 foi refeita sobre o código da `main` mais o `PATCH /rotas/:id/motorista` (commit `b3152b1`); em 03/11 o EcoTrack conferiu que a pasta é a `main` mais o bloco novo, sem remover nada. Decisão do Lucas em 03/11/2026: o 400 para motorista inativo fica. Pendente do Lucas:
+- a linha 9 do README da sprint 07 (“não há fonte na `referencia/`”), a trocar por “Código novo.”.
+
+Issues criadas, pai único, `blocked by` igual ao kit. Milestone: `Sprint 07 - Rotas e atribuição de motorista`. Kit neste repositório, pastas `136`–`139`, branch `docs/lean-inception-sprints`.
 
 | Ordem | Issue | PBI | Quem | Depende de |
 | --- | --- | --- | --- | --- |
@@ -217,7 +228,7 @@ A #136 vem antes da #138 porque as duas alteram `rotaController.js` e `rotaRoute
 
 Pais já fechados na mão: Sprints 01–06, Features e PBIs das Tasks que estão na `main`. Não fechar de novo.
 
-Sprint 08, sem kit e sem Tasks. Milestone: `Sprint 08 - Rota do dia e recolhimento` (03/11 a 16/11). PBIs US19 #45 (F19 #24, RF23) e US20 #46 (F20 #25, RF24). Em 31/10 o Lucas cobrou o grupo e espera a Sprint 07 na `main` antes da terça. O kit 08 só é montado depois disso, em cima da `main` real, não dos arquivos do kit 07. Corte proposto, ainda não aprovado:
+Sprint 08, sem kit e sem Tasks. Milestone: `Sprint 08 - Rota do dia e recolhimento` (03/11 a 16/11). PBIs US19 #45 (F19 #24, RF23) e US20 #46 (F20 #25, RF24). Em 31/10 o Lucas cobrou o grupo e espera a Sprint 07 na `main` antes da terça. Em 03/11 só a #136 estava na `main`. O kit 08 só é montado depois disso, em cima da `main` real, não dos arquivos do kit 07. Corte proposto, ainda não aprovado:
 
 | Ordem | Task | PBI | Quem | Depende de |
 | --- | --- | --- | --- | --- |
@@ -227,8 +238,6 @@ Sprint 08, sem kit e sem Tasks. Milestone: `Sprint 08 - Rota do dia e recolhimen
 | 4 | botões de recolhimento na tela da rota do dia | US20 #46 | Eduardo | T3 e T2 |
 
 Decisões pendentes do Lucas: status na parada, não no lote (a parada pode não ter lote); `PUT /rotas/:id` devolve 409 quando alguma parada já tem status, porque o `PUT` da #136 apaga e recria as paradas; só o motorista atribuído marca o status. Gestor ver o recolhimento é US21, Sprint 09.
-
-Em 31/10/2026: o #141 do Artur continua sem commit novo depois do pedido de mudança de 28/10. O #142 aguarda review do Artur. A Planning 07 (#73) ainda não tem ata nem `sprints/sprint-07.md`.
 
 Docker local ainda não foi validado pelo grupo. Em 31/10/2026 o Docker não está instalado na máquina do Lucas, então nem a Tarefa 0.2 nem a 0.4 do ROADMAP foram confirmadas. O `src/docker-compose.yml` do EcoTrack e o `app/docker-compose.yml` usam os mesmos nomes de container (`ecotrack_*_app`) e as mesmas portas 1434 / 3001 / 5174: subir um de cada vez. O compose não espera o SQL Server ficar pronto e a API tenta só 3 vezes (2 s), então a primeira subida pode derrubar o backend.
 
