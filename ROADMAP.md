@@ -6,6 +6,8 @@ Agente: **não ler o ROADMAP inteiro**. Ler só **Como usar**, **Progresso** e a
 
 ## Como usar
 
+**Congelado na Tarefa 1.1** (decisão do autor, ver tabela abaixo). Não executar tarefas deste ROADMAP. Os kits partem da `main` do EcoTrack.
+
 SDD neste repo: uma tarefa = um objetivo, docs explícitos, aceite testável, um commit. Sem “faça a fase inteira”. Tipo `autor` ou bloqueada: parar e mostrar o prompt do autor. `referencia/` é read-only depois de 0.1. Sprints 1–5 copiam da referência; 6–9 são código novo.
 
 ## Prompt mestre — agente
@@ -124,6 +126,7 @@ Se a tarefa tiver **PARAR — decisão do autor** e **Decisão registrada:** `(p
 |---|---|---|
 | 0.5 | Apagar `backend/` e `frontend/` da raiz após a referência existir? | apagar (20/08/2026) |
 | horizonte | Ferramenta para copiar só `app/` ao GitHub novo | `(pendente)` |
+| todas | Retomar o `app/` até alcançar o EcoTrack ou congelar | congelar na 1.1 (31/10/2026) |
 
 ---
 
