@@ -1,403 +1,189 @@
 const { getConnection, sql } = require('../config/database');
 
+function inteiroPositivo(valor) {
+  if (typeof valor !== 'number' && !(typeof valor === 'string' && /^\d+$/.test(valor))) {
+    return NaN;
+  }
+
+  const numero = Number(valor);
+  return Number.isInteger(numero) && numero > 0 && numero <= 2147483647 ? numero : NaN;
+}
+
+function dataValida(data) {
+  if (typeof data !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(data) || data.startsWith('0000')) {
+    return false;
+  }
+  const dia = new Date(data + 'T00:00:00Z');
+  return !Number.isNaN(dia.getTime()) && dia.toISOString().slice(0, 10) === data;
+}
+
 function normalizarParadas(paradas) {
-  if (!Array.isArray(paradas)) {
-    return [];
-  }
+  if (!Array.isArray(paradas) || !paradas.length) return null;
 
-  return paradas.map((parada, index) => ({
-    agencia_id: parada.agencia_id ? Number(parada.agencia_id) : null,
-    lote_id: parada.lote_id ? Number(parada.lote_id) : null,
-    ordem: parada.ordem ? Number(parada.ordem) : index + 1
-  }));
+  const resultado = [];
+  const ordens = new Set();
+  for (const [indice, parada] of paradas.entries()) {
+    if (!parada || typeof parada !== 'object') return null;
+    const agencia = parada.agencia_id == null ? null : inteiroPositivo(parada.agencia_id);
+    const lote = parada.lote_id == null ? null : inteiroPositivo(parada.lote_id);
+    const ordem = inteiroPositivo(parada.ordem ?? indice + 1);
+    if ((agencia === null && lote === null) || Number.isNaN(agencia) || Number.isNaN(lote)
+      || Number.isNaN(ordem) || ordens.has(ordem)) return null;
+
+    ordens.add(ordem);
+    resultado.push({ agencia_id: agencia, lote_id: lote, ordem });
+  }
+  return resultado;
 }
 
-async function validarParadas(pool, paradas) {
-  if (paradas.length === 0) {
-    return 'A rota precisa de pelo menos uma parada.';
-  }
-
-  const ordens = paradas.map((parada) => parada.ordem);
-  if (ordens.some((ordem) => !Number.isInteger(ordem) || ordem < 1)) {
-    return 'Cada parada precisa de uma ordem inteira a partir de 1.';
-  }
-
-  if (new Set(ordens).size !== ordens.length) {
-    return 'A ordem das paradas não pode se repetir.';
-  }
-
-  for (const parada of paradas) {
-    if (!parada.agencia_id && !parada.lote_id) {
-      return 'Cada parada precisa de agência ou lote.';
-    }
-
-    if (parada.agencia_id) {
-      const agencia = await pool
-        .request()
-        .input('id', sql.Int, parada.agencia_id)
-        .query('SELECT TOP 1 id FROM dbo.agencia WHERE id = @id');
-
-      if (!agencia.recordset[0]) {
-        return 'Agência não encontrada.';
-      }
-    }
-
-    if (parada.lote_id) {
-      const lote = await pool
-        .request()
-        .input('id', sql.Int, parada.lote_id)
-        .query('SELECT TOP 1 id FROM dbo.lote WHERE id = @id');
-
-      if (!lote.recordset[0]) {
-        return 'Lote não encontrado.';
-      }
-    }
-  }
-
-  return null;
-}
-
-async function gravarParadas(transaction, rotaId, paradas) {
-  await new sql.Request(transaction)
-    .input('rota_id', sql.Int, rotaId)
-    .query('DELETE FROM dbo.parada WHERE rota_id = @rota_id');
-
-  for (const parada of paradas) {
-    await new sql.Request(transaction)
-      .input('rota_id', sql.Int, rotaId)
-      .input('agencia_id', sql.Int, parada.agencia_id)
-      .input('lote_id', sql.Int, parada.lote_id)
-      .input('ordem', sql.Int, parada.ordem)
-      .query(`
-        INSERT INTO dbo.parada (rota_id, agencia_id, lote_id, ordem)
-        VALUES (@rota_id, @agencia_id, @lote_id, @ordem)
-      `);
-  }
-}
-
-async function carregarParadas(pool, rotaId) {
-  const result = await pool
-    .request()
-    .input('rota_id', sql.Int, rotaId)
-    .query(`
-      SELECT
-        p.id,
-        p.rota_id,
-        p.agencia_id,
-        a.nome AS agencia_nome,
-        p.lote_id,
-        p.ordem
-      FROM dbo.parada p
-      LEFT JOIN dbo.agencia a ON a.id = p.agencia_id
-      WHERE p.rota_id = @rota_id
-      ORDER BY p.ordem
-    `);
-
-  return result.recordset;
-}
-
-async function carregarRota(pool, rotaId) {
-  const result = await pool
-    .request()
-    .input('id', sql.Int, rotaId)
-    .query(`
-      SELECT
-        r.id,
-        r.data,
-        r.motorista_id,
-        u.nome AS motorista_nome,
-        r.criado_em,
-        r.atualizado_em
-      FROM dbo.rota r
-      LEFT JOIN dbo.usuario u ON u.id = r.motorista_id
-      WHERE r.id = @id
-    `);
-
-  const rota = result.recordset[0];
-  if (!rota) {
-    return null;
-  }
-
-  rota.paradas = await carregarParadas(pool, rota.id);
-  return rota;
+async function carregarRotas(conexao, id = null) {
+  const result = await conexao.request().input('id', sql.Int, id).query(`
+    SELECT r.id, r.data, r.motorista_id, u.nome AS motorista_nome, r.criado_em, r.atualizado_em,
+      (SELECT p.id, p.rota_id, p.agencia_id, a.nome AS agencia_nome, p.lote_id, p.ordem
+       FROM dbo.parada p
+       LEFT JOIN dbo.agencia a ON a.id = p.agencia_id
+       WHERE p.rota_id = r.id
+       ORDER BY p.ordem FOR JSON PATH, INCLUDE_NULL_VALUES) AS paradas
+    FROM dbo.rota r
+    LEFT JOIN dbo.usuario u ON u.id = r.motorista_id
+    WHERE @id IS NULL OR r.id = @id
+    ORDER BY r.data DESC, r.id DESC
+  `);
+  return result.recordset.map((rota) => ({ ...rota, paradas: JSON.parse(rota.paradas) }));
 }
 
 async function listarRotas(req, res) {
   try {
-    const pool = await getConnection();
-    const result = await pool.request().query(`
-      SELECT
-        r.id,
-        r.data,
-        r.motorista_id,
-        u.nome AS motorista_nome,
-        r.criado_em,
-        r.atualizado_em
-      FROM dbo.rota r
-      LEFT JOIN dbo.usuario u ON u.id = r.motorista_id
-      ORDER BY r.data DESC, r.id DESC
-    `);
-
-    const rotas = [];
-    for (const rota of result.recordset) {
-      rotas.push({
-        ...rota,
-        paradas: await carregarParadas(pool, rota.id)
-      });
-    }
-
+    const rotas = await carregarRotas(await getConnection());
     return res.json(rotas);
   } catch (error) {
-    return res.status(500).json({
-      message: 'Erro ao listar rotas.',
-      error: error.message
-    });
+    return res.status(500).json({ message: 'Erro ao listar rotas.' });
   }
 }
 
 async function buscarRotaPorId(req, res) {
   try {
-    const pool = await getConnection();
-    const rota = await carregarRota(pool, Number(req.params.id));
-
-    if (!rota) {
-      return res.status(404).json({ message: 'Rota não encontrada.' });
-    }
-
+    const [rota] = await carregarRotas(await getConnection(), req.params.id);
+    if (!rota) return res.status(404).json({ message: 'Rota não encontrada.' });
     return res.json(rota);
   } catch (error) {
-    return res.status(500).json({
-      message: 'Erro ao buscar rota.',
-      error: error.message
-    });
+    return res.status(500).json({ message: 'Erro ao buscar rota.' });
   }
 }
 
-async function criarRota(req, res) {
-  try {
-    const { data } = req.body;
-    const paradas = normalizarParadas(req.body.paradas);
-
-    if (!data) {
-      return res.status(400).json({ message: 'data é obrigatória.' });
-    }
-
-    const pool = await getConnection();
-    const erroParadas = await validarParadas(pool, paradas);
-    if (erroParadas) {
-      return res.status(400).json({ message: erroParadas });
-    }
-
-    const transaction = new sql.Transaction(pool);
-    await transaction.begin();
-
-    try {
-      const inserida = await new sql.Request(transaction)
-        .input('data', sql.Date, data)
-        .query(`
-          INSERT INTO dbo.rota (data)
-          OUTPUT INSERTED.id
-          VALUES (@data)
-        `);
-
-      const rotaId = inserida.recordset[0].id;
-      await gravarParadas(transaction, rotaId, paradas);
-      await transaction.commit();
-
-      const rota = await carregarRota(pool, rotaId);
-      return res.status(201).json({
-        message: 'Rota criada com sucesso.',
-        rota
-      });
-    } catch (error) {
-      try {
-        await transaction.rollback();
-      } catch (rollbackError) {
-        return res.status(500).json({
-          message: 'Erro ao criar rota.',
-          error: error.message
-        });
-      }
-
-      return res.status(500).json({
-        message: 'Erro ao criar rota.',
-        error: error.message
-      });
-    }
-  } catch (error) {
-    return res.status(500).json({
-      message: 'Erro ao criar rota.',
-      error: error.message
+async function salvarRota(req, res) {
+  const { data, paradas } = req.body;
+  if (!dataValida(data)) {
+    return res.status(400).json({ message: 'Informe uma data válida no formato AAAA-MM-DD.' });
+  }
+  const paradasValidas = normalizarParadas(paradas);
+  if (!paradasValidas) {
+    return res.status(400).json({
+      message: 'Informe ao menos uma parada com agência ou lote. As ordens devem ser inteiras, positivas e únicas.'
     });
   }
-}
 
-async function atualizarRota(req, res) {
+  const criando = req.params.id === undefined;
   try {
-    const { id } = req.params;
-    const { data } = req.body;
-    const paradas = normalizarParadas(req.body.paradas);
-
-    if (!data) {
-      return res.status(400).json({ message: 'data é obrigatória.' });
-    }
-
     const pool = await getConnection();
-    const existente = await carregarRota(pool, Number(id));
-    if (!existente) {
-      return res.status(404).json({ message: 'Rota não encontrada.' });
-    }
-
-    const erroParadas = await validarParadas(pool, paradas);
-    if (erroParadas) {
-      return res.status(400).json({ message: erroParadas });
-    }
-
-    const transaction = new sql.Transaction(pool);
-    await transaction.begin();
-
+    const transacao = pool.transaction();
+    await transacao.begin();
     try {
-      await new sql.Request(transaction)
-        .input('id', sql.Int, Number(id))
-        .input('data', sql.Date, data)
+      const comando = transacao.request().input('data', sql.Date, data);
+      const resultado = criando
+        ? await comando.query('INSERT INTO dbo.rota (data) OUTPUT INSERTED.id VALUES (@data)')
+        : await comando.input('id', sql.Int, req.params.id).query(`
+            UPDATE dbo.rota SET data = @data, atualizado_em = SYSDATETIME()
+            OUTPUT INSERTED.id WHERE id = @id
+          `);
+      const registro = resultado.recordset[0];
+      if (!registro) {
+        await transacao.rollback();
+        return res.status(404).json({ message: 'Rota não encontrada.' });
+      }
+      const insercao = await transacao.request()
+        .input('id', sql.Int, registro.id)
+        .input('paradas', sql.NVarChar(sql.MAX), JSON.stringify(paradasValidas))
         .query(`
-          UPDATE dbo.rota
-          SET data = @data, atualizado_em = SYSDATETIME()
-          WHERE id = @id
+          DELETE FROM dbo.parada WHERE rota_id = @id;
+          INSERT INTO dbo.parada (rota_id, agencia_id, lote_id, ordem)
+          SELECT @id, p.agencia_id, p.lote_id, p.ordem
+          FROM OPENJSON(@paradas) WITH (agencia_id INT, lote_id INT, ordem INT) AS p
+          LEFT JOIN dbo.agencia a ON a.id = p.agencia_id
+          LEFT JOIN dbo.lote l ON l.id = p.lote_id
+          WHERE (p.agencia_id IS NULL OR a.id IS NOT NULL)
+            AND (p.lote_id IS NULL OR l.id IS NOT NULL);
+          SELECT @@ROWCOUNT AS total;
         `);
-
-      await gravarParadas(transaction, Number(id), paradas);
-      await transaction.commit();
-
-      const rota = await carregarRota(pool, Number(id));
-      return res.json({
-        message: 'Rota atualizada com sucesso.',
-        rota
+      if (insercao.recordset[0].total !== paradasValidas.length) {
+        await transacao.rollback();
+        return res.status(400).json({ message: 'Agência ou lote não encontrado.' });
+      }
+      const [rota] = await carregarRotas(transacao, registro.id);
+      await transacao.commit();
+      return res.status(criando ? 201 : 200).json({
+        message: criando ? 'Rota criada com sucesso.' : 'Rota atualizada com sucesso.', rota
       });
     } catch (error) {
-      try {
-        await transaction.rollback();
-      } catch (rollbackError) {
-        return res.status(500).json({
-          message: 'Erro ao atualizar rota.',
-          error: error.message
-        });
-      }
-
-      return res.status(500).json({
-        message: 'Erro ao atualizar rota.',
-        error: error.message
-      });
+      await transacao.rollback();
+      throw error;
     }
   } catch (error) {
-    return res.status(500).json({
-      message: 'Erro ao atualizar rota.',
-      error: error.message
-    });
+    if (error.number === 547) {
+      return res.status(400).json({ message: 'Agência ou lote não encontrado.' });
+    }
+    return res.status(500).json({ message: 'Erro ao salvar rota.' });
   }
 }
 
 async function excluirRota(req, res) {
   try {
     const pool = await getConnection();
-    const result = await pool
-      .request()
-      .input('id', sql.Int, Number(req.params.id))
+    const result = await pool.request().input('id', sql.Int, req.params.id)
       .query('DELETE FROM dbo.rota WHERE id = @id');
-
-    if (!result.rowsAffected[0]) {
-      return res.status(404).json({ message: 'Rota não encontrada.' });
-    }
-
+    if (!result.rowsAffected[0]) return res.status(404).json({ message: 'Rota não encontrada.' });
     return res.json({ message: 'Rota excluída com sucesso.' });
   } catch (error) {
-    return res.status(500).json({
-      message: 'Erro ao excluir rota.',
-      error: error.message
-    });
+    return res.status(500).json({ message: 'Erro ao excluir rota.' });
   }
 }
 
 async function atribuirMotorista(req, res) {
+  const { motorista_id: valor } = req.body;
+  const motoristaId = valor === null ? null : inteiroPositivo(valor);
+  if (Number.isNaN(motoristaId)) {
+    return res.status(400).json({ message: 'Informe o ID de um motorista ou null para remover a atribuição.' });
+  }
+
   try {
-    const { id } = req.params;
-    const { motorista_id } = req.body;
     const pool = await getConnection();
-
-    const existente = await carregarRota(pool, Number(id));
-    if (!existente) {
-      return res.status(404).json({ message: 'Rota não encontrada.' });
+    if (motoristaId !== null) {
+      const usuario = await pool.request().input('id', sql.Int, motoristaId)
+        .query('SELECT perfil, ativo FROM dbo.usuario WHERE id = @id');
+      const motorista = usuario.recordset[0];
+      if (!motorista) return res.status(400).json({ message: 'Usuário não encontrado.' });
+      if (motorista.perfil !== 'motorista') {
+        return res.status(400).json({ message: 'Só é possível atribuir um usuário com perfil motorista.' });
+      }
+      if (!motorista.ativo) return res.status(400).json({ message: 'O motorista está inativo.' });
     }
 
-    if (motorista_id === null || motorista_id === undefined || motorista_id === '') {
-      await pool
-        .request()
-        .input('id', sql.Int, Number(id))
-        .query(`
-          UPDATE dbo.rota
-          SET motorista_id = NULL, atualizado_em = SYSDATETIME()
-          WHERE id = @id
-        `);
-
-      const rota = await carregarRota(pool, Number(id));
-      return res.json({
-        message: 'Motorista removido da rota.',
-        rota
-      });
-    }
-
-    const usuario = await pool
-      .request()
-      .input('id', sql.Int, Number(motorista_id))
+    const resultado = await pool.request()
+      .input('id', sql.Int, req.params.id)
+      .input('motorista_id', sql.Int, motoristaId)
       .query(`
-        SELECT TOP 1 id, nome, perfil, ativo
-        FROM dbo.usuario
-        WHERE id = @id
+        UPDATE dbo.rota SET motorista_id = @motorista_id, atualizado_em = SYSDATETIME()
+        OUTPUT INSERTED.id WHERE id = @id
       `);
+    if (!resultado.recordset[0]) return res.status(404).json({ message: 'Rota não encontrada.' });
 
-    const motorista = usuario.recordset[0];
-    if (!motorista) {
-      return res.status(404).json({ message: 'Usuário não encontrado.' });
-    }
-
-    if (motorista.perfil !== 'motorista') {
-      return res.status(400).json({
-        message: 'Só é possível atribuir um usuário com perfil motorista.'
-      });
-    }
-
-    if (!motorista.ativo) {
-      return res.status(400).json({ message: 'O motorista está inativo.' });
-    }
-
-    await pool
-      .request()
-      .input('id', sql.Int, Number(id))
-      .input('motorista_id', sql.Int, Number(motorista_id))
-      .query(`
-        UPDATE dbo.rota
-        SET motorista_id = @motorista_id, atualizado_em = SYSDATETIME()
-        WHERE id = @id
-      `);
-
-    const rota = await carregarRota(pool, Number(id));
+    const [rota] = await carregarRotas(pool, req.params.id);
     return res.json({
-      message: 'Motorista atribuído à rota.',
-      rota
+      message: motoristaId === null ? 'Motorista removido da rota.' : 'Motorista atribuído à rota.', rota
     });
   } catch (error) {
-    return res.status(500).json({
-      message: 'Erro ao atribuir motorista.',
-      error: error.message
-    });
+    return res.status(500).json({ message: 'Erro ao atribuir motorista.' });
   }
 }
 
-module.exports = {
-  listarRotas,
-  buscarRotaPorId,
-  criarRota,
-  atualizarRota,
-  excluirRota,
-  atribuirMotorista
-};
+module.exports = { listarRotas, buscarRotaPorId, salvarRota, excluirRota, atribuirMotorista };
