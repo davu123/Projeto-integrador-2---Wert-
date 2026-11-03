@@ -41,7 +41,7 @@ Receitas de cópia: `docs/reverse-engineering/` (quando existirem). Produto acad
 - Kit institucional: `kit-campusceub/`. Uma pasta por Task. O colega copia o `src/` da pasta para o `src/` do EcoTrack.
 - Spec ≠ conteúdo acadêmico. Não misturar tarefas de código com edição da Lean Inception.
 
-Estado real em 31/10/2026: o `app/` parou na Tarefa 1.1 do ROADMAP (login, commit `8c2addd`). Só ela e a Fase 0 (0.1, 0.3, 0.5) estão `[x]`. Os kits andaram sem o `app/`: as Sprints 01–05 saíram da `referencia/`, e as Sprints 06–07 (`requirePerfil.js`, `acesso.js`, rotas) são código novo, escrito direto na pasta do kit em cima da `main` do EcoTrack. Hoje o código mais completo do produto é o `src/` da `main` do EcoTrack, não o `app/`. Não há kit da Sprint 08 ainda.
+Estado real em 31/10/2026: o `app/` parou na Tarefa 1.1 do ROADMAP (login, commit `8c2addd`). Só ela e a Fase 0 (0.1, 0.3, 0.5) estão `[x]`. Os kits andaram sem o `app/`: as Sprints 01–05 saíram da `referencia/`, e as Sprints 06–07 (`requirePerfil.js`, `acesso.js`, rotas) são código novo, escrito direto na pasta do kit em cima da `main` do EcoTrack. Hoje o código mais completo do produto é o `src/` da `main` do EcoTrack, não o `app/`. O kit da Sprint 08 foi montado em 03/11/2026 sobre a `main` em `3ae9280`.
 
 Decisão do Lucas em 31/10/2026: o `app/` e o ROADMAP ficam congelados na Tarefa 1.1. Não avançar o ROADMAP, não apagar o `app/` e não usar o `app/` como base de kit. Todo kit parte da `main` do EcoTrack. Para conferir um kit antes de entregar, aplicar as pastas numa cópia temporária da `main` do EcoTrack no scratchpad, fora dos dois repositórios, e checar se back e front compilam.
 
@@ -206,16 +206,26 @@ Sprint 06 na `main`: #122–#126 (PRs #131–#135). Um force push do `arturflr5`
 
 Planning 07: PR #143, autor Lucas, mergeado pelo Artur em 02/11. A #73 está fechada.
 
-Sprint 07: a #136 está na `main` pelo PR #144 do Davi, mergeado pelo Lucas em 03/11 02:49 UTC (merge `f654a5e`). A #137, a #138 e a #139 continuam abertas. O código do #144 é diferente da pasta `136-rotas-api`, e vale a `main`:
-- `salvarRota` no POST e no PUT;
-- `carregarRotas` com `FOR JSON`;
-- `router.use` de perfil e `router.param('id')`;
-- `CK_parada_ordem` no schema, sem `IX_parada_rota_id`.
+Sprint 07 completa na `main` (conferido no `gh` em 03/11/2026, `origin/main` em `3ae9280`):
 
-A pasta 136 não foi alterada. A pasta 138 foi refeita sobre o código da `main` mais o `PATCH /rotas/:id/motorista` (commit `b3152b1`); em 03/11 o EcoTrack conferiu que a pasta é a `main` mais o bloco novo, sem remover nada. Decisão do Lucas em 03/11/2026: o 400 para motorista inativo fica. Pendente do Lucas:
-- a linha 9 do README da sprint 07 (“não há fonte na `referencia/`”), a trocar por “Código novo.”.
+| Issue | PR | Merge |
+| --- | --- | --- |
+| #136 rotas na API | #144 (Davi) | `f654a5e` |
+| #138 atribuir motorista na API | #145 (Davi) | `508337f` |
+| #137 tela de rotas | #146 (Eduardo) | `cd4b545` |
+| #139 atribuir motorista na tela | #147 (Eduardo) | `3ae9280` |
 
-Issues criadas, pai único, `blocked by` igual ao kit. Milestone: `Sprint 07 - Rotas e atribuição de motorista`. Kit neste repositório, pastas `136`–`139`, branch `docs/lean-inception-sprints`.
+As quatro issues estão fechadas. US17 #43, US18 #44, F17 #22 e F18 #23 estão fechados. A Review #74 continua aberta.
+
+O código da `main` difere do kit em dois pontos, e vale a `main`:
+- #136 (PR #144), em `schema.js`, `rotaController.js` e `rotaRoutes.js`: `salvarRota` no POST e no PUT; `carregarRotas` com `FOR JSON`; `router.use` de perfil e `router.param('id')`; `CK_parada_ordem` no schema, sem `IX_parada_rota_id`. A pasta 136 não foi alterada.
+- #138 (PR #145), em `rotaController.js`: o PATCH do motorista roda numa transação, confere a rota antes (404) e usa uma mensagem só para os dois 400 (“Informe um usuário ativo com perfil motorista.”). Motorista inativo continua 400 (decisão do Lucas em 03/11). O `rotaRoutes.js` é igual à pasta 138.
+
+No front, `RoutesPage.jsx` e `rotaService.js` da `main` são iguais à pasta 139. `App.jsx` e `acesso.js` são iguais à pasta 137.
+
+A base do kit 08 é a `main` em `3ae9280`, nunca as pastas da sprint 07.
+
+Milestone: `Sprint 07 - Rotas e atribuição de motorista`. Kit neste repositório, pastas `136`–`139`, branch `docs/lean-inception-sprints`.
 
 | Ordem | Issue | PBI | Quem | Depende de |
 | --- | --- | --- | --- | --- |
@@ -224,20 +234,30 @@ Issues criadas, pai único, `blocked by` igual ao kit. Milestone: `Sprint 07 - R
 | 3 | #137 tela de rotas | US17 #43 | Eduardo | #136 |
 | 4 | #139 atribuir motorista na tela | US18 #44 | Eduardo | #138 e #137 |
 
-A #136 vem antes da #138 porque as duas alteram `rotaController.js` e `rotaRoutes.js`. Depois da #136, a #137 e a #138 podem ir em paralelo. A #139 espera as duas. Features F17 #22 e F18 #23 fecham na mão quando as Tasks do PBI estiverem na `main`.
+A #136 veio antes da #138 porque as duas alteram `rotaController.js` e `rotaRoutes.js`. Depois da #136, a #137 e a #138 foram em paralelo. A #139 esperou as duas.
 
-Pais já fechados na mão: Sprints 01–06, Features e PBIs das Tasks que estão na `main`. Não fechar de novo.
+Pais já fechados na mão: Sprints 01–07, Features e PBIs das Tasks que estão na `main`. Não fechar de novo.
 
-Sprint 08, sem kit e sem Tasks. Milestone: `Sprint 08 - Rota do dia e recolhimento` (03/11 a 16/11). PBIs US19 #45 (F19 #24, RF23) e US20 #46 (F20 #25, RF24). Em 31/10 o Lucas cobrou o grupo e espera a Sprint 07 na `main` antes da terça. Em 03/11 só a #136 estava na `main`. O kit 08 só é montado depois disso, em cima da `main` real, não dos arquivos do kit 07. Corte proposto, ainda não aprovado:
+Sprint 08: kit vinculado em 03/11/2026, sem commit, em `kit-campusceub/sprint-08/` (pastas `148`–`151` e README da sprint; o `issues.md` saiu depois que as issues foram criadas). Issues #148–#151 criadas pela conversa do EcoTrack, no nome do Lucas, com pai, responsável, `enhancement`, milestone, Project e `blocked by`. Milestone: `Sprint 08 - Rota do dia e recolhimento` (03/11 a 16/11). PBIs US19 #45 (F19 #24, RF23) e US20 #46 (F20 #25, RF24). Base: a `main` em `3ae9280`.
 
-| Ordem | Task | PBI | Quem | Depende de |
-| --- | --- | --- | --- | --- |
-| 1 | `GET /rotas/minha?data=` na API, só motorista, filtrado por `req.usuario.id` | US19 #45 | Davi | #138 |
-| 2 | tela `/rota-do-dia` e item no menu do motorista | US19 #45 | Eduardo | T1 e #139 |
-| 3 | `status_recolhimento` na `parada` e `PATCH` na API | US20 #46 | Davi | T1 |
-| 4 | botões de recolhimento na tela da rota do dia | US20 #46 | Eduardo | T3 e T2 |
+| Ordem | Pasta | Issue | Task | PBI | Quem | Depende de |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | `148-rota-do-dia-api` | #148 | `GET /rotas/minha?data=`, só motorista, filtrado por `req.usuario.id` | US19 #45 | Davi | Sprint 07 |
+| 2 | `149-tela-rota-do-dia` | #149 | tela `/rota-do-dia` e item no menu do motorista | US19 #45 | Eduardo | #148 |
+| 3 | `150-status-recolhimento-api` | #150 | `status_recolhimento` na `parada`, `PATCH /rotas/paradas/:paradaId/recolhimento` e 409 na rota começada | US20 #46 | Davi | #148 |
+| 4 | `151-tela-status-recolhimento` | #151 | botões de recolhimento na tela da rota do dia | US20 #46 | Eduardo | #150 e #149 |
 
-Decisões pendentes do Lucas: status na parada, não no lote (a parada pode não ter lote); `PUT /rotas/:id` devolve 409 quando alguma parada já tem status, porque o `PUT` da #136 apaga e recria as paradas; só o motorista atribuído marca o status. Gestor ver o recolhimento é US21, Sprint 09.
+Arquivos: #148 e #150 alteram `rotaController.js` e `rotaRoutes.js` (em série); a #150 também o `schema.js`. A #149 altera `App.jsx`, `acesso.js` e `rotaService.js` e cria `DriverRoutePage.jsx`; a #151 altera `DriverRoutePage.jsx` e `rotaService.js`. Depois da #148, a #149 e a #150 vão em paralelo.
+
+Decisões do Lucas em 03/11/2026:
+- status na parada, não no lote;
+- rota começada (alguma parada com status) fica travada: `PUT /rotas/:id`, `DELETE /rotas/:id` e `PATCH /rotas/:id/motorista` devolvem 409, com a mesma mensagem (ajuste pedido na validação do EcoTrack em 03/11). Rota sem nada marcado continua podendo ser editada, excluída e ter o motorista trocado;
+- só o motorista atribuído à rota marca o status;
+- a #149 depende só da #148.
+
+As rotas do motorista (`/minha` e o PATCH de recolhimento) ficam antes do `router.use(authMiddleware, requirePerfil('administrador', 'gestor'))` do `rotaRoutes.js`; depois dele, o motorista recebe 403. O campo `status_recolhimento` aparece no JSON do `GET /rotas` do gestor, sem tela. Gestor ver o recolhimento é US21, Sprint 09.
+
+Validação do EcoTrack em 03/11: kit certo, com dois ajustes já feitos (409 também no DELETE e no PATCH do motorista; “veem” no lugar de “vêem” na T2). Testes com banco simulado: 16 casos no estado #148 e 48 no #150. Commit do vínculo (`docs: vincula o kit da sprint 08 as issues 148 a 151`) só quando o Lucas pedir.
 
 Docker local ainda não foi validado pelo grupo. Em 31/10/2026 o Docker não está instalado na máquina do Lucas, então nem a Tarefa 0.2 nem a 0.4 do ROADMAP foram confirmadas. O `src/docker-compose.yml` do EcoTrack e o `app/docker-compose.yml` usam os mesmos nomes de container (`ecotrack_*_app`) e as mesmas portas 1434 / 3001 / 5174: subir um de cada vez. O compose não espera o SQL Server ficar pronto e a API tenta só 3 vezes (2 s), então a primeira subida pode derrubar o backend.
 

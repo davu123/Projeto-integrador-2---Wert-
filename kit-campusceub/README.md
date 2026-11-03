@@ -78,3 +78,4 @@ Sem `Closes #<n>`, a issue não fecha no merge. `Refs #<n>` não fecha. `Closes`
 | 05 — Dashboard e arquivo de PDFs | [sprint-05/README.md](sprint-05/README.md) | #111–#114 |
 | 06 — Perfis, permissões e consistência | [sprint-06/README.md](sprint-06/README.md) | #122–#126 |
 | 07 — Rotas e atribuição manual | [sprint-07/README.md](sprint-07/README.md) | #136–#139 |
+| 08 — Rota do dia e recolhimento | [sprint-08/README.md](sprint-08/README.md) | #148–#151 |
