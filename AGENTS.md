@@ -162,7 +162,7 @@ Não abrir issue nova se ela já existe. A #101 foi duplicata da #67 e foi fecha
 3. Conferir: um pai, arquivos da pasta, branch saída da `main`, dependência já mergeada, template inteiro, tipo Requisito ou Documentação, sem linguagem de engenharia reversa.
 4. API e tela no mesmo PR: pedir separação. `Closes` no PBI ou na Feature: pedir para trocar pela Task e usar `Refs` no pai. Várias histórias na mesma Task: pedir corte, no modelo da Sprint 04 em diante. A Sprint 03 não se repete.
 5. Schema que perde migração da `main` volta para ajuste. Matriz de perfil que não bate com `acesso.js` ou com a tabela da sprint volta para ajuste.
-6. Veredito em português, com o comentário pronto para o Lucas colar. Não mergear, não aprovar no `gh`, a menos que ele peça. Não aprovar PR cujo autor é o Lucas.
+6. Veredito em português. O comentário de review vai como texto, num bloco só (```markdown), com nada além do que ele cola na caixa de review do GitHub. Ele escolhe ali Comment, Request changes ou Approve. Não entregar `gh pr review`, `gh pr comment`, here-string nem outro comando de terminal para isso, a menos que ele peça. Não mergear, não aprovar no `gh`, a menos que ele peça. Não aprovar PR cujo autor é o Lucas.
 7. Correção na branch do colega só quando ele pedir: trazer a branch atualizada do remoto antes (a cópia local pode estar velha), commit simples, push normal, sem mudar o `git config`.
 
 ### Rotina: planning e review
@@ -202,7 +202,7 @@ Sprint 04 na `main`: #97–#100 (PRs #107–#110). Planning: relatório no #102,
 
 Sprint 05 na `main`: #111–#114. PRs #118 (o #117 foi fechado sem merge), #119, #120, #121. Planning: relatório no #115, fecha #69. Pais fechados na mão em 10/10/2026: US13 #39, F13 #18, US15 #41, F15 #20. Review #70 fechada (ata 09/10, PR #128). #111 antes da #112, porque as duas alteram `app.js`.
 
-Sprint 06 na `main`: #122–#126 (PRs #131–#135). Um force push do `arturflr5` em 28/10 03:10 UTC tirou o #135 da `main`. Em 31/10 o Lucas restaurou a `main` para `8036e09`, sem force. A `main` continua sem proteção contra force push, e o assunto é pauta da Review 07. Pais fechados na mão em 27/10/2026: US03 #29, US04 #30, US12 #38, F03 #8, F04 #9, F12 #17. Planning: relatório no #127, fecha #71. Atas de planning 04–06: PR #142, mergeado pelo Artur em 01/11. Review 06: PR #141, corrigido pelo Lucas na branch do Artur (conflito do índice, BOM, links) e mergeado pelo Lucas em 01/11. A #72 está fechada.
+Sprint 06 na `main`: #122–#126 (PRs #131–#135). Um force push do `arturflr5` em 28/10 03:10 UTC tirou o #135 da `main`. Em 31/10 o Lucas restaurou a `main` para `8036e09`, sem force. A `main` continua sem proteção contra force push. O assunto era pauta da Review 07, mas a ata (PR #152) saiu sem ele; entra na Review 08 (#76). Pais fechados na mão em 27/10/2026: US03 #29, US04 #30, US12 #38, F03 #8, F04 #9, F12 #17. Planning: relatório no #127, fecha #71. Atas de planning 04–06: PR #142, mergeado pelo Artur em 01/11. Review 06: PR #141, corrigido pelo Lucas na branch do Artur (conflito do índice, BOM, links) e mergeado pelo Lucas em 01/11. A #72 está fechada.
 
 Planning 07: PR #143, autor Lucas, mergeado pelo Artur em 02/11. A #73 está fechada.
 
@@ -215,7 +215,7 @@ Sprint 07 completa na `main` (conferido no `gh` em 03/11/2026, `origin/main` em 
 | #137 tela de rotas | #146 (Eduardo) | `cd4b545` |
 | #139 atribuir motorista na tela | #147 (Eduardo) | `3ae9280` |
 
-As quatro issues estão fechadas. US17 #43, US18 #44, F17 #22 e F18 #23 estão fechados. A Review #74 continua aberta.
+As quatro issues estão fechadas. US17 #43, US18 #44, F17 #22 e F18 #23 estão fechados. A Review #74 fechou pelo PR #152 em 04/11.
 
 O código da `main` difere do kit em dois pontos, e vale a `main`:
 - #136 (PR #144), em `schema.js`, `rotaController.js` e `rotaRoutes.js`: `salvarRota` no POST e no PUT; `carregarRotas` com `FOR JSON`; `router.use` de perfil e `router.param('id')`; `CK_parada_ordem` no schema, sem `IX_parada_rota_id`. A pasta 136 não foi alterada.
@@ -238,7 +238,7 @@ A #136 veio antes da #138 porque as duas alteram `rotaController.js` e `rotaRout
 
 Pais já fechados na mão: Sprints 01–07, Features e PBIs das Tasks que estão na `main`. Não fechar de novo.
 
-Sprint 08: kit vinculado em 03/11/2026, sem commit, em `kit-campusceub/sprint-08/` (pastas `148`–`151` e README da sprint; o `issues.md` saiu depois que as issues foram criadas). Issues #148–#151 criadas pela conversa do EcoTrack, no nome do Lucas, com pai, responsável, `enhancement`, milestone, Project e `blocked by`. Milestone: `Sprint 08 - Rota do dia e recolhimento` (03/11 a 16/11). PBIs US19 #45 (F19 #24, RF23) e US20 #46 (F20 #25, RF24). Base: a `main` em `3ae9280`.
+Sprint 08: kit vinculado em 03/11/2026, commit `643f789` com push na `docs/lean-inception-sprints`, em `kit-campusceub/sprint-08/` (pastas `148`–`151` e README da sprint; o `issues.md` saiu depois que as issues foram criadas). Issues #148–#151 criadas pela conversa do EcoTrack, no nome do Lucas, com pai, responsável, `enhancement`, milestone, Project e `blocked by`. Milestone: `Sprint 08 - Rota do dia e recolhimento` (03/11 a 16/11). PBIs US19 #45 (F19 #24, RF23) e US20 #46 (F20 #25, RF24). Base: a `main` em `3ae9280`.
 
 | Ordem | Pasta | Issue | Task | PBI | Quem | Depende de |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -259,6 +259,17 @@ As rotas do motorista (`/minha` e o PATCH de recolhimento) ficam antes do `route
 
 Validação do EcoTrack em 03/11: kit certo, com dois ajustes já feitos (409 também no DELETE e no PATCH do motorista; “veem” no lugar de “vêem” na T2). Testes com banco simulado: 16 casos no estado #148 e 48 no #150. Commit do vínculo (`docs: vincula o kit da sprint 08 as issues 148 a 151`) só quando o Lucas pedir.
 
+Review 07 e Planning 08 (conferido no `gh` em 04/11/2026):
+
+- Review 07: PR #152 do Artur (`docs/74-sprint-review-07`), com ata `docs/reunioes/2026-11-03-sprint-review-07.md`, índice e `sprints/sprint-07.md`. O Lucas pediu mudança duas vezes e depois aprovou e mergeou em 04/11 às 19:28 UTC (merge `66f7a45`, normal, sem force). A #74 está fechada.
+- A ata e o relatório da Review 07 não registram o combinado sobre force push na `main`. O Lucas avisou o grupo só pelo WhatsApp. Ele avisa na reunião da semana seguinte e o ponto entra na Review 08 (#76): em 04/11 a issue ganhou a seção “Pauta adicional” (a `main` só muda por PR revisado e mergeado, nunca com `git push --force` nem commit direto; atualizar a local com `git pull` ou `git fetch` + `git reset --hard origin/main`) e o critério “Ata registra o combinado sobre a `main`”. Na review do PR da ata 08, conferir esse ponto. Não escrever que foi discutido na Review 07.
+- Encaminhamentos da ata da Review 07, sem issue:
+  - recomendações de UI e acessibilidade da Prof.ª Adriana (fonte maior, contraste automático conforme o sistema, logo no modo escuro, marca d'água), com o Eduardo, na Sprint 08;
+  - estudo de API de mapa e de testes de sistema (Davi / Lucas);
+  - hospedagem e link no README (Artur / Lucas, sprints finais).
+  Decisão do Lucas em 04/11/2026: os encaminhamentos ficam para depois da Sprint 09. O grupo tenta adiantar as Sprints 08 e 09 para ter tempo de implementá-los. Até lá não entram nas #148–#151 nem no kit da Sprint 09. Quando chegar a vez, cada um precisa de issue com pai e corte decididos pelo Lucas. Mapa contraria o recorte “sem GPS/mapa” das Sprints 07 e 08.
+- Planning 08: PR #153 do Lucas (`docs/75-sprint-planning-08`, `Closes #75`), aberto em 04/11 às 19:33 UTC. Arquivos: ata `docs/reunioes/2026-11-03-sprint-planning-08.md`, índice, `sprints/README.md` e `sprints/sprint-08.md`. A branch já contém a `main` com o #152 e não conflita (`MERGEABLE`, `CLEAN`). Ainda sem pedido de review. Quem revisa e mergeia é o Artur, não o Lucas.
+
 Docker local ainda não foi validado pelo grupo. Em 31/10/2026 o Docker não está instalado na máquina do Lucas, então nem a Tarefa 0.2 nem a 0.4 do ROADMAP foram confirmadas. O `src/docker-compose.yml` do EcoTrack e o `app/docker-compose.yml` usam os mesmos nomes de container (`ecotrack_*_app`) e as mesmas portas 1434 / 3001 / 5174: subir um de cada vez. O compose não espera o SQL Server ficar pronto e a API tenta só 3 vezes (2 s), então a primeira subida pode derrubar o backend.
 
 ### Conversas
@@ -267,7 +278,7 @@ Desde 31/10/2026 o Lucas usa o Claude Code em vez do Cursor. Uma conversa princi
 
 - Aqui (Opus): corte das Tasks, código e README de cada pasta do kit, README da sprint e corpo das issues. Não cria issue no `gh`.
 - No EcoTrack (Opus): visão institucional, estado da sprint, decisões. Valida o kit contra a `main`, cria as issues e vincula os números no kit (rotina “criar as issues no EcoTrack”).
-- Tarefas de rotina (revisar PR, ata, relatório, fechar pais) em conversas separadas, que podem usar Sonnet.
+- Tarefas de rotina (revisar PR, ata, relatório, fechar pais) em conversas separadas, que podem usar Sonnet. Quando uma termina, ela pode ser arquivada, depois de os dois `AGENTS.md` registrarem o que ela mudou. Arquivada, continua no histórico e pode ser desarquivada, mas nenhuma outra conversa a lê.
 
 Passagem do kit: a conversa daqui termina com as pastas sem número e uma mensagem curta que o Lucas leva para a do EcoTrack (sprint, pastas, ordem, dependências e decisões de corte). A volta é a do EcoTrack com os números criados ou com o que precisa corrigir.
 
