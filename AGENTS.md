@@ -183,7 +183,7 @@ Quando o Lucas disser que a sprint de produto está completa:
 
 1. Confirmar que cada Task fechou pelo merge (`Closes` no PR mergeado).
 2. Confirmar no GraphQL que cada PBI só tem essas Tasks, todas fechadas, e que a Feature só tem esse PBI.
-3. Fechar PBI e Feature na mão, com comentário curto, `gh issue close --reason completed`, como Lucas.
+3. Fechar PBI e Feature na mão, com comentário curto, `gh issue close --reason completed`, como Lucas. Se a Feature fechada era a última do épico (E1 #2, E2 #3, E3 #4, E4 #5), conferir o `subIssuesSummary` do épico e fechar o épico também.
 4. Não fechar a issue da review. Não fechar planning que ainda não tem ata, se a issue ainda estiver aberta. Não fechar de novo o que já está fechado. Issue que já fechou não recebe `Closes` de novo.
 
 ### Fluxo que o colega executa
@@ -236,7 +236,7 @@ Milestone: `Sprint 07 - Rotas e atribuição de motorista`. Kit neste repositór
 
 A #136 veio antes da #138 porque as duas alteram `rotaController.js` e `rotaRoutes.js`. Depois da #136, a #137 e a #138 foram em paralelo. A #139 esperou as duas.
 
-Pais já fechados na mão: Sprints 01–07, Features e PBIs das Tasks que estão na `main`. Não fechar de novo.
+Pais já fechados na mão: Sprints 01–08, Features e PBIs das Tasks que estão na `main`. Não fechar de novo.
 
 Sprint 08: kit vinculado em 03/11/2026, commit `643f789` com push na `docs/lean-inception-sprints`, em `kit-campusceub/sprint-08/` (pastas `148`–`151` e README da sprint; o `issues.md` saiu depois que as issues foram criadas). Issues #148–#151 criadas pela conversa do EcoTrack, no nome do Lucas, com pai, responsável, `enhancement`, milestone, Project e `blocked by`. Milestone: `Sprint 08 - Rota do dia e recolhimento` (03/11 a 16/11). PBIs US19 #45 (F19 #24, RF23) e US20 #46 (F20 #25, RF24). Base: a `main` em `3ae9280`.
 
@@ -248,6 +248,46 @@ Sprint 08: kit vinculado em 03/11/2026, commit `643f789` com push na `docs/lean-
 | 4 | `151-tela-status-recolhimento` | #151 | botões de recolhimento na tela da rota do dia | US20 #46 | Eduardo | #150 e #149 |
 
 Arquivos: #148 e #150 alteram `rotaController.js` e `rotaRoutes.js` (em série); a #150 também o `schema.js`. A #149 altera `App.jsx`, `acesso.js` e `rotaService.js` e cria `DriverRoutePage.jsx`; a #151 altera `DriverRoutePage.jsx` e `rotaService.js`. Depois da #148, a #149 e a #150 vão em paralelo.
+
+Sprint 08 completa na `main` do EcoTrack em 10/11/2026: #148 (PR #154), #149 (PR #155), #150 (PR #156) e #151 (PR #157, merge `8540a3d`). O PR #157 saiu igual à pasta `151-tela-status-recolhimento`. Pais fechados na mão em 10/11: US19 #45, US20 #46, F19 #24 e F20 #25. Review #76 aberta. Base da Sprint 09: a `main` com o `8540a3d`, não as pastas da Sprint 08.
+
+Base da Sprint 09 (conferido em 10/11/2026, `origin/main` em `8540a3d`, sem force push desde 03/11 na atividade da branch). Milestone `Sprint 09 - Fechamento da visão` (17/11 a 01/12, prazo 01/12), com F10 #15 / US10 #36 (RF14), F16 #21 / US16 #42 (RF20), F21 #26 / US21 #47 (RF25), Planning #77 e Review #78. Tasks #158–#161 (ver “Sprint 09” abaixo). O que a `main` já tinha antes do kit:
+- US10: `equipmentRoutes.js` só tem GET (administrador, tecnico, gestor, auditor) e POST (administrador, tecnico, gestor); `equipmentController.js` exporta `listarEquipamentos` e `cadastrarEquipamento` (campos `lote_id`, `tipo`, `marca`, `modelo`, `numero_serie`, `estado` em bom/danificado/inutilizavel; 409 para número de série repetido). Não há PUT.
+- US16: `dbo.parada` tem `lote_id` (nulo quando a parada é só de agência) e `dbo.rota` tem `data` e `motorista_id`. O PDF sai de `POST /relatorios/gerar` e é montado dentro do `reportController.js` (`new PDFDocument({ margin: 40 })`). O `services/reportPdfService.js` está na `main`, mas nada o chama desde a Sprint 05: o kit 111 trocou o controller da Sprint 04 por um que gera o PDF sozinho. Não mexer nele na Sprint 09. A US16 não tem tela.
+- US21: o `GET /rotas` (administrador e gestor) já devolve `status_recolhimento` e `status_atualizado_em` de cada parada. A tela `/rotas` ainda não mostra.
+- Armadilha de tela: o `App.jsx` protege cada rota com `perfisDaRota(path)`, que procura o `href` exato no `MENU` do `acesso.js`. Rota nova fora do `MENU` (por exemplo `/equipamentos/:id/editar`) recebe lista vazia, e o `ProtectedRoute` deixa qualquer perfil logado entrar. Edição na própria listagem, ou perfis explícitos na rota nova.
+- Decisões do Lucas em 10/11/2026 para o kit:
+  1. US10: `PUT /equipamentos/:id` edita `tipo`, `marca`, `modelo`, `numero_serie` e `estado`, com as mesmas regras e perfis do POST (administrador, tecnico, gestor). O `lote_id` não muda. Sem trava para lote concluído.
+  2. US16: o PDF mostra a rota mais recente (por `data`, depois `id`) com motorista atribuído e uma parada com o `lote_id` do lote. Mostra a data da rota e o nome do motorista. Sem rota assim, o PDF sai como hoje. Só API, sem tela.
+  3. US21: contagem por rota na tela `/rotas` (recolhidas, parciais, não recolhidas e pendentes, onde pendente é parada sem marcação), sobre o `GET /rotas` que já existe. Uma Task só de tela, sem API e sem dashboard.
+  Corte sugerido: Davi com o PUT de equipamento (US10) e o PDF (US16), Eduardo com a edição na listagem de equipamentos (US10, depois do PUT) e a contagem na tela de rotas (US21). O PUT e o PDF não dividem arquivo e vão em paralelo; a contagem não depende de nenhuma Task.
+- Encaminhamentos da Review 07 não entram (decisão de 04/11).
+
+Kit da Sprint 09 montado em 10/11/2026 sobre a `main` em `8540a3d`, em `kit-campusceub/sprint-09/`, com pastas sem número, README da sprint e `issues.md`. Nada commitado. Falta a conversa do EcoTrack validar, criar as issues e vincular os números.
+
+| Ordem | Pasta | Task | PBI | Quem | Depende de |
+| --- | --- | --- | --- | --- | --- |
+| 1 | `T1-editar-equipamento-api` | `PUT /equipamentos/:id` (administrador, tecnico, gestor); `lote_id` do corpo ignorado; 400 / 404 / 409 | US10 #36 | Davi | Sprint 08 |
+| 1 | `T2-rota-no-pdf-api` | seção Rota de coleta (rota, data, motorista) no PDF montado no `reportController.js` | US16 #42 | Davi | Sprint 08 |
+| 1 | `T4-tela-recolhimento-rotas` | coluna Recolhimento na lista de `/rotas` (recolhidas, parciais, não recolhidas, pendentes) | US21 #47 | Eduardo | Sprint 08 |
+| 2 | `T3-tela-editar-equipamento` | botão Editar na listagem só para quem vê `/equipamentos/novo` (`podeVerMenu`); formulário na própria página; sem rota nova | US10 #36 | Eduardo | T1 |
+
+Nenhum arquivo é alterado por duas Tasks: T1 (`equipmentController.js`, `equipmentRoutes.js`), T2 (`reportController.js`), T3 (`equipmentApi.js`, `EquipmentListPage.jsx`), T4 (`RoutesPage.jsx`). `App.jsx`, `acesso.js` e `schema.js` não mudam. Validação no scratchpad: 30 casos com banco simulado (PUT, POST, PDF com e sem rota, perfis), PDFs conferidos, `vite build` da `main` com T3 e T4, e as duas telas testadas no navegador com API simulada.
+
+Fora do corte, sem decisão: o `reportController.js` da `main` formata `data_coleta` sem `timeZone: 'UTC'`, e fora do Docker (fuso de Brasília) a data da coleta sai um dia antes. A data da rota da T2 usa UTC e sai certa.
+
+Sprint 09: issues #158–#161 criadas em 10/11/2026 no nome do Lucas, com pai, responsável, `enhancement`, milestone, Project e `blocked by` (conferido no GraphQL). Kit validado aqui contra a `origin/main` em `8540a3d` e vinculado no repositório de trabalho (pastas `158`–`161`, README da sprint, linha 09 no índice; `issues.md` removido), sem commit.
+
+| Ordem | Issue | PBI | Quem | Depende de |
+| --- | --- | --- | --- | --- |
+| 1 | #158 `PUT /equipamentos/:id` | US10 #36 | Davi | Sprint 08 |
+| 1 | #159 rota e motorista no PDF | US16 #42 | Davi | Sprint 08 |
+| 1 | #161 recolhimento na tela de rotas | US21 #47 | Eduardo | Sprint 08 |
+| 2 | #160 editar na listagem de equipamentos | US10 #36 | Eduardo | #158 |
+
+Nenhum arquivo é alterado por duas Tasks; `App.jsx`, `acesso.js`, `schema.js` e `app.js` não mudam. A #158 altera `equipmentController.js` e `equipmentRoutes.js` (o 500 não devolve `error.message`; `lote_id` do corpo é ignorado). A #159 altera só o `reportController.js`: o PDF da `main` é montado nele, e o `services/reportPdfService.js` não é chamado por nenhuma rota. A #160 altera `EquipmentListPage.jsx` e `equipmentApi.js` (botão pelo `podeVerMenu` de `/equipamentos/novo`, sem rota nova). A #161 altera só o `RoutesPage.jsx`. Validação: diffs só com o bloco novo; CRLF igual ao da `main`; 17 casos do PUT e do PDF com banco simulado, e o texto do PDF conferido com e sem rota; não testado contra o SQL Server nem no navegador. Fora do corte, sem decisão: `data_coleta` no PDF sem `timeZone: 'UTC'` (fora do Docker pode sair um dia antes). Quando as Tasks estiverem na `main`: fechar US10 #36 e F10 #15 (depois das duas), US16 #42 e F16 #21, US21 #47 e F21 #26, e os épicos E2 #3, E3 #4 e E4 #5.
+
+Épico 1 (#2, E1 — Acesso e governança): F01–F04 (#6–#9) fechadas, `subIssuesSummary` 4/4. Fechado na mão pelo Lucas em 10/11/2026 às 13:41 UTC (`--reason completed`, com comentário). E2 #3 espera F10, E3 #4 espera F16 e E4 #5 espera F21, todos da Sprint 09.
 
 Decisões do Lucas em 03/11/2026:
 - status na parada, não no lote;
@@ -268,7 +308,7 @@ Review 07 e Planning 08 (conferido no `gh` em 04/11/2026):
   - estudo de API de mapa e de testes de sistema (Davi / Lucas);
   - hospedagem e link no README (Artur / Lucas, sprints finais).
   Decisão do Lucas em 04/11/2026: os encaminhamentos ficam para depois da Sprint 09. O grupo tenta adiantar as Sprints 08 e 09 para ter tempo de implementá-los. Até lá não entram nas #148–#151 nem no kit da Sprint 09. Quando chegar a vez, cada um precisa de issue com pai e corte decididos pelo Lucas. Mapa contraria o recorte “sem GPS/mapa” das Sprints 07 e 08.
-- Planning 08: PR #153 do Lucas (`docs/75-sprint-planning-08`, `Closes #75`), aberto em 04/11 às 19:33 UTC. Arquivos: ata `docs/reunioes/2026-11-03-sprint-planning-08.md`, índice, `sprints/README.md` e `sprints/sprint-08.md`. A branch já contém a `main` com o #152 e não conflita (`MERGEABLE`, `CLEAN`). Ainda sem pedido de review. Quem revisa e mergeia é o Artur, não o Lucas.
+- Planning 08: PR #153 do Lucas (`docs/75-sprint-planning-08`, `Closes #75`), com ata `docs/reunioes/2026-11-03-sprint-planning-08.md`, índice, `sprints/README.md` e `sprints/sprint-08.md`. Mergeado pelo Artur em 06/11 às 12:36 UTC (merge `13d42a1`, normal, sem force). A #75 está fechada.
 
 Docker local ainda não foi validado pelo grupo. Em 31/10/2026 o Docker não está instalado na máquina do Lucas, então nem a Tarefa 0.2 nem a 0.4 do ROADMAP foram confirmadas. O `src/docker-compose.yml` do EcoTrack e o `app/docker-compose.yml` usam os mesmos nomes de container (`ecotrack_*_app`) e as mesmas portas 1434 / 3001 / 5174: subir um de cada vez. O compose não espera o SQL Server ficar pronto e a API tenta só 3 vezes (2 s), então a primeira subida pode derrubar o backend.
 
