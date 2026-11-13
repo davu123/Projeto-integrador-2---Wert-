@@ -78,3 +78,48 @@ Features: F22 ([#171](https://github.com/CAMPUSCEUB/EcoTrack/issues/171)) só na
 - Não criar rota no `App.jsx` fora do `MENU` do `acesso.js`.
 - Não copiar identidade visual, heurísticas de usabilidade, coordenadas, mapa ou exportação de rota: são os kits seguintes.
 - Não abrir o PR sem `Closes #<n>` no corpo e sem o template inteiro.
+
+## Documentação
+
+Cinco Tasks de documentação, sem PBI pai, com o rótulo `documentation` e a mesma milestone. Todas atendem a Sprint Review 06; a #191 registra também o escopo da Sprint 10. As issues já existem (#187 a #191). Não crie outra.
+
+Branch `docs/<n>-slug`, tipo **Documentação** no template do PR, `Closes #<n>` da própria Task.
+
+| Ordem | Pasta | Issue | Quem | Branch | Commit no EcoTrack | Depende de |
+|---|---|---|---|---|---|---|
+| 1 | [191-requisitos-readme-arquitetura](191-requisitos-readme-arquitetura/README.md) | [#191](https://github.com/CAMPUSCEUB/EcoTrack/issues/191) | Artur | `docs/191-requisitos-readme-arquitetura` | `docs: registra os requisitos e o escopo da sprint 10` | nada |
+| 1 | [188-pdfs-para-markdown](188-pdfs-para-markdown/README.md) | [#188](https://github.com/CAMPUSCEUB/EcoTrack/issues/188) | Artur | `docs/188-pdfs-para-markdown` | `docs: converte a lean inception e os artefatos de pdf para markdown` | nada |
+| 2 | [189-backlog-e-sprints](189-backlog-e-sprints/README.md) | [#189](https://github.com/CAMPUSCEUB/EcoTrack/issues/189) | Artur | `docs/189-backlog-e-sprints` | `docs: ajusta backlog e sprints conforme a review 06` | #188 |
+| 2 | [190-storyboard-e-rotas](190-storyboard-e-rotas/README.md) | [#190](https://github.com/CAMPUSCEUB/EcoTrack/issues/190) | Artur | `docs/190-storyboard-e-rotas` | `docs: refaz o storyboard e detalha as rotas por perfil` | #188 |
+| 3 | [187-modelo-peter-chen](187-modelo-peter-chen/README.md) | [#187](https://github.com/CAMPUSCEUB/EcoTrack/issues/187) | Lucas | `docs/187-modelo-peter-chen` | `docs: ajusta o modelo de dados para a notacao de peter chen` | #191, #190 e a API de localização e de rota (US27, US28) |
+
+Quem mexe em cada arquivo:
+
+| Arquivo | #191 | #188 | #189 | #190 | #187 |
+|---|---|---|---|---|---|
+| `README.md` (raiz) | altera | | | | |
+| `docs/requisitos.md` | altera | | | | |
+| `docs/arquitetura.md` | altera | | | | altera (só a seção Dados) |
+| `docs/lean-inception/` (12 etapas, índice, imagens das personas, 12 PDFs) | | cria `.md`, remove PDF | | | |
+| `docs/lean-inception/08-esforco-negocio-ux/pesos.md` | | cria | altera | | |
+| `docs/lean-inception/09-sequenciador-ondas/ondas.md` | | cria | altera | | |
+| `entregas/README.md`, `entregas/lean-inception/README.md`, `entregas/template-entrega.md`, `entregas/artefato_*/README.md` | | altera | | | |
+| `entregas/artefato_1/artefato-1.md` | | cria | | | |
+| `entregas/artefato_2/artefato-2.md` | | cria | altera | | |
+| `entregas/artefato_3/artefato-3.md` e `artefato_3/imagens/` | | cria | | altera (só o `.md`) | altera (só a seção 2.3 do `.md`) |
+| os 3 PDFs dos Artefatos | | remove | | | |
+
+- A #191 e a #188 não dividem arquivo e podem ir juntas.
+- A #189 e a #190 partem dos arquivos que a #188 cria. Elas só começam depois do merge da #188. Entre si não dividem arquivo.
+- A #187 parte do `docs/arquitetura.md` da #191 e troca só a seção Dados, e parte do Artefato 3 da #190 e troca só a seção 2.3 (o diagrama antigo vira um link para o modelo). Ela vai por último, depois do merge da #191, da #190 e da API de localização e de rota, porque o modelo precisa das tabelas novas do `schema.js`.
+
+O Artur faz um PR por vez: **#191 → #188 → #189 → #190**. Cada branch sai da `main` atualizada, depois do merge do PR anterior, nunca da branch anterior.
+
+O PR da #187 é do Lucas: o Artur revisa e mergeia. Os PRs do Artur são revisados pelo Lucas e por um colega, e quem mergeia é o Lucas.
+
+Lembretes para todos os PRs de documentação:
+
+- Arquivo sem BOM (UTF-8 simples).
+- Títulos com `##` no corpo do PR e nos arquivos, não `###` no lugar de `##`.
+- Separador de tabela `| --- |`.
+- Corpo do PR com o template inteiro, tipo **Documentação**.

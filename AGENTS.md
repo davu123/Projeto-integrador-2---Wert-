@@ -383,7 +383,7 @@ Ordem de trabalho:
 - Davi: kit 1 e depois kit 2.
 - Eduardo: kit 1, kit 3 e kit 4. Ele é o gargalo; se atrasar, o mapa e parte da usabilidade ficam de fora.
 - Lucas: a pasta de implantação do kit 1, depois o deploy, e um redeploy a cada conjunto.
-- Artur: #187–#191 sem kit, a ata da Review 09 e a Planning 10.
+- Artur: #191, #188, #189 e #190 (kit de documentação), a ata da Review 09 e a Planning 10. A #187 é do Lucas.
 
 O PR de implantação é do Lucas: um colega revisa e mergeia.
 
@@ -398,6 +398,26 @@ Kit 1 (12/11/2026): validado aqui contra a `origin/main` em `5a1d151` (cada arqu
 | 3 | #198 implantação com Docker e HTTPS | US24 #181 | Lucas | #194 e #195 |
 
 A #194 e a #195 dividem `userController.js`, `backend/.env.example` e `docker-compose.yml` (em série). A #196 e a #197 não cruzam arquivo. A #198 só cria arquivos. Decisões do kit: senha atual errada no `PUT /auth/senha` → 400; download por administrador, gestor e auditor em `GET /relatorios/:id/arquivo`; limite só no `POST /auth/login`, ignorando login certo, com `TRUST_PROXY=1` atrás do Caddy; a #195 instala `helmet@8` e `express-rate-limit@8` com `package.json` e `package-lock.json` no commit; o env de produção fica em `src/deploy/.env.example`; entre o merge da #195 e o da #197 o link antigo do PDF dá 404. Depois da #194, o `docker compose up` local exige `src/.env` com `JWT_SECRET`. Quando cada dependência entrar na `main`, trocar o Bloqueado da Task seguinte para Não no Project.
+
+Kit de documentação da Sprint 10 (13/11/2026): montado sobre a `origin/main` em `5a1d151`, em `kit-campusceub/sprint-10/`, pastas `187`–`191` já com número (as issues existiam), seção Documentação no README da sprint e #187–#191 na linha 10 do índice. Nada commitado; issues não alteradas. Os arquivos que vão para o EcoTrack estão em CRLF e sem BOM; os READMEs das pastas, em LF.
+
+| Ordem | Issue | Quem | Depende de |
+| --- | --- | --- | --- |
+| 1 | #191 requisitos, README e arquitetura | Artur | nada |
+| 1 | #188 PDFs para Markdown | Artur | nada |
+| 2 | #189 backlog e sprints | Artur | #188 |
+| 2 | #190 storyboard e rotas | Artur | #188 |
+| 3 | #187 modelo de Peter Chen | Lucas | #191 e a API de localização e de rota do kit 2 (US27, US28) |
+
+O Artur faz um PR por vez: #191 → #188 → #189 → #190, cada branch saindo da `main` depois do merge anterior. O PR da #187 é do Lucas; o Artur revisa e mergeia.
+
+- #188: 12 etapas da Lean Inception e Artefatos 1–3 em Markdown, capa do PDF virou tabela, imagens em `04-personas/imagens/` e `artefato_3/imagens/`, diagramas em Mermaid; remove os 15 PDFs com `git rm "docs/lean-inception/*.pdf" "entregas/*.pdf"` (testado); atualiza os índices de `docs/lean-inception/` e `entregas/`.
+- #189: Artefato 2 com backlog só de funcionalidades (F01–F21), seção sobre backlog e história de usuário, sprint só pela cor (🟥 1 … ⬜ 9, legenda com o número), sem esforço; `ondas.md` sem `E`; `pesos.md` mantém a tabela de esforço do método, com duas frases ajustadas.
+- #190: Artefato 3 ganha a seção 5 (storyboard em 14 quadros, cena / ação do usuário / resposta do sistema) e a 6 (rotas por perfil conforme `App.jsx`, `acesso.js` e a API). Linha da Minha conta só se a #196 já estiver na `main`.
+- #191: arquivos em `raiz/` na pasta (o `README.md` da raiz do EcoTrack teria o mesmo nome do README da pasta). RF26–RF31, RNF09 revisto ("sem rastreamento do veículo em tempo real"), RNF13–RNF17, rastreabilidade F22–F29; README com o novo fora de escopo; arquitetura com navegação, matriz do `acesso.js` e `/minha-conta`.
+- #187: Chen em Mermaid `flowchart` (losango sem nome, (mín, máx) no rótulo), 8 entidades e 10 relacionamentos com `parada.lote_id`, dicionário com campo, tipo, tamanho e restrições. Leva o aviso "ATUALIZAR COM O SCHEMA DA MAIN NO DIA". No dia, colar só a seção `## Dados` no arquivo da `main` e conferir o `schema.js`.
+
+Fica de fora, sem decisão: a seção 2.3 do Artefato 3 continua em pé-de-galinha; o texto entregue da Lean Inception e dos Artefatos e o ADR-001 continuam com "sem GPS"; a etapa 8 mantém a coluna `E`. Risco: o kit 2 ainda não existe e a sprint fecha em 23/11; a #187 pode ter de fechar com o schema que estiver na `main`. Validado aqui em 13/11/2026 contra a `origin/main` em `5a1d151`, aplicando as pastas em ordem numa cópia (188, 191, 189, 190, 187): sem conflito, cada pasta parte da anterior, 135 links relativos sem quebra, nenhum PDF restante, sem BOM, CRLF certo, sem linguagem proibida; a matriz da #191 bate com o `acesso.js` e o `requirePerfil` da `main`; as 25 restrições citadas na #187 existem no `schema.js`. No GitHub, a #187 ficou bloqueada pela #191 e pela #190, com Bloqueado = Sim. Decisão do Lucas em 13/11/2026: a #187 também troca a seção 2.3 do Artefato 3 (o `erDiagram` em pé-de-galinha) por um link para a seção Dados de `docs/arquitetura.md`, partindo do Artefato 3 da #190 e trocando só essa seção.
 
 Publicação sem acesso ao GitHub na VPS. O `CAMPUSCEUB/EcoTrack` é INTERNAL: o clone pede login, o TI da Wert não terá acesso à organização, e o Lucas provavelmente não é admin do repositório (chave de deploy não é o caminho principal). Por isso o guia da #198 (`docs/implantacao.md`, pasta 198, ajustado em 13/11/2026 depois do vínculo `ad402fe`, sem commit) publica por pacote:
 - No Windows do Lucas, no PowerShell: `git fetch origin` e `git -c core.autocrlf=false archive --format=tar.gz -o "ecotrack-$versao.tar.gz" origin/main src docs/implantacao.md`, com `$versao = git rev-parse --short origin/main`. Depois `scp` para `/opt/ecotrack/pacotes/` na VPS.
