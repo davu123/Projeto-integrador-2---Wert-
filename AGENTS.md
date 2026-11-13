@@ -399,7 +399,15 @@ Kit 1 (12/11/2026): validado aqui contra a `origin/main` em `5a1d151` (cada arqu
 
 A #194 e a #195 dividem `userController.js`, `backend/.env.example` e `docker-compose.yml` (em série). A #196 e a #197 não cruzam arquivo. A #198 só cria arquivos. Decisões do kit: senha atual errada no `PUT /auth/senha` → 400; download por administrador, gestor e auditor em `GET /relatorios/:id/arquivo`; limite só no `POST /auth/login`, ignorando login certo, com `TRUST_PROXY=1` atrás do Caddy; a #195 instala `helmet@8` e `express-rate-limit@8` com `package.json` e `package-lock.json` no commit; o env de produção fica em `src/deploy/.env.example`; entre o merge da #195 e o da #197 o link antigo do PDF dá 404. Depois da #194, o `docker compose up` local exige `src/.env` com `JWT_SECRET`. Quando cada dependência entrar na `main`, trocar o Bloqueado da Task seguinte para Não no Project.
 
-Pendente no guia da #198 (`docs/implantacao.md`, pasta 198): o repositório institucional é INTERNAL, então o `git clone` na VPS precisa de autenticação (token ou chave de deploy), e o TI da Wert não terá acesso à organização. Ajustar antes de o Lucas copiar a pasta.
+Publicação sem acesso ao GitHub na VPS. O `CAMPUSCEUB/EcoTrack` é INTERNAL: o clone pede login, o TI da Wert não terá acesso à organização, e o Lucas provavelmente não é admin do repositório (chave de deploy não é o caminho principal). Por isso o guia da #198 (`docs/implantacao.md`, pasta 198, ajustado em 13/11/2026 depois do vínculo `ad402fe`, sem commit) publica por pacote:
+- No Windows do Lucas, no PowerShell: `git fetch origin` e `git -c core.autocrlf=false archive --format=tar.gz -o "ecotrack-$versao.tar.gz" origin/main src docs/implantacao.md`, com `$versao = git rev-parse --short origin/main`. Depois `scp` para `/opt/ecotrack/pacotes/` na VPS.
+- O `-c core.autocrlf=false` é obrigatório. Com o `autocrlf=true` da máquina, o `git archive` sai com CRLF, e o `deploy/.env` copiado do modelo fica com `\r` no fim de cada valor, quebrando as senhas no Linux. Conferido em 13/11: 18 CR no `.env.example` sem a opção, 0 com ela.
+- Na VPS, tudo em `/opt/ecotrack`: `pacotes`, `atual` (onde rodam os `docker compose`, em `atual/src`), `anterior` (para voltar atrás) e `backups` (fora de `atual`, para a atualização não apagar).
+- Atualização: backup, pacote novo extraído em `nova`, `cp -p atual/src/deploy/.env nova/src/deploy/.env`, troca `atual` → `anterior` e `nova` → `atual`, `up -d --build` e `restart web` (para o Caddy ler o `Caddyfile` novo). Os dados ficam porque o compose tem `name: ecotrack` e os volumes são `ecotrack_*`, sem depender da pasta. Nunca `down -v`.
+- O clone por HTTPS com token só de leitura (sem `credential.helper`, token só na pergunta de senha) fica como alternativa para quem tem acesso à organização.
+- A seção 9 do guia é a entrega ao TI da Wert: pacote ou repositório próprio, mesmo guia, `deploy/.env` e backups por canal seguro, troca do `JWT_SECRET`. Sem nome de pessoa e sem prometer acesso à organização.
+- O `DB_PASSWORD` não pode mudar depois da primeira subida: o SQL Server grava a senha do `sa` no volume.
+- Simulado no scratchpad (extração, cópia do `.env`, arquivo velho removido, volta para a versão anterior). Não testado numa VPS nem com Docker.
 
 Kit 1 da Sprint 10 montado em 12/11/2026 sobre a `main` em `5a1d151`, em `kit-campusceub/sprint-10/`, com pastas sem número, README da sprint e `issues.md`. Nada commitado. Falta a conversa do EcoTrack validar, criar as issues (preencher tipo e campos do Project pelo GraphQL) e vincular os números.
 
@@ -415,7 +423,7 @@ Arquivos em comum: só a T1 e a T2 (`userController.js`, `backend/.env.example`,
 
 Validação no scratchpad: 73 casos de API e seed com banco simulado no estado T2 (33 de 34 no estado T1; o que falta é o `error` do 401 do `authMiddleware`, que a T2 tira); `vite build` da T3 e da T4, também com `VITE_API_URL=/api`; login, **Minha conta** e download testados no navegador com a API simulada servida em `/api`; `npm ci --omit=dev` com helmet e express-rate-limit. Não testado: SQL Server de verdade, Docker (não instalado na máquina do Lucas), o compose de produção, o Caddy e o HTTPS, os comandos de backup e restauração, e a tela de 403 no download (nenhum perfil sem permissão chega à página; o 403 foi testado só na API).
 
-O repositório do EcoTrack guarda os arquivos com LF (`git ls-files --eol`); o `core.autocrlf=true` da máquina entrega CRLF na cópia de trabalho. O CRLF do kit vira LF no commit, e a VPS recebe LF.
+O repositório do EcoTrack guarda os arquivos com LF (`git ls-files --eol`); o `core.autocrlf=true` da máquina entrega CRLF na cópia de trabalho. O CRLF do kit vira LF no commit. A VPS recebe LF só se o pacote sair com `git -c core.autocrlf=false archive` (ver a publicação por pacote, acima).
 
 Decisões do Lucas em 03/11/2026:
 - status na parada, não no lote;

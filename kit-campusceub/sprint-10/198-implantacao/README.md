@@ -56,7 +56,13 @@ O que cada um faz:
 - **`frontend/dockerfile.prod`**: `npm run build` com `VITE_API_URL=/api` e copia o `dist` para a imagem do Caddy. A tela e a API ficam no mesmo endereço, então o CORS só precisa liberar `https://<DOMAIN>`.
 - **`deploy/Caddyfile`**: HTTPS automático para o `DOMAIN`. `/api/*` vai para a API sem o prefixo (`/api/auth/login` chega como `/auth/login`). Qualquer outro caminho devolve o arquivo do build ou o `index.html`, para o `/rotas` e as outras rotas da tela abrirem direto.
 - **`deploy/.env.example`**: modelo das variáveis, só com valores de exemplo. O `deploy/.env` de verdade fica só na VPS: o `.gitignore` da raiz ignora `.env` e mantém `.env.example`.
-- **`docs/implantacao.md`**: guia para o TI. Cobre requisitos da VPS (x86, 4 GB ou mais, Ubuntu, Docker), registro A no painel da Hostinger, primeira subida, primeiro acesso com o `ADMIN_PASSWORD`, atualização, backup e restauração do banco (`BACKUP DATABASE` pelo `sqlcmd`) e dos PDFs, e logs.
+- **`docs/implantacao.md`**: guia para o TI. Cobre:
+  - requisitos da VPS (x86, 4 GB ou mais, Ubuntu, Docker) e o registro A no painel da Hostinger;
+  - primeira subida: o código chega à VPS como pacote `.tar.gz` da `main` (`git archive` com `core.autocrlf=false`), enviado por `scp` para `/opt/ecotrack`, sem Git nem credencial na VPS. Clonar com token só de leitura fica como alternativa;
+  - primeiro acesso com o `ADMIN_PASSWORD`;
+  - atualização: pacote novo extraído numa pasta nova, com o `deploy/.env` levado junto e a versão anterior guardada para voltar atrás;
+  - backup e restauração do banco (`BACKUP DATABASE` pelo `sqlcmd`) e dos PDFs, em `/opt/ecotrack/backups`;
+  - logs e a nota de entrega ao TI da Wert.
 
 Nenhum IP, domínio real ou senha entra no repositório. O guia usa `<subdominio>` e `<IP_DA_VPS>`.
 
@@ -76,12 +82,13 @@ Corpo: o template do repositório inteiro, com os títulos `##`. Preencha assim:
 
 Na VPS, seguindo o `docs/implantacao.md`:
 
-- `docker compose -f docker-compose.prod.yml --env-file deploy/.env ps` mostra `db`, `backend` e `web` como `healthy` ou `running`.
+- O pacote gerado no Windows chega por `scp` e é extraído em `/opt/ecotrack/atual`. `grep -c $'\r' src/deploy/.env.example` dentro dela mostra 0.
+- `docker compose -f docker-compose.prod.yml --env-file deploy/.env ps`, dentro de `/opt/ecotrack/atual/src`, mostra `db`, `backend` e `web` como `healthy` ou `running`.
 - `curl https://<subdominio>/api/health` → `{"message":"API EcoTrack Wert online.","banco":"ok"}`.
 - `https://<subdominio>` abre o login com cadeado. `https://<subdominio>/rotas` abre direto, sem 404.
 - O login com o `ADMIN_EMAIL` e o `ADMIN_PASSWORD` entra. A troca de senha funciona quando a #196 estiver na `main`.
 - Gerar um relatório e baixar o PDF (com a #197 na `main`). `https://<subdominio>/api/uploads/reports/<arquivo>.pdf` → 404.
-- `docker compose ... restart` e depois `up -d --build`: os usuários e os PDFs continuam.
-- O backup da seção 6 gera o `.bak` e o `.tgz` em `src/backups/`.
+- Uma atualização pela seção 5, com um pacote novo: os usuários e os PDFs continuam, e o `deploy/.env` está na pasta nova.
+- O backup da seção 6 gera o `.bak` e o `.tgz` em `/opt/ecotrack/backups`.
 - Da sua máquina, a porta 1433 da VPS não responde.
-- `git status` na VPS não mostra o `deploy/.env`.
+- O pacote não leva nenhum `.env`: `tar -tzf pacotes/ecotrack-<versao>.tar.gz | grep '\.env$'` não mostra nada.
