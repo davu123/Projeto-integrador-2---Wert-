@@ -1,0 +1,92 @@
+# Produção. Rodar dentro de src/:
+#   docker compose -f docker-compose.prod.yml --env-file deploy/.env up -d --build
+# Passo a passo em docs/implantacao.md. O docker-compose.yml continua sendo o de desenvolvimento.
+name: ecotrack
+
+x-logs: &logs
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Express
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD:?Defina DB_PASSWORD em deploy/.env}
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -b -Q \"SELECT 1\" -o /dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    restart: unless-stopped
+    logging: *logs
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile.prod
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: "3000"
+      DB_USER: sa
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_SERVER: db
+      DB_PORT: "1433"
+      DB_DATABASE: ${DB_DATABASE:-EcoTrackWert}
+      DB_ENCRYPT: "false"
+      DB_TRUST_SERVER_CERTIFICATE: "true"
+      RUNNING_IN_DOCKER: "true"
+      DB_SCHEMA_ATTEMPTS: "20"
+      DB_SCHEMA_RETRY_DELAY_MS: "3000"
+      JWT_SECRET: ${JWT_SECRET:?Defina JWT_SECRET em deploy/.env}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-8h}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      CORS_ORIGIN: https://${DOMAIN:?Defina DOMAIN em deploy/.env}
+      TRUST_PROXY: "1"
+    volumes:
+      - uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 90s
+    restart: unless-stopped
+    logging: *logs
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile.prod
+      args:
+        VITE_API_URL: /api
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      DOMAIN: ${DOMAIN:?Defina DOMAIN em deploy/.env}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    logging: *logs
+
+volumes:
+  sqlserver_data:
+  uploads:
+  caddy_data:
+  caddy_config:

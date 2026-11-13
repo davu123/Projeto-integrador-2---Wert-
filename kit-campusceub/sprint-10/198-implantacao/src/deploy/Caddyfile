@@ -1,0 +1,23 @@
+# O Caddy pede e renova o certificado HTTPS do DOMAIN sozinho (deploy/.env).
+{$DOMAIN} {
+	encode zstd gzip
+
+	# API: /api/auth/login chega no backend como /auth/login.
+	handle_path /api/* {
+		reverse_proxy backend:3000
+	}
+
+	# Tela: arquivos do build; qualquer outra rota devolve o index.html.
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+}

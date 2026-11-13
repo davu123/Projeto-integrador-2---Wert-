@@ -80,3 +80,4 @@ Sem `Closes #<n>`, a issue não fecha no merge. `Refs #<n>` não fecha. `Closes`
 | 07 — Rotas e atribuição manual | [sprint-07/README.md](sprint-07/README.md) | #136–#139 |
 | 08 — Rota do dia e recolhimento | [sprint-08/README.md](sprint-08/README.md) | #148–#151 |
 | 09 — Fechamento da visão | [sprint-09/README.md](sprint-09/README.md) | #158–#161 |
+| 10 — Adequações e implantação (kit 1) | [sprint-10/README.md](sprint-10/README.md) | #194–#198 |

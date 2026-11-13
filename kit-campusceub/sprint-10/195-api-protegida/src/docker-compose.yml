@@ -1,0 +1,69 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: ecotrack_sqlserver_app
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Admin@12345"
+    ports:
+      - "1434:1433"
+    volumes:
+      - sqlserver_data_app:/var/opt/mssql
+    networks:
+      - ecotrack_net_app
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    container_name: ecotrack_backend_app
+    depends_on:
+      - db
+    environment:
+      PORT: 3000
+      DB_USER: sa
+      DB_PASSWORD: Admin@12345
+      DB_SERVER: db
+      DB_PORT: 1433
+      DB_DATABASE: EcoTrackWertApp
+      DB_ENCRYPT: false
+      DB_TRUST_SERVER_CERTIFICATE: true
+      RUNNING_IN_DOCKER: true
+      JWT_SECRET: ${JWT_SECRET:?Defina JWT_SECRET no arquivo src/.env (veja src/.env.example)}
+      JWT_EXPIRES_IN: 1d
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@wert.com.br}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      DB_SCHEMA_ATTEMPTS: ${DB_SCHEMA_ATTEMPTS:-20}
+      DB_SCHEMA_RETRY_DELAY_MS: ${DB_SCHEMA_RETRY_DELAY_MS:-3000}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:5174}
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - ecotrack_net_app
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    container_name: ecotrack_frontend_app
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://localhost:3001
+    ports:
+      - "5174:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - ecotrack_net_app
+
+volumes:
+  sqlserver_data_app:
+
+networks:
+  ecotrack_net_app:
+    driver: bridge

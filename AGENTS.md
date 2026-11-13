@@ -249,7 +249,7 @@ Sprint 08: kit vinculado em 03/11/2026, commit `643f789` com push na `docs/lean-
 
 Arquivos: #148 e #150 alteram `rotaController.js` e `rotaRoutes.js` (em série); a #150 também o `schema.js`. A #149 altera `App.jsx`, `acesso.js` e `rotaService.js` e cria `DriverRoutePage.jsx`; a #151 altera `DriverRoutePage.jsx` e `rotaService.js`. Depois da #148, a #149 e a #150 vão em paralelo.
 
-Sprint 08 completa na `main` do EcoTrack em 10/11/2026: #148 (PR #154), #149 (PR #155), #150 (PR #156) e #151 (PR #157, merge `8540a3d`). O PR #157 saiu igual à pasta `151-tela-status-recolhimento`. Pais fechados na mão em 10/11: US19 #45, US20 #46, F19 #24 e F20 #25. Review #76 aberta. Base da Sprint 09: a `main` com o `8540a3d`, não as pastas da Sprint 08.
+Sprint 08 completa na `main` do EcoTrack em 10/11/2026: #148 (PR #154), #149 (PR #155), #150 (PR #156) e #151 (PR #157, merge `8540a3d`). O PR #157 saiu igual à pasta `151-tela-status-recolhimento`. Pais fechados na mão em 10/11: US19 #45, US20 #46, F19 #24 e F20 #25. Review #76 fechada em 11/11/2026: PR #162 do Artur, mergeado pelo Lucas (merge `e1a030b`, sem force); a ata registra o combinado sobre a `main`. Base da Sprint 09: a `main` com o `e1a030b` (só docs da Review 08 sobre o `8540a3d`), não as pastas da Sprint 08.
 
 Base da Sprint 09 (conferido em 10/11/2026, `origin/main` em `8540a3d`, sem force push desde 03/11 na atividade da branch). Milestone `Sprint 09 - Fechamento da visão` (17/11 a 01/12, prazo 01/12), com F10 #15 / US10 #36 (RF14), F16 #21 / US16 #42 (RF20), F21 #26 / US21 #47 (RF25), Planning #77 e Review #78. Tasks #158–#161 (ver “Sprint 09” abaixo). O que a `main` já tinha antes do kit:
 - US10: `equipmentRoutes.js` só tem GET (administrador, tecnico, gestor, auditor) e POST (administrador, tecnico, gestor); `equipmentController.js` exporta `listarEquipamentos` e `cadastrarEquipamento` (campos `lote_id`, `tipo`, `marca`, `modelo`, `numero_serie`, `estado` em bom/danificado/inutilizavel; 409 para número de série repetido). Não há PUT.
@@ -278,6 +278,8 @@ Fora do corte, sem decisão: o `reportController.js` da `main` formata `data_col
 
 Sprint 09: issues #158–#161 criadas em 10/11/2026 no nome do Lucas, com pai, responsável, `enhancement`, milestone, Project e `blocked by` (conferido no GraphQL). Kit validado aqui contra a `origin/main` em `8540a3d` e vinculado no repositório de trabalho (pastas `158`–`161`, README da sprint, linha 09 no índice; `issues.md` removido), sem commit.
 
+Planning 09 (#77): reunião na aula de 10/11/2026 com os quatro; plano fechado só pelo Lucas. Em 11/11 a ata, o relatório `sprints/sprint-09.md` e as linhas dos dois índices ficaram prontos no EcoTrack, na branch `docs/77-sprint-planning-09` (a partir da `main` em `e1a030b`), em stage e sem commit; PR do Lucas com `Closes #77`, revisado e mergeado pelo Artur. A ata não cita a Review 08 e deixa os encaminhamentos da Review 07 fora da sprint.
+
 | Ordem | Issue | PBI | Quem | Depende de |
 | --- | --- | --- | --- | --- |
 | 1 | #158 `PUT /equipamentos/:id` | US10 #36 | Davi | Sprint 08 |
@@ -288,6 +290,132 @@ Sprint 09: issues #158–#161 criadas em 10/11/2026 no nome do Lucas, com pai, r
 Nenhum arquivo é alterado por duas Tasks; `App.jsx`, `acesso.js`, `schema.js` e `app.js` não mudam. A #158 altera `equipmentController.js` e `equipmentRoutes.js` (o 500 não devolve `error.message`; `lote_id` do corpo é ignorado). A #159 altera só o `reportController.js`: o PDF da `main` é montado nele, e o `services/reportPdfService.js` não é chamado por nenhuma rota. A #160 altera `EquipmentListPage.jsx` e `equipmentApi.js` (botão pelo `podeVerMenu` de `/equipamentos/novo`, sem rota nova). A #161 altera só o `RoutesPage.jsx`. Validação: diffs só com o bloco novo; CRLF igual ao da `main`; 17 casos do PUT e do PDF com banco simulado, e o texto do PDF conferido com e sem rota; não testado contra o SQL Server nem no navegador. Fora do corte, sem decisão: `data_coleta` no PDF sem `timeZone: 'UTC'` (fora do Docker pode sair um dia antes). Quando as Tasks estiverem na `main`: fechar US10 #36 e F10 #15 (depois das duas), US16 #42 e F16 #21, US21 #47 e F21 #26, e os épicos E2 #3, E3 #4 e E4 #5.
 
 Épico 1 (#2, E1 — Acesso e governança): F01–F04 (#6–#9) fechadas, `subIssuesSummary` 4/4. Fechado na mão pelo Lucas em 10/11/2026 às 13:41 UTC (`--reason completed`, com comentário). E2 #3 espera F10, E3 #4 espera F16 e E4 #5 espera F21, todos da Sprint 09.
+
+Pós-Sprint 09 (levantado em 12/11/2026, `origin/main` em `5a1d151`, sem force push): as quatro Tasks #158–#161 estão na `main` (PRs #164–#167) e a Planning 09 também (PR #163). O Lucas diz que os pais estão fechados. Única issue aberta: Review 09 (#78), que vai ser online. Não há milestone depois da Sprint 09: trabalho novo precisa de milestone criada pelo Lucas e de Feature/PBI com pai.
+
+Avaliação completa (feita com o modelo Fable, só leitura de código) em `kit-campusceub/avaliacao-pos-sprint-09.md` no repositório de trabalho, sem commit. Resumo:
+- Bloqueia a entrega:
+  - a tela de login abre com a credencial do admin preenchida (`LoginPage.jsx:8-9`);
+  - o seed recria o admin com a senha padrão;
+  - não há troca de senha pelo usuário;
+  - os segredos estão fixos no compose;
+  - `/uploads` é público e o nome do PDF é previsível;
+  - o compose é de desenvolvimento (Vite dev, nodemon, SQL Server Developer sem `MSSQL_PID`, porta do banco aberta);
+  - `VITE_API_URL` é fixado no build;
+  - a subida é frágil;
+  - não há README de implantação;
+  - a Rota do dia fica ilegível no modo escuro (`DriverRoutePage.jsx:10`);
+  - a sidebar fica com 84 px entre 900 e 1100 px (`responsive.css:1-4`).
+- Bugs visíveis:
+  - editar agência pela tela apaga o telefone (a tela não tem o campo);
+  - o motorista cai no Dashboard depois do login;
+  - o auditor vê botões de escrita em Lotes e Destinação;
+  - excluir rota não pede confirmação;
+  - a parada só com lote aparece sem agência.
+- UX: há dois sistemas visuais (classes contra estilos inline em 7 páginas), o modo escuro depende de `!important` e o foco fica invisível. A fonte Inter é declarada e nunca carregada.
+- Domínio ainda não explorado, para levar à Wert: endereço e coordenadas da agência, peso e volume, patrimônio, destinadora com CNPJ e licença, CDF, MTR/SINIR, sanitização de mídia.
+
+Pendências da Review 06 ainda abertas:
+- ER em `docs/arquitetura.md`: está em pé-de-galinha com nomes nos relacionamentos, sem tamanhos e sem restrições, e falta `parada.lote_id`;
+- 15 PDFs (12 em `docs/lean-inception/`, 3 em `entregas/`) a converter para Markdown;
+- backlog só com funcionalidades e a diferença entre US e backlog;
+- só a cor da sprint, sem esforço;
+- storyboard tradicional;
+- rotas de usabilidade.
+
+As atas de planning da Sprint 04 em diante já estão na `main`.
+
+Encaminhamentos da Review 07 (decididos para depois da Sprint 09), agora pedidos pelo Lucas para a semana de 13/11:
+- identidade visual da Wert (wertambiental.com.br): primária `#0D3538`, destaque `#45B892`, texto `#333`/`#7A7A7A`, fundo `#F0F0F0`, Poppins e Roboto, botões verdes arredondados;
+- heurísticas de Nielsen;
+- funcionalidade nova cobrada pela professora: rota com localização dos pontos de coleta e do ponto de entrega, exportável para Google Maps e Waze.
+  - Corte mínimo sugerido: coordenadas manuais na agência, `ponto_entrega`, origem e destino na rota, sugerir ordem por vizinho mais próximo, links do Google Maps (até 9 pontos intermediários, em trechos), Waze por parada (o link leva um destino só) e GPX.
+  - O mapa (Leaflet + OSM, `react-leaflet` 4.x) é extra.
+  - Contradiz o RNF09 "sem GPS/mapa", que precisa ser revisto.
+
+Deploy:
+- A professora exige o sistema publicado. Depois ele vai para o TI da Wert.
+- O site da Wert é WordPress na Hostinger: NS `dns-parking.com`, servidor `hcdn`, PHP 7.4. O e-mail é Microsoft 365.
+- O subdomínio é só um registro no DNS da Hostinger. A hospedagem compartilhada atual não roda Node com SQL Server.
+- Sugestão: VPS x86 com 8 GB (por exemplo, Hostinger KVM 2) com compose de produção, Caddy para HTTPS e SQL Server Express (`MSSQL_PID=Express`).
+- Azure for Students também é possível, mas exige mudar a criação do banco (hoje a aplicação usa `sa` e o `master`).
+
+Decisões pendentes do Lucas: escopo da semana, onde fica o deploy de demonstração e quem paga, quem faz o deploy, milestone e épico das novas Features.
+
+Decisões do Lucas em 12/11/2026: o corte da avaliação vale para a semana. O deploy vai para a Hostinger, numa conta do Lucas, que paga e faz o deploy (o conector da Hostinger está sendo configurado em outra conversa). A conta ainda não tinha assinatura nem VPS em 12/11. O SQL Server exige um plano VPS (KVM): a hospedagem web e a de Node.js da Hostinger só têm MySQL.
+
+Sprint 10 (milestone `Sprint 10 - Adequações e implantação`, número 11, prazo 23/11, criada pelo `gh` em 12/11). Backlog criado no nome do Lucas, com Project e `enhancement`. Épicos sem milestone; Features e PBIs na milestone; hierarquia conferida no GraphQL.
+
+| Épico | Feature | PBI |
+| --- | --- | --- |
+| E5 #168 Segurança e implantação | F22 #171 credenciais e senhas (RF26) | US22 #179 trocar a própria senha |
+| | F23 #172 proteger API e relatórios (RNF13, RNF14) | US23 #180 relatórios e API só com autorização |
+| | F24 #173 publicar o sistema (RNF15) | US24 #181 sistema publicado |
+| E6 #169 Experiência e identidade visual | F25 #174 identidade da Wert (RNF16) | US25 #182 |
+| | F26 #175 usabilidade por Nielsen (RNF17) | US26 #183 |
+| E7 #170 Rotas georreferenciadas | F27 #176 localizar pontos de coleta e de entrega (RF27, RF28) | US27 #184 |
+| | F28 #177 rota com origem, destino e ordem sugerida (RF29; mapa opcional) | US28 #185 |
+| | F29 #178 exportar a rota e navegar (RF30, RF31) | US29 #186 |
+
+Os RF26–RF31 e RNF13–RNF17 ainda não estão em `docs/requisitos.md`; entram pela #191.
+
+Documentação, sem pai e com `documentation`:
+- #187 modelo de dados em Peter Chen (Lucas);
+- #188 PDFs para Markdown (Artur);
+- #189 backlog e sprints conforme a Review 06 (Artur, bloqueada pela #188);
+- #190 storyboard tradicional e rotas de usabilidade (Artur, bloqueada pela #188). A ata da Review 06 dava esse item ao Eduardo; foi para o Artur porque o Eduardo concentra as telas.
+- #191 requisitos, README e arquitetura (Artur).
+
+Reuniões: Planning 10 #192 (Lucas e Artur) e Review 10 #193 (Artur).
+
+Campos das #168–#193 preenchidos em 12/11/2026: tipo da issue (Epic, Feature, PBI, Task) e, no Project, Tipo, Priority = Alta, Bloqueado (Sim na #189 e na #190 até a #188 entrar) e Sprint = `Sprint 10 - Adequações e implantação` (iteração criada pelo Lucas, 13/11 a 24/11; épico sem Sprint). O `gh issue create` não define o tipo nem esses campos: preencher pelo GraphQL em toda issue nova. As issues fechadas antigas ficam como estão.
+
+Kits da Sprint 10, em quatro conjuntos. Cada conjunto é criado só quando os arquivos de que ele parte já estão na `main`:
+
+| Kit | Conteúdo | Quem | Criar quando |
+| --- | --- | --- | --- |
+| 1 | Segurança e credenciais (US22, US23) e implantação (US24) | Davi, Eduardo, Lucas | já, sobre a `main` em `5a1d151` |
+| 2 | API da localização e da rota (US27, US28) | Davi | as APIs do kit 1 na `main` |
+| 3 | Identidade visual e usabilidade, só telas (US25, US26) | Eduardo | as telas do kit 1 na `main` |
+| 4 | Telas da localização, da rota e da exportação (US27, US28, US29); mapa opcional por último | Eduardo | o kit 2 e o kit 3 na `main` |
+
+Ordem de trabalho:
+- Davi: kit 1 e depois kit 2.
+- Eduardo: kit 1, kit 3 e kit 4. Ele é o gargalo; se atrasar, o mapa e parte da usabilidade ficam de fora.
+- Lucas: a pasta de implantação do kit 1, depois o deploy, e um redeploy a cada conjunto.
+- Artur: #187–#191 sem kit, a ata da Review 09 e a Planning 10.
+
+O PR de implantação é do Lucas: um colega revisa e mergeia.
+
+Kit 1 (12/11/2026): validado aqui contra a `origin/main` em `5a1d151` (cada arquivo é o da `main` mais o bloco novo, CRLF igual ao checkout, `node --check` sem erro, a pasta 195 repete o bloco da 194; nenhuma resposta da API fica com `error.message`; perfis do download iguais ao `GET /relatorios`). Issues criadas no nome do Lucas, com pai, responsável, `enhancement`, milestone, Project, tipo Task, Priority Alta, Sprint 10 e Bloqueado (conferido no GraphQL). Kit vinculado no repositório de trabalho (pastas `194`–`198`, README da sprint, linha 10 no índice; `issues.md` removido), sem commit.
+
+| Ordem | Issue | PBI | Quem | Depende de |
+| --- | --- | --- | --- | --- |
+| 1 | #194 credenciais na API | US22 #179 | Davi | Sprint 09 |
+| 2 | #195 API protegida e download autenticado | US23 #180 | Davi | #194 |
+| 2 | #196 login vazio e tela Minha conta | US22 #179 | Eduardo | #194 |
+| 3 | #197 download do relatório com login | US23 #180 | Eduardo | #195 |
+| 3 | #198 implantação com Docker e HTTPS | US24 #181 | Lucas | #194 e #195 |
+
+A #194 e a #195 dividem `userController.js`, `backend/.env.example` e `docker-compose.yml` (em série). A #196 e a #197 não cruzam arquivo. A #198 só cria arquivos. Decisões do kit: senha atual errada no `PUT /auth/senha` → 400; download por administrador, gestor e auditor em `GET /relatorios/:id/arquivo`; limite só no `POST /auth/login`, ignorando login certo, com `TRUST_PROXY=1` atrás do Caddy; a #195 instala `helmet@8` e `express-rate-limit@8` com `package.json` e `package-lock.json` no commit; o env de produção fica em `src/deploy/.env.example`; entre o merge da #195 e o da #197 o link antigo do PDF dá 404. Depois da #194, o `docker compose up` local exige `src/.env` com `JWT_SECRET`. Quando cada dependência entrar na `main`, trocar o Bloqueado da Task seguinte para Não no Project.
+
+Pendente no guia da #198 (`docs/implantacao.md`, pasta 198): o repositório institucional é INTERNAL, então o `git clone` na VPS precisa de autenticação (token ou chave de deploy), e o TI da Wert não terá acesso à organização. Ajustar antes de o Lucas copiar a pasta.
+
+Kit 1 da Sprint 10 montado em 12/11/2026 sobre a `main` em `5a1d151`, em `kit-campusceub/sprint-10/`, com pastas sem número, README da sprint e `issues.md`. Nada commitado. Falta a conversa do EcoTrack validar, criar as issues (preencher tipo e campos do Project pelo GraphQL) e vincular os números.
+
+| Ordem | Pasta | Task | PBI | Quem | Depende de |
+| --- | --- | --- | --- | --- | --- |
+| 1 | `T1-credenciais-api` | administrador inicial por `ADMIN_EMAIL`/`ADMIN_PASSWORD` (só sem nenhum administrador); `JWT_SECRET` obrigatório; `DB_SCHEMA_ATTEMPTS` 20 e `DB_SCHEMA_RETRY_DELAY_MS` 3000; `PUT /auth/senha` (senha atual errada → 400); senha mínima de 8; inativo só depois da senha; compose lê o `src/.env` | US22 #179 | Davi | Sprint 09 |
+| 2 | `T2-api-protegida` | `GET /relatorios/:id/arquivo` (administrador, gestor, auditor; caminho dentro de `uploads`); sem `/uploads` público; helmet; `CORS_ORIGIN` em lista; limite no login (`LOGIN_RATE_LIMIT`, `TRUST_PROXY`); 404/500 em JSON; sem `error.message`; `/health` com banco | US23 #180 | Davi | T1 |
+| 2 | `T3-tela-minha-conta` | login vazio; `/minha-conta` no `MENU` com os cinco perfis | US22 #179 | Eduardo | T1 |
+| 3 | `T4-tela-download-relatorio` | `api.download` com token, blob e `createObjectURL`; mensagens de 403 e 404 | US23 #180 | Eduardo | T2 |
+| 3 | `T5-implantacao` | `docker-compose.prod.yml` (Express, Caddy, `/api`, volumes), `dockerfile.prod` da API e da tela, `deploy/Caddyfile`, `deploy/.env.example`, `docs/implantacao.md` | US24 #181 | Lucas | T1 e T2 |
+
+Arquivos em comum: só a T1 e a T2 (`userController.js`, `backend/.env.example`, `docker-compose.yml`), por isso em série; a pasta T2 repete o bloco da T1. A T2 pede `npm install helmet@8 express-rate-limit@8` e o `package-lock.json` no commit (a imagem de produção usa `npm ci`). Depois da T2, a primeira subida no Docker de desenvolvimento é `docker compose up --build -V`, por causa do volume anônimo do `node_modules`. O env de produção fica em `src/deploy/.env.example` porque o `.gitignore` da raiz ignora `.env.*` e só mantém `.env.example`.
+
+Validação no scratchpad: 73 casos de API e seed com banco simulado no estado T2 (33 de 34 no estado T1; o que falta é o `error` do 401 do `authMiddleware`, que a T2 tira); `vite build` da T3 e da T4, também com `VITE_API_URL=/api`; login, **Minha conta** e download testados no navegador com a API simulada servida em `/api`; `npm ci --omit=dev` com helmet e express-rate-limit. Não testado: SQL Server de verdade, Docker (não instalado na máquina do Lucas), o compose de produção, o Caddy e o HTTPS, os comandos de backup e restauração, e a tela de 403 no download (nenhum perfil sem permissão chega à página; o 403 foi testado só na API).
+
+O repositório do EcoTrack guarda os arquivos com LF (`git ls-files --eol`); o `core.autocrlf=true` da máquina entrega CRLF na cópia de trabalho. O CRLF do kit vira LF no commit, e a VPS recebe LF.
 
 Decisões do Lucas em 03/11/2026:
 - status na parada, não no lote;
@@ -302,7 +430,7 @@ Validação do EcoTrack em 03/11: kit certo, com dois ajustes já feitos (409 ta
 Review 07 e Planning 08 (conferido no `gh` em 04/11/2026):
 
 - Review 07: PR #152 do Artur (`docs/74-sprint-review-07`), com ata `docs/reunioes/2026-11-03-sprint-review-07.md`, índice e `sprints/sprint-07.md`. O Lucas pediu mudança duas vezes e depois aprovou e mergeou em 04/11 às 19:28 UTC (merge `66f7a45`, normal, sem force). A #74 está fechada.
-- A ata e o relatório da Review 07 não registram o combinado sobre force push na `main`. O Lucas avisou o grupo só pelo WhatsApp. Ele avisa na reunião da semana seguinte e o ponto entra na Review 08 (#76): em 04/11 a issue ganhou a seção “Pauta adicional” (a `main` só muda por PR revisado e mergeado, nunca com `git push --force` nem commit direto; atualizar a local com `git pull` ou `git fetch` + `git reset --hard origin/main`) e o critério “Ata registra o combinado sobre a `main`”. Na review do PR da ata 08, conferir esse ponto. Não escrever que foi discutido na Review 07.
+- A ata e o relatório da Review 07 não registram o combinado sobre force push na `main`. O Lucas avisou o grupo só pelo WhatsApp. Ele avisa na reunião da semana seguinte e o ponto entra na Review 08 (#76): em 04/11 a issue ganhou a seção “Pauta adicional” (a `main` só muda por PR revisado e mergeado, nunca com `git push --force` nem commit direto; atualizar a local com `git pull` ou `git fetch` + `git reset --hard origin/main`) e o critério “Ata registra o combinado sobre a `main`”. Na review do PR da ata 08, conferir esse ponto. Não escrever que foi discutido na Review 07. Cumprido: a ata da Review 08 (PR #162, 11/11) registra o combinado.
 - Encaminhamentos da ata da Review 07, sem issue:
   - recomendações de UI e acessibilidade da Prof.ª Adriana (fonte maior, contraste automático conforme o sistema, logo no modo escuro, marca d'água), com o Eduardo, na Sprint 08;
   - estudo de API de mapa e de testes de sistema (Davi / Lucas);

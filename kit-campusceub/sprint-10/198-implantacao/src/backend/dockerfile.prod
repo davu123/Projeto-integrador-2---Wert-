@@ -1,0 +1,19 @@
+FROM node:20-bookworm-slim
+
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+COPY src ./src
+
+# Pasta dos PDFs. Em produção ela recebe um volume e sobrevive ao redeploy.
+RUN mkdir -p uploads/reports && chown -R node:node uploads
+
+USER node
+
+EXPOSE 3000
+
+CMD ["node", "src/server.js"]
