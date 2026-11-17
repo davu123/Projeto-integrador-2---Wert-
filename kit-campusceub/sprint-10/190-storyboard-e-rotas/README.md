@@ -27,15 +27,20 @@ Pedido da Sprint Review 06: storyboard no formato tradicional e rotas de usabili
 
 O auditor ainda vê os formulários de Lotes e Destinação, e a API recusa a gravação. A seção 6.4 registra isso como está.
 
-### Se a #196 (Minha conta) já estiver na `main`
+A tela **Minha conta** (`/minha-conta`, da #196) já está na `main`, então cada tabela de 6.1 a 6.5 termina com a linha dela (trocar a própria senha).
 
-Antes do commit, acrescente esta linha no fim de cada tabela de 6.1 a 6.5:
+## Se a Task de telas por perfil entrar antes
 
-```markdown
-| Minha conta | `/minha-conta` | Trocar a própria senha |
-```
+A seção 6 descreve a `main` de 17/11: o motorista cai no Dashboard e o auditor vê os formulários. A #213, telas por perfil da US26 (pasta `213-telas-por-perfil` deste kit), muda as duas coisas. Antes de copiar, abra o `src/frontend/src/auth/acesso.js` da `main`. Se ele tiver `paginaInicial`, essa Task já entrou: copie a pasta e, no `artefato-3.md`, troque o seguinte.
 
-Se a #196 ainda não entrou, não acrescente: a tela não existe na `main`.
+- Regras comuns:
+  - “Quem já entrou e abre `/login` volta para `/`.” → “Quem já entrou e abre `/login` volta para a página inicial do perfil.”
+  - “Depois do login, todos os perfis caem no **Dashboard** (`/`).” → “Depois do login, o motorista cai na **Rota do dia** (`/rota-do-dia`) e os outros perfis no **Dashboard** (`/`).”
+  - “Endereço que não existe leva para `/` (com sessão)” → “Endereço que não existe leva para a página inicial do perfil (com sessão)”.
+- No fim da 6.4: “Nas telas de Lotes e Destinação o formulário ainda aparece para ele, mas a API recusa a gravação.” → “Nas telas de Lotes e Destinação ele vê só a lista: o formulário e os botões de alteração não aparecem.”
+- No Quadro 8: “Entra no sistema e abre **Rota do dia**” → “Entra no sistema e cai direto na **Rota do dia**”.
+
+Se a `main` não tiver `paginaInicial`, copie a pasta como está.
 
 ## O que fazer
 

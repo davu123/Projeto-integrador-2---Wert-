@@ -28,7 +28,7 @@ Base: os três arquivos da `main` com o bloco novo. Segue as Features F22–F29 
   - **RNF13 a RNF17** (segredos fora do repositório, API e relatórios protegidos, publicação com HTTPS, identidade visual, heurísticas de Nielsen);
   - tabela nova **Rastreabilidade da Sprint 10** (Feature → requisito → issues);
   - PBIs #179 a #186 nos critérios de aceite, servidor com HTTPS nas dependências e uma linha nova de risco.
-- **`README.md`** da raiz: uma frase sobre a rota com localização e exportação; a linha "fora do escopo" troca "GPS" por "rastreamento do veículo em tempo real"; milestones "Sprints 00 a 10".
+- **`README.md`** da raiz: parte do README da `main` depois do #206 (com a seção **Sistema publicado** e a linha **Implantação**, que continuam iguais); acrescenta uma frase sobre a rota com localização e exportação; a linha "fora do escopo" troca "GPS" por "rastreamento do veículo em tempo real"; milestones "Sprints 00 a 10".
 - **`docs/arquitetura.md`**
   - contexto técnico: desktop e tablet, sistema publicado com HTTPS, sem rastreamento em tempo real;
   - publicação (Caddy na frente da tela e da API em `/api`) e PDFs entregues só pela rota autenticada;
@@ -62,7 +62,7 @@ Antes do commit: sem BOM (salvar como UTF-8), títulos com `##` onde o arquivo j
 
 - Em `docs/requisitos.md`, a tabela de RF vai até RF31 e a de RNF até RNF17; o RNF09 não fala mais em GPS.
 - Em `docs/arquitetura.md`, o diagrama de navegação aparece desenhado no GitHub e a matriz de perfis bate com o `src/frontend/src/auth/acesso.js`.
-- No `README.md`, a linha "fora do escopo" fala em rastreamento em tempo real.
+- No `README.md`, a linha "fora do escopo" fala em rastreamento em tempo real, e a seção **Sistema publicado** continua com o link `https://ecotrackwert.tech`.
 
 ## PR
 

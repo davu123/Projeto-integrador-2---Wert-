@@ -4,6 +4,10 @@ Repositório institucional do Projeto Integrador II do CEUB. Sistema web para ge
 
 > **Estudante:** leia o [guia dos alunos](docs/guia-alunos.md) e o [CONTRIBUTING.md](CONTRIBUTING.md) antes de abrir `issue` ou `pull request`.
 
+## Sistema publicado
+
+O EcoTrack Wert está no ar em **[https://ecotrackwert.tech](https://ecotrackwert.tech)**. O acesso exige usuário cadastrado. A implantação, a atualização e o backup estão em [docs/implantacao.md](docs/implantacao.md).
+
 ## Identificação do repositório
 
 | Campo | Informação |
@@ -39,5 +43,6 @@ Fora do escopo deste semestre: rastreamento do veículo em tempo real, atribuiç
 | Requisitos | [docs/requisitos.md](docs/requisitos.md) |
 | Arquitetura | [docs/arquitetura.md](docs/arquitetura.md) |
 | Decisões | [docs/decisoes/README.md](docs/decisoes/README.md) |
+| Implantação | [docs/implantacao.md](docs/implantacao.md) |
 
 O código da aplicação vive em `src/` (`src/backend` e `src/frontend`), e entra no repositório por `task` → branch → `pull request`.

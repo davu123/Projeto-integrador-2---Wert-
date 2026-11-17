@@ -518,6 +518,7 @@ Regras comuns a todos os perfis:
 | Destinação | `/destinacoes` | Registrar, editar e excluir destinação |
 | Relatórios | `/relatorios` | Gerar o PDF do lote e baixar os relatórios gerados |
 | Rotas | `/rotas` | Criar, editar e excluir rota; atribuir o motorista; ver o recolhimento |
+| Minha conta | `/minha-conta` | Trocar a própria senha |
 
 ### 6.2 Gestor
 
@@ -531,6 +532,7 @@ Regras comuns a todos os perfis:
 | Destinação | `/destinacoes` | Registrar, editar e excluir destinação |
 | Relatórios | `/relatorios` | Gerar o PDF do lote e baixar os relatórios gerados |
 | Rotas | `/rotas` | Criar, editar e excluir rota; atribuir o motorista; ver o recolhimento |
+| Minha conta | `/minha-conta` | Trocar a própria senha |
 
 O gestor não abre **Usuários**.
 
@@ -543,6 +545,7 @@ O gestor não abre **Usuários**.
 | Equipamentos | `/equipamentos/novo` | Cadastrar equipamento num lote |
 | Listagem | `/equipamentos` | Consultar e editar equipamento |
 | Destinação | `/destinacoes` | Registrar, editar e excluir destinação |
+| Minha conta | `/minha-conta` | Trocar a própria senha |
 
 O técnico não abre **Agências**, **Usuários**, **Relatórios** nem **Rotas**.
 
@@ -555,6 +558,7 @@ O técnico não abre **Agências**, **Usuários**, **Relatórios** nem **Rotas**
 | Listagem | `/equipamentos` | Consultar |
 | Destinação | `/destinacoes` | Consultar |
 | Relatórios | `/relatorios` | Gerar o PDF do lote e baixar os relatórios gerados |
+| Minha conta | `/minha-conta` | Trocar a própria senha |
 
 O auditor não abre **Agências**, **Usuários**, **Equipamentos** (cadastro) nem **Rotas**. Nas telas de Lotes e Destinação o formulário ainda aparece para ele, mas a API recusa a gravação.
 
@@ -564,5 +568,6 @@ O auditor não abre **Agências**, **Usuários**, **Equipamentos** (cadastro) ne
 | --- | --- | --- |
 | Dashboard | `/` | Ver totais e quebras |
 | Rota do dia | `/rota-do-dia` | Escolher a data; ver as próprias rotas e paradas; marcar cada parada como recolhida, parcial ou não recolhida |
+| Minha conta | `/minha-conta` | Trocar a própria senha |
 
 O motorista só vê as rotas atribuídas a ele e só marca o recolhimento das paradas delas.
