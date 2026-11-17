@@ -1,8 +1,17 @@
-# Sprint 10 — Adequações e implantação (kit 1)
+# Sprint 10 — Adequações e implantação
 
 Milestone: **Sprint 10 - Adequações e implantação**. Período oficial: 13/11/2026 a 23/11/2026.
 
-Este é o kit 1 da sprint: segurança, credenciais e implantação (US22, US23 e US24). Identidade visual, usabilidade, localização e rotas vêm em kits separados, depois que estes arquivos estiverem na `main`.
+A sprint tem quatro kits de código, cada um montado sobre a `main` depois do anterior:
+
+- **kit 1**: segurança, credenciais e implantação (US22, US23 e US24). Na `main` desde 17/11/2026;
+- **kit 2**: API da localização e da rota (US27 e US28), seção “Kit 2” abaixo;
+- **kit 3**: identidade visual e usabilidade, só telas (US25 e US26), seção “Kit 3” abaixo;
+- **kit 4**: telas da localização, da rota e da exportação (US27, US28 e US29). Ainda não existe: é montado quando os kits 2 e 3 estiverem na `main`.
+
+A documentação (#187 a #191) está na seção “Documentação”, no fim.
+
+## Kit 1 — Segurança, credenciais e implantação
 
 Uma pasta = uma Task = uma branch = um PR. Cada Task tem **um** PBI pai. Copie a pasta para a raiz do EcoTrack: o `src/` da pasta vai para o `src/` do EcoTrack, e o `docs/` da #198 vai para o `docs/`.
 
@@ -80,6 +89,90 @@ Features: F22 ([#171](https://github.com/CAMPUSCEUB/EcoTrack/issues/171)) só na
 - Não copiar identidade visual, heurísticas de usabilidade, coordenadas, mapa ou exportação de rota: são os kits seguintes.
 - Não abrir o PR sem `Closes #<n>` no corpo e sem o template inteiro.
 
+## Kit 2 — API da localização e da rota
+
+Montado sobre a `main` em `58e1cfb` (kit 1 inteiro). Só API, só Davi. As issues já existem (#207 a #210). Não crie outra.
+
+| Ordem | Pasta | Issue | PBI (pai único) | Quem | Branch | Commit no EcoTrack | Depende de |
+|---|---|---|---|---|---|---|---|
+| 1 | [207-localizacao-agencia-api](207-localizacao-agencia-api/README.md) | [#207](https://github.com/CAMPUSCEUB/EcoTrack/issues/207) | [US27 #184](https://github.com/CAMPUSCEUB/EcoTrack/issues/184) | Davi | `feature/207-localizacao-agencia-api` | `feat: registra cep, endereco e coordenadas da agencia na api` | kit 1 |
+| 2 | [208-pontos-entrega-api](208-pontos-entrega-api/README.md) | [#208](https://github.com/CAMPUSCEUB/EcoTrack/issues/208) | [US27 #184](https://github.com/CAMPUSCEUB/EcoTrack/issues/184) | Davi | `feature/208-pontos-entrega-api` | `feat: cadastra os pontos de entrega na api` | #207 |
+| 3 | [209-origem-destino-rota-api](209-origem-destino-rota-api/README.md) | [#209](https://github.com/CAMPUSCEUB/EcoTrack/issues/209) | [US28 #185](https://github.com/CAMPUSCEUB/EcoTrack/issues/185) | Davi | `feature/209-origem-destino-rota-api` | `feat: adiciona origem, destino e coordenadas das paradas na rota` | #208 |
+| 4 | [210-sugerir-ordem-api](210-sugerir-ordem-api/README.md) | [#210](https://github.com/CAMPUSCEUB/EcoTrack/issues/210) | [US28 #185](https://github.com/CAMPUSCEUB/EcoTrack/issues/185) | Davi | `feature/210-sugerir-ordem-api` | `feat: sugere a ordem das paradas pelo vizinho mais proximo` | #209 |
+
+Quem mexe em cada arquivo (todos em `src/backend/src/`):
+
+| Arquivo | #207 | #208 | #209 | #210 |
+|---|---|---|---|---|
+| `config/schema.js` | altera | altera | altera | |
+| `utils/localizacao.js` | cria | | | |
+| `controllers/agencyController.js` | altera | | | |
+| `controllers/pontoEntregaController.js` | | cria | | |
+| `routes/pontoEntregaRoutes.js` | | cria | | |
+| `app.js` | | altera | | |
+| `controllers/rotaController.js` | | | altera | altera |
+| `routes/rotaRoutes.js` | | | | altera |
+
+As quatro vão **em série**: o `schema.js` passa pela #207, pela #208 e pela #209, e o `rotaController.js` pela #209 e pela #210. Cada pasta traz o arquivo da `main` com os blocos das Tasks anteriores mais o seu. Cada branch sai da `main` depois do merge da anterior.
+
+- **US27**: agência com CEP, endereço, latitude e longitude opcionais e validados; cadastro de pontos de entrega (depósito ou destinadora) com endereço e coordenadas obrigatórias, só para administrador e gestor.
+- **US28**: rota com origem e destino em pontos de entrega ativos; GET das rotas com os dois pontos e o endereço e as coordenadas de cada parada, inclusive a parada só com lote; `POST /rotas/sugerir-ordem` pelo vizinho mais próximo, sem gravar.
+
+Decisões do corte:
+
+- Coordenadas digitadas, sem geocodificação e sem serviço externo. Distância em linha reta (haversine), só para ordenar.
+- No PUT de agência e de rota, campo novo que não veio no corpo fica como está, para as telas de hoje não apagarem o que a API gravou.
+- Ponto de entrega usado numa rota não é excluído (409): é desativado.
+- O mapa não entra.
+
+Features: F27 ([#176](https://github.com/CAMPUSCEUB/EcoTrack/issues/176)) e F28 ([#177](https://github.com/CAMPUSCEUB/EcoTrack/issues/177)). US27 e F27 fecham só depois das telas do kit 4; o mesmo vale para US28 e F28.
+
+## Kit 3 — Identidade visual e usabilidade
+
+Montado sobre a `main` em `58e1cfb`. Só telas, só Eduardo. As issues já existem (#211 a #214). Não crie outra.
+
+| Ordem | Pasta | Issue | PBI (pai único) | Quem | Branch | Commit no EcoTrack | Depende de |
+|---|---|---|---|---|---|---|---|
+| 1 | [211-identidade-visual](211-identidade-visual/README.md) | [#211](https://github.com/CAMPUSCEUB/EcoTrack/issues/211) | [US25 #182](https://github.com/CAMPUSCEUB/EcoTrack/issues/182) | Eduardo | `feature/211-identidade-visual` | `feat: aplica a identidade visual da wert` | kit 1 |
+| 1 | [213-telas-por-perfil](213-telas-por-perfil/README.md) | [#213](https://github.com/CAMPUSCEUB/EcoTrack/issues/213) | [US26 #183](https://github.com/CAMPUSCEUB/EcoTrack/issues/183) | Eduardo | `feature/213-telas-por-perfil` | `feat: abre a rota do dia para o motorista e esconde a escrita do auditor` | kit 1 |
+| 1 | [214-telas-de-operacao](214-telas-de-operacao/README.md) | [#214](https://github.com/CAMPUSCEUB/EcoTrack/issues/214) | [US26 #183](https://github.com/CAMPUSCEUB/EcoTrack/issues/183) | Eduardo | `feature/214-telas-de-operacao` | `feat: ajusta a rota do dia, a exclusao de rota e o telefone da agencia` | kit 1 |
+| 2 | [212-layout-e-foco](212-layout-e-foco/README.md) | [#212](https://github.com/CAMPUSCEUB/EcoTrack/issues/212) | [US26 #183](https://github.com/CAMPUSCEUB/EcoTrack/issues/183) | Eduardo | `feature/212-layout-e-foco` | `feat: ajusta o menu entre 900 e 1100 px e deixa o foco visivel` | #211 |
+
+Quem mexe em cada arquivo (todos em `src/frontend/`):
+
+| Arquivo | #211 | #212 | #213 | #214 |
+|---|---|---|---|---|
+| `index.html` | altera | | | |
+| `src/styles/global.css` | altera | altera | | |
+| `src/styles/responsive.css` | | altera | | |
+| `src/components/Header.jsx` | | altera | | |
+| `src/auth/acesso.js` | | | altera | |
+| `src/pages/LoginPage.jsx` | | | altera | |
+| `src/App.jsx` | | | altera | |
+| `src/pages/LotsPage.jsx` | | | altera | |
+| `src/pages/DestinationsPage.jsx` | | | altera | |
+| `src/pages/DriverRoutePage.jsx` | | | | altera |
+| `src/pages/RoutesPage.jsx` | | | | altera |
+| `src/pages/AgenciesPage.jsx` | | | | altera |
+
+Só a #211 e a #212 dividem arquivo (`global.css`): a #212 vai depois do merge da #211, e a pasta #212 repete o bloco da #211. A #213 e a #214 não dividem arquivo com ninguém. O Eduardo faz um PR por vez; a ordem sugerida é #211, #212, #213, #214.
+
+- **US25**: cores, fontes e botões da Wert; login sem foto externa; modo escuro nos mesmos tons.
+- **US26**:
+  - menu legível entre 900 e 1100 px, foco do teclado visível e rótulos em A- e A+;
+  - motorista entra pela Rota do dia e o auditor vê Lotes e Destinação só para consulta;
+  - Rota do dia legível no modo escuro, confirmação antes de excluir rota e telefone no cadastro de agência.
+
+Decisões do corte:
+
+- O cinza de apoio e o texto dos botões verdes mudam de cor para manter o contraste. Os detalhes estão no README da #211.
+- Os estilos inline das sete páginas ficam como estão. Só os botões verdes passam a usar a cor da Wert, por um seletor no `global.css`.
+- O `!important` do modo escuro fica.
+- A confirmação ao desativar usuário fica de fora.
+- A #214 mostra o nome da agência da parada só com lote quando a API da #209 do kit 2 estiver na `main`. Antes disso, a tela continua como hoje.
+
+Features: F25 ([#174](https://github.com/CAMPUSCEUB/EcoTrack/issues/174)) só na #211; F26 ([#175](https://github.com/CAMPUSCEUB/EcoTrack/issues/175)) na #212, na #213 e na #214. O kit 4 vai mexer de novo em `AgenciesPage.jsx`, `RoutesPage.jsx` e `DriverRoutePage.jsx`, e parte dos arquivos da `main` depois do kit 3.
+
 ## Documentação
 
 Cinco Tasks de documentação, sem PBI pai, com o rótulo `documentation` e a mesma milestone. Todas atendem a Sprint Review 06; a #191 registra também o escopo da Sprint 10. As issues já existem (#187 a #191). Não crie outra.
@@ -92,7 +185,7 @@ Branch `docs/<n>-slug`, tipo **Documentação** no template do PR, `Closes #<n>`
 | 1 | [188-pdfs-para-markdown](188-pdfs-para-markdown/README.md) | [#188](https://github.com/CAMPUSCEUB/EcoTrack/issues/188) | Artur | `docs/188-pdfs-para-markdown` | `docs: converte a lean inception e os artefatos de pdf para markdown` | nada |
 | 2 | [189-backlog-e-sprints](189-backlog-e-sprints/README.md) | [#189](https://github.com/CAMPUSCEUB/EcoTrack/issues/189) | Artur | `docs/189-backlog-e-sprints` | `docs: ajusta backlog e sprints conforme a review 06` | #188 |
 | 2 | [190-storyboard-e-rotas](190-storyboard-e-rotas/README.md) | [#190](https://github.com/CAMPUSCEUB/EcoTrack/issues/190) | Artur | `docs/190-storyboard-e-rotas` | `docs: refaz o storyboard e detalha as rotas por perfil` | #188 |
-| 3 | [187-modelo-peter-chen](187-modelo-peter-chen/README.md) | [#187](https://github.com/CAMPUSCEUB/EcoTrack/issues/187) | Lucas | `docs/187-modelo-peter-chen` | `docs: ajusta o modelo de dados para a notacao de peter chen` | #191, #190 e a API de localização e de rota (US27, US28) |
+| 3 | [187-modelo-peter-chen](187-modelo-peter-chen/README.md) | [#187](https://github.com/CAMPUSCEUB/EcoTrack/issues/187) | Lucas | `docs/187-modelo-peter-chen` | `docs: ajusta o modelo de dados para a notacao de peter chen` | #191, #190 e as Tasks de schema do kit 2 (#207, #208 e #209) |
 
 Quem mexe em cada arquivo:
 
