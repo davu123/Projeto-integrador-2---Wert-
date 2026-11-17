@@ -8,7 +8,7 @@
 | Milestone | Sprint 10 - Adequações e implantação |
 | Branch | `feature/198-implantacao` |
 | Commit | `feat: adiciona a implantacao de producao com docker e https` |
-| Destino | arquivos novos em `src/` e `docs/implantacao.md` |
+| Destino | arquivos novos em `src/` e `docs/implantacao.md`, e o `src/backend/.dockerignore` |
 | Depende de | merge da #194 e da #195 |
 
 A issue #198 já existe. Não crie outra.
@@ -29,17 +29,23 @@ Depois de `git checkout main && git pull`, confira:
 
 - `src/backend/package.json` tem `helmet` e `express-rate-limit`, e `src/backend/package-lock.json` existe;
 - `src/backend/src/app.js` tem o `/health` com `SELECT 1` e não tem o `express.static` do `/uploads`;
-- `src/docker-compose.yml` lê o `JWT_SECRET` do `src/.env`.
+- `src/docker-compose.yml` lê o `JWT_SECRET` do `src/.env`;
+- `src/backend/.dockerignore` existe e ignora `.env` e `.env.*`, menos o `.env.example` (veio com a #194).
 
 Se faltar algum, a #194 ou a #195 ainda não entrou: pare e espere o merge.
 
 ## O que copiar
 
-Todos os arquivos são novos. Nenhum arquivo da `main` muda, e o `docker-compose.yml` de desenvolvimento continua igual.
+Um arquivo da `main` muda e os outros são novos. O `docker-compose.yml` de desenvolvimento continua igual.
+
+Altera (sobrescrever):
+
+- `src/backend/.dockerignore`: é o arquivo da `main` (`.env`, `.env.*`, `!.env.example`, da #194) mais `node_modules`, `uploads` e `*.log`, para a imagem de produção não levar dependências da máquina, PDFs nem logs.
+
+Cria:
 
 - `src/docker-compose.prod.yml`
 - `src/backend/dockerfile.prod`
-- `src/backend/.dockerignore`
 - `src/frontend/dockerfile.prod`
 - `src/frontend/.dockerignore`
 - `src/deploy/Caddyfile`

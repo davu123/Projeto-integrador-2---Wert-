@@ -4,7 +4,7 @@ services:
     container_name: ecotrack_sqlserver_app
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "Admin@12345"
+      SA_PASSWORD: ${DB_PASSWORD:?Defina DB_PASSWORD no arquivo src/.env}
     ports:
       - "1434:1433"
     volumes:
@@ -22,7 +22,7 @@ services:
     environment:
       PORT: 3000
       DB_USER: sa
-      DB_PASSWORD: Admin@12345
+      DB_PASSWORD: ${DB_PASSWORD:?Defina DB_PASSWORD no arquivo src/.env}
       DB_SERVER: db
       DB_PORT: 1433
       DB_DATABASE: EcoTrackWertApp

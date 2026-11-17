@@ -13,7 +13,7 @@
 
 A issue #195 já existe. Não crie outra.
 
-Começar **depois** do merge da #194. As duas alteram `userController.js`, `backend/.env.example` e `docker-compose.yml`, e os arquivos desta pasta já trazem o que a #194 colocou. Copiar antes do merge da #194 apaga o trabalho dela.
+Começar **depois** do merge da #194. As duas alteram `userController.js`, `backend/.env.example` e `docker-compose.yml`, e os arquivos desta pasta partem dos arquivos da `main` depois do #200 (o PR da #194), mais o bloco desta Task. Copiar antes do merge da #194 apaga o trabalho dela.
 
 A tela de download e a implantação esperam esta Task.
 
@@ -22,6 +22,7 @@ A tela de download e a implantação esperam esta Task.
 Depois de `git checkout main && git pull`, confira:
 
 - `src/backend/src/controllers/authController.js` exporta `login` e `alterarSenha` (a #194 está na `main`);
+- `src/docker-compose.yml` lê o `DB_PASSWORD` e o `JWT_SECRET` do `src/.env` (`${DB_PASSWORD:?Defina DB_PASSWORD no arquivo src/.env}`), sem senha escrita no arquivo;
 - `src/backend/src/app.js` tem `app.use('/uploads', express.static(...))`;
 - `src/backend/src/controllers/reportController.js` monta o PDF com `new PDFDocument` e tem a seção “Rota de coleta” da Sprint 09.
 
@@ -48,9 +49,9 @@ O `package.json` e o `package-lock.json` mudam e entram no mesmo commit. A image
 - `src/backend/src/controllers/destinacaoController.js`
 - `src/backend/src/controllers/equipmentController.js`
 - `src/backend/src/controllers/loteController.js`
-- `src/backend/src/controllers/userController.js` (repete o bloco da #194)
-- `src/backend/.env.example` (repete o bloco da #194)
-- `src/docker-compose.yml` (repete o bloco da #194)
+- `src/backend/src/controllers/userController.js` (parte do arquivo da `main` depois do #200)
+- `src/backend/.env.example` (parte do arquivo da `main` depois do #200; acrescenta `CORS_ORIGIN`, `TRUST_PROXY` e `LOGIN_RATE_LIMIT`)
+- `src/docker-compose.yml` (parte do arquivo da `main` depois do #200; acrescenta só o `CORS_ORIGIN`)
 
 O que muda:
 
@@ -67,12 +68,16 @@ Sem tela nesta Task: o botão de download que usa a rota nova é outra Task. At�
 
 ## Subir no Docker depois do merge
 
+O `src/.env` precisa ter o `DB_PASSWORD` e o `JWT_SECRET` preenchidos (modelo em `src/.env.example`). Sem eles o `docker compose` para com aviso.
+
 Na primeira subida depois desta Task, use `-V`. O container guarda o `node_modules` num volume, e sem `-V` o helmet não aparece lá:
 
 ```bash
 cd src
 docker compose up --build -V
 ```
+
+Se o Docker guarda os dados num HD, a primeira subida com banco novo pode esgotar as tentativas de conexão da API enquanto o SQL Server inicia. Aumente o `DB_SCHEMA_ATTEMPTS` no `src/.env` (padrão 20) ou rode `docker restart ecotrack_backend_app` depois que o banco subir.
 
 Abra a tela em `http://localhost:5174`. Por `http://127.0.0.1:5174` o CORS bloqueia, a menos que essa origem entre no `CORS_ORIGIN` do `src/.env`.
 

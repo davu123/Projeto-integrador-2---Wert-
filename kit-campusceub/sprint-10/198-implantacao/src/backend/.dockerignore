@@ -1,4 +1,9 @@
+# Credenciais locais não devem fazer parte da imagem.
+.env
+.env.*
+!.env.example
+
+# Dependências, PDFs gerados e logs também ficam fora da imagem.
 node_modules
 uploads
-.env
 *.log

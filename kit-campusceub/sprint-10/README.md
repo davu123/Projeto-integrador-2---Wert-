@@ -46,14 +46,15 @@ Quem mexe em cada arquivo (todos dentro de `src/`, menos o guia):
 | `frontend/src/services/api.js` | | | | altera | |
 | `frontend/src/services/reportsService.js` | | | | altera | |
 | `frontend/src/pages/Reports.jsx` | | | | altera | |
-| `docker-compose.prod.yml`, `backend/dockerfile.prod`, `frontend/dockerfile.prod`, os dois `.dockerignore`, `deploy/Caddyfile`, `deploy/.env.example` | | | | | cria |
+| `backend/.dockerignore` | cria (PR #200) | | | | altera |
+| `docker-compose.prod.yml`, `backend/dockerfile.prod`, `frontend/dockerfile.prod`, `frontend/.dockerignore`, `deploy/Caddyfile`, `deploy/.env.example` | | | | | cria |
 | `docs/implantacao.md` (raiz do repositório) | | | | | cria |
 
-A #194 e a #195 dividem três arquivos e vão em série. Os arquivos da pasta #195 já trazem o bloco da #194, e copiar a #195 antes do merge da #194 apaga esse trabalho.
+A #194 e a #195 dividem três arquivos e vão em série. Os arquivos da pasta #195 partem dos arquivos da `main` depois do #200 (o PR da #194), e copiar a #195 antes do merge da #194 apaga esse trabalho.
 
 Depois do merge da #194, a #195 e a #196 vão em paralelo: não dividem arquivo.
 
-A #197 espera a #195, porque a tela chama a rota de download nova. A #198 espera a #194 e a #195, porque a imagem de produção precisa das dependências e das variáveis delas. A #197 e a #198 não dividem arquivo e podem ir juntas.
+A #197 espera a #195, porque a tela chama a rota de download nova. A #198 espera a #194 e a #195, porque a imagem de produção precisa das dependências e das variáveis delas. A #197 e a #198 não dividem arquivo e podem ir juntas. A #198 altera o `src/backend/.dockerignore` que a #194 criou: a pasta traz o arquivo da `main` mais as linhas novas.
 
 O Davi faz a #195 numa branch nova saindo da `main` depois do merge da #194, não em cima da branch da #194.
 
