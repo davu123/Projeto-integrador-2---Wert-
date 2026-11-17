@@ -36,6 +36,9 @@ function lerNumero(valor) {
 // Latitude e longitude em graus decimais (ponto como separador), juntas ou nenhuma.
 // Guardadas com 6 casas decimais, cerca de 10 cm.
 function lerCoordenadas(latitude, longitude, obrigatorio = false) {
+  if ((latitude === undefined) !== (longitude === undefined)) {
+    return { erro: 'Informe a latitude e a longitude juntas, ou deixe as duas em branco.' };
+  }
   if (vazio(latitude) && vazio(longitude)) {
     return obrigatorio
       ? { erro: 'Informe a latitude e a longitude.' }

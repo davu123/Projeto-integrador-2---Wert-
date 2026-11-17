@@ -32,14 +32,14 @@ Se estiver diferente, pare e avise o Code Review.
 
 Os dois primeiros são os da `main` mais o bloco novo:
 
-- **`schema.js`**: depois do `CREATE TABLE dbo.agencia`, quatro colunas opcionais — `cep CHAR(8)`, `endereco NVARCHAR(200)`, `latitude DECIMAL(9,6)` e `longitude DECIMAL(9,6)` — e duas restrições: `CK_agencia_cep` (8 dígitos) e `CK_agencia_coordenadas` (as duas juntas ou nenhuma; latitude de -90 a 90, longitude de -180 a 180). Cada bloco confere se já existe antes de criar, então a subida em banco que já tem dados não perde nada.
+- **`schema.js`**: depois do `CREATE TABLE dbo.agencia`, quatro colunas opcionais — `cep CHAR(8)`, `endereco NVARCHAR(200)`, `latitude DECIMAL(9,6)` e `longitude DECIMAL(9,6)` — e duas restrições: `CK_agencia_cep` (8 dígitos) e `CK_agencia_coordenadas` (as duas juntas ou nenhuma; latitude de -90 a 90, longitude de -180 a 180; a restrição exige `IS NOT NULL` nas duas no ramo com valores, porque uma comparação com `NULL` fica desconhecida e o CHECK deixaria passar um par incompleto). Cada bloco confere se já existe antes de criar, então a subida em banco que já tem dados não perde nada.
 - **`agencyController.js`**: o GET devolve os quatro campos; o POST e o PUT aceitam os quatro e validam com o `utils/localizacao.js`.
 
 O novo:
 
-- **`utils/localizacao.js`**: `lerCep` (aceita `70040-010`, `70.040-010` ou `70040010` e guarda só os 8 dígitos), `lerEndereco` (até 200 caracteres) e `lerCoordenadas` (número com ponto decimal, as duas juntas, arredondadas em 6 casas). A Task seguinte usa o mesmo arquivo.
+- **`utils/localizacao.js`**: `lerCep` (aceita `70040-010`, `70.040-010` ou `70040010` e guarda só os 8 dígitos), `lerEndereco` (até 200 caracteres) e `lerCoordenadas` (número com ponto decimal, as duas juntas, arredondadas em 6 casas; mandar só uma das duas, inclusive `null`, é 400). A Task seguinte usa o mesmo arquivo.
 
-Regra do PUT: campo que **não veio** no corpo fica como está. A tela de agências de hoje não manda CEP, endereço nem coordenadas, e salvar pela tela não apaga o que foi cadastrado pela API. Para apagar as coordenadas, o corpo manda `"latitude": null, "longitude": null`.
+Regra do PUT: campo que **não veio** no corpo fica como está. A tela de agências de hoje não manda CEP, endereço nem coordenadas, e salvar pela tela não apaga o que foi cadastrado pela API. Para apagar as coordenadas, o corpo manda `"latitude": null, "longitude": null`, as duas juntas; só uma delas, mesmo `null`, devolve 400 e não apaga o par.
 
 Fora desta Task: busca do endereço pelo CEP, geocodificação automática, mapa e campos na tela de agências (kit 4).
 
@@ -61,8 +61,9 @@ Com o `docker compose up --build`, login de administrador ou gestor e o token no
 
 - `POST /agencias` com `"cep": "70.040-010"`, `"endereco": "SBS Quadra 1"`, `"latitude": -15.7975`, `"longitude": -47.8919` → 201, e o `GET /agencias` devolve `cep` `70040010` e as coordenadas.
 - `POST /agencias` sem os quatro campos → 201, como antes.
-- Só `latitude` → 400 “Informe a latitude e a longitude juntas, ou deixe as duas em branco.”.
+- Só `latitude` (ou só `longitude`, mesmo `null`) → 400 “Informe a latitude e a longitude juntas, ou deixe as duas em branco.”, no POST e no PUT.
 - `latitude` 95 → 400. `"latitude": "-15,79"` (vírgula) → 400. CEP com 4 dígitos → 400.
 - Editar a agência pela tela (nome, por exemplo) → o `GET` continua com CEP e coordenadas.
-- `PUT /agencias/:id` com `"latitude": null, "longitude": null` → as duas ficam nulas.
+- `PUT /agencias/:id` com `"latitude": null, "longitude": null` → as duas ficam nulas, e CEP e endereço continuam.
+- Direto no banco, `UPDATE dbo.agencia SET latitude = NULL WHERE id = ...` em agência com coordenadas → a restrição recusa o par incompleto.
 - `docker compose down` e `up` sem `-v` → os dados continuam e a API sobe sem erro de schema.

@@ -263,7 +263,8 @@ async function ensureDatabaseSchema() {
           ALTER TABLE dbo.agencia WITH CHECK ADD CONSTRAINT CK_agencia_coordenadas
             CHECK (
               (latitude IS NULL AND longitude IS NULL)
-              OR (latitude BETWEEN -90 AND 90 AND longitude BETWEEN -180 AND 180)
+              OR (latitude IS NOT NULL AND longitude IS NOT NULL
+                AND latitude BETWEEN -90 AND 90 AND longitude BETWEEN -180 AND 180)
             );
         `,
 

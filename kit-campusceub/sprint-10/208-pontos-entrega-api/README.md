@@ -20,7 +20,7 @@ Começar **depois** do merge da #207, numa branch nova saindo da `main`. O `sche
 Depois de `git checkout main && git pull`, confira:
 
 - `src/backend/src/utils/localizacao.js` existe (a #207 está na `main`);
-- `src/backend/src/config/schema.js` tem `CK_agencia_coordenadas`.
+- `src/backend/src/config/schema.js` tem `CK_agencia_coordenadas` com `latitude IS NOT NULL AND longitude IS NOT NULL` no ramo com valores, e `lerCoordenadas` recusa só uma das duas coordenadas (é o que a #207 mergeou; o `schema.js` desta pasta já parte dele).
 
 Se faltar, pare e espere o merge da #207.
 
