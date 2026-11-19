@@ -1,6 +1,8 @@
 # Contexto do EcoTrack no laptop (20 a 22/11/2026)
 
-Pacote para o Lucas revisar PRs do EcoTrack no laptop, que não tem o histórico das conversas do desktop. Montado em 19/11/2026, com a `origin/main` do EcoTrack em `14a9368`.
+Pacote para o Lucas revisar PRs do EcoTrack no laptop, que não tem o histórico das conversas do desktop. Montado em 19/11/2026 e atualizado no mesmo dia, com a `origin/main` do EcoTrack em `a3a9e6f`.
+
+Com o Remote Control ligado, as conversas do desktop (a principal do repositório de trabalho e a da Hostinger) podem ser usadas de fora enquanto o PC estiver ligado e sem suspender. Este pacote é para quando o desktop não estiver acessível: revisar PRs direto no laptop.
 
 | Arquivo | Para que serve |
 | --- | --- |
@@ -96,16 +98,16 @@ Comece me dizendo quais PRs estão abertos no EcoTrack agora e em que estado cad
 | #208 pontos de entrega na API | Davi | já (a #207 está na `main`) | Bloqueado da #209 → Não; conferir a pasta 209 contra a `main` |
 | #209 origem, destino e coordenadas das paradas | Davi | merge da #208 | Bloqueado da #210 → Não; conferir a pasta 210 |
 | #210 sugerir a ordem das paradas | Davi | merge da #209 | último do kit 2 |
-| #211 identidade visual | Eduardo | já | Bloqueado da #212 → Não |
-| #212 menu e foco | Eduardo | merge da #211 | último do kit 3 |
-| #213 telas por perfil | Eduardo | já | — |
+| #211 identidade visual | Eduardo | na `main` (PR #216, 19/11) | Bloqueado da #212 já está Não |
+| #212 menu e foco | Eduardo | já | último do kit 3 |
+| #213 telas por perfil | Eduardo | na `main` (PR #217, 19/11) | — |
 | #214 telas de operação | Eduardo | já | — |
 | #191 requisitos, README e arquitetura | Artur | já | — |
 | #188 PDFs para Markdown | Artur | já | Bloqueado da #189 e da #190 → Não |
 | #189 e #190 | Artur | merge da #188 | — |
 | #187 modelo de Peter Chen | Lucas | #190, #191 e as APIs #207 a #209 | fica para a volta |
 
-A #211, a #213 e a #214 não dividem arquivo e podem ter PR aberto ao mesmo tempo, cada uma com branch saída da `main`.
+A #212 e a #214 não dividem arquivo e podem ter PR aberto ao mesmo tempo, cada uma com branch saída da `main` atual (com a #211 e a #213). O #216 e o #217 entraram iguais às pastas 211 e 213, então a pasta 212 continua valendo sobre a `main`.
 
 Pontos de atenção nas reviews:
 
@@ -127,10 +129,15 @@ item=$(gh api graphql -f query="{repository(owner:\"CAMPUSCEUB\",name:\"EcoTrack
 gh api graphql -f query="mutation{updateProjectV2ItemFieldValue(input:{projectId:\"PVT_kwDOB5WPHc4BgF62\",itemId:\"$item\",fieldId:\"PVTSSF_lADOB5WPHc4BgF62zhhu_ps\",value:{singleSelectOptionId:\"45a23eb1\"}}){projectV2Item{id}}}"
 ```
 
-## 6. O que fica para a volta (domingo, 22/11)
+## 6. Publicar no site
+
+O site não atualiza sozinho com o merge. A publicação é feita pela conversa da Hostinger no desktop, por Remote Control (a chave SSH da VPS só existe lá; o PC precisa estar ligado e sem suspender). Quando um conjunto de Tasks estiver na `main`, peça o redeploy lá. No laptop, não mexa na VPS.
+
+No ar em 19/11/2026: o pacote `ecotrack-54f39d2` (kit 1). Ainda fora do ar: #207, #211, #213 e os docs #205 e #206. A próxima publicação leva tudo de uma vez.
+
+## 7. O que fica para a volta (domingo, 22/11)
 
 - O kit 4 (telas da localização, da rota, da exportação e o mapa com Leaflet e OpenStreetMap) só é montado no desktop.
 - A mudança visual da página Horizonte, que você mesmo implementa.
-- O redeploy na VPS: a chave SSH do agente só existe no desktop.
 - A #187.
 - Ler o `registro-laptop.md` na conversa principal do desktop e atualizar os dois `AGENTS.md`.
