@@ -59,7 +59,7 @@ Metas por sprint: ver [sprints/README.md](../sprints/README.md) e as `milestones
 | RF26 | Cada usuário troca a própria senha informando a senha atual; a senha nova tem no mínimo 8 caracteres. O administrador inicial é criado com a senha definida na instalação, sem senha padrão no código, e a tela de login abre vazia. | F22 | #171 / #179 |
 | RF27 | Agência com CEP, endereço, latitude e longitude, além do telefone editável na tela. Coordenadas validadas por faixa. Só administrador e gestor alteram. | F27 | #176 / #184 |
 | RF28 | Cadastrar pontos de entrega (depósito ou destinadora) com endereço e coordenadas. | F27 | #176 / #184 |
-| RF29 | Rota com ponto de origem e de destino. O sistema sugere a ordem das paradas pela distância, e o gestor ajusta antes de salvar. Parada sem coordenada fica no fim, com aviso. Rota já começada continua travada. | F28 | #177 / #185 |
+| RF29 | Rota com ponto de origem e de destino. O sistema sugere a ordem das paradas pela distância, e o gestor ajusta antes de salvar. Parada sem coordenada fica no fim, com aviso. A rota aparece num mapa (OpenStreetMap) com a origem, as paradas na ordem e o destino. Rota já começada continua travada. | F28 | #177 / #185 |
 | RF30 | Exportar a rota para o Google Maps (dividida em trechos quando passar do limite de paradas), para o Waze (por parada) e em arquivo GPX. | F29 | #178 / #186 |
 | RF31 | O motorista abre a navegação a partir da rota do dia, inclusive o Waze para a próxima parada pendente. O gestor tem a mesma exportação na tela de rotas. | F29 | #178 / #186 |
 

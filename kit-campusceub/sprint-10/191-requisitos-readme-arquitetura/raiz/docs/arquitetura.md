@@ -102,7 +102,7 @@ O menu lateral é o índice permanente. Cada perfil vê só as telas que pode ab
 Mudanças de navegação da Sprint 10:
 
 - **Minha conta** (`/minha-conta`), para todos os perfis: troca da própria senha (RF26).
-- **Rotas** e **Rota do dia**: origem, destino e ordem sugerida das paradas (RF29) e exportação para Google Maps, Waze e GPX (RF30, RF31).
+- **Rotas** e **Rota do dia**: origem, destino, ordem sugerida das paradas e mapa da rota com Leaflet e OpenStreetMap (RF29) e exportação para Google Maps, Waze e GPX (RF30, RF31).
 - Cadastro dos pontos de entrega e da localização das agências, para administrador e gestor (RF27, RF28).
 - O motorista entra direto na Rota do dia depois do login (RNF17).
 
