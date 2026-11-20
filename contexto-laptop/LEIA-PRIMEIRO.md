@@ -105,7 +105,7 @@ Comece me dizendo quais PRs estão abertos no EcoTrack agora e em que estado cad
 | #189 e #190 | Artur | merge da #188 | — |
 | #187 modelo de Peter Chen | Lucas | #190, #191 e as APIs #207 a #209 | fica para a volta |
 
-Os kits 2 e 3 estão completos na `main`. O que pode chegar até domingo são os PRs de documentação do Artur: o #221 (#188) está com pedido de mudança (6 links quebrados e 3 arquivos que ainda falam de PDF), e a #191 já pode ir. A #189 e a #190 esperam o merge da #188. Os pais US25 #182, F25 #174, US26 #183, F26 #175 e o épico E6 #169 podem ser fechados pela rotina quando você pedir.
+Os kits 2 e 3 estão completos na `main`. O que pode chegar até domingo são os PRs de documentação do Artur: o #221 (#188) está com pedido de mudança (6 links quebrados e 3 arquivos que ainda falam de PDF), e a #191 já pode ir. A #189 e a #190 esperam o merge da #188. Os pais US25 #182, F25 #174, US26 #183, F26 #175 e o épico E6 #169 já foram fechados (19/11).
 
 Pontos de atenção nas reviews:
 
