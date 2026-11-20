@@ -1,0 +1,40 @@
+/* Mapa da rota (RouteMap.jsx). Fica fora do global.css. */
+.mapa-rota { display: grid; gap: 0.6rem; }
+
+.mapa-rota-mapa {
+  height: 360px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  z-index: 0;
+}
+
+.mapa-rota-legenda,
+.mapa-rota-vazio { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+.mapa-rota-aviso {
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  background: #fef3c7;
+  color: #78350f;
+}
+
+.mapa-rota-marcador {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-title, sans-serif);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.mapa-rota-marcador--parada { background: #45b892; color: #0d3538; }
+.mapa-rota-marcador--feita { background: #9ca3af; color: #1f2937; }
+.mapa-rota-marcador--origem { background: #0d3538; color: #ffffff; }
+.mapa-rota-marcador--destino { background: #0d3538; color: #ffffff; border-radius: 6px; }
+
+@media (max-width: 640px) {
+  .mapa-rota-mapa { height: 280px; }
+}

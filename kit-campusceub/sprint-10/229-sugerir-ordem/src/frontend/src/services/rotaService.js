@@ -1,0 +1,13 @@
+import api from './api';
+
+export const listarRotas = () => api.get('/rotas');
+export const buscarRotaPorId = (id) => api.get(`/rotas/${id}`);
+export const criarRota = (data) => api.post('/rotas', data);
+export const atualizarRota = (id, data) => api.put(`/rotas/${id}`, data);
+export const excluirRota = (id) => api.delete(`/rotas/${id}`);
+// Só sugere: a ordem é gravada quando a rota é salva.
+export const sugerirOrdem = (data) => api.post('/rotas/sugerir-ordem', data);
+export const atribuirMotorista = (id, motorista_id) => api.patch(`/rotas/${id}/motorista`, { motorista_id });
+export const listarMinhasRotas = (data) => api.get(`/rotas/minha?data=${encodeURIComponent(data)}`);
+export const marcarRecolhimento = (paradaId, status_recolhimento) =>
+  api.patch(`/rotas/paradas/${paradaId}/recolhimento`, { status_recolhimento });

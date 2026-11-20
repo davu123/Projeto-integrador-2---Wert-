@@ -37,11 +37,11 @@ Os três são os da `main` mais o bloco novo.
   - **Modo escuro**: o cartão, o campo de data e a tabela usam as cores do tema (`var(--panel)`, `var(--text)`, `var(--border)`). Antes o cartão ficava branco com texto claro, ilegível.
   - Os botões de status não marcados ficam com o fundo do tema e a borda na cor do status.
   - O rótulo **Data** fica ligado ao campo (`htmlFor`).
-  - **Parada só com lote**: mostra o `agencia_nome` que a API devolver. Hoje a API não devolve a agência dessa parada, e a tela mostra só “Lote #7”, como antes. Quando a Task de origem e destino da rota (kit 2) estiver na `main`, a mesma tela passa a mostrar “Agência Norte · Lote #7” sem outra mudança.
+  - **Parada só com lote**: mostra o `agencia_nome` que a API devolve. Com a #209 na `main`, o `GET /rotas/minha` traz a agência do lote nessa parada, e a tela mostra “Agência Norte · Lote #7”. Sem a agência na resposta, mostraria só “Lote #7”.
 - **`RoutesPage.jsx`**: **Excluir** pede confirmação (“Excluir a rota #12? As paradas dela também serão excluídas.”). Antes excluía no clique. Heurística de Nielsen: prevenção de erro.
 - **`AgenciesPage.jsx`**: campo **Telefone** no formulário (até 20 caracteres) e coluna na lista. Antes, editar uma agência pela tela apagava o telefone, porque o PUT da API grava `null` quando o campo não vem.
 
-Fora desta Task: CEP, endereço e coordenadas no formulário de agências, origem e destino na tela de rotas, e mapa. Isso vem no kit 4, depois do kit 2.
+Fora desta Task: CEP, endereço e coordenadas no formulário de agências, origem e destino na tela de rotas, e mapa. Isso vem no kit 4 (seção “Kit 4” do README da sprint).
 
 ## PR
 

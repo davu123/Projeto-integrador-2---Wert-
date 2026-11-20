@@ -7,7 +7,7 @@ A sprint tem quatro kits de código, cada um montado sobre a `main` depois do an
 - **kit 1**: segurança, credenciais e implantação (US22, US23 e US24). Na `main` desde 17/11/2026;
 - **kit 2**: API da localização e da rota (US27 e US28), seção “Kit 2” abaixo;
 - **kit 3**: identidade visual e usabilidade, só telas (US25 e US26), seção “Kit 3” abaixo;
-- **kit 4**: telas da localização, da rota e da exportação (US27, US28 e US29). Ainda não existe: é montado quando os kits 2 e 3 estiverem na `main`.
+- **kit 4**: telas da localização, da rota com mapa e da exportação (US27, US28 e US29), seção “Kit 4” abaixo.
 
 A documentação (#187 a #191) está na seção “Documentação”, no fim.
 
@@ -169,9 +169,69 @@ Decisões do corte:
 - Os estilos inline das sete páginas ficam como estão. Só os botões verdes passam a usar a cor da Wert, por um seletor no `global.css`.
 - O `!important` do modo escuro fica.
 - A confirmação ao desativar usuário fica de fora.
-- A #214 mostra o nome da agência da parada só com lote quando a API da #209 do kit 2 estiver na `main`. Antes disso, a tela continua como hoje.
+- A #214 mostra o nome da agência da parada só com lote, que a API devolve desde a #209.
 
 Features: F25 ([#174](https://github.com/CAMPUSCEUB/EcoTrack/issues/174)) só na #211; F26 ([#175](https://github.com/CAMPUSCEUB/EcoTrack/issues/175)) na #212, na #213 e na #214. O kit 4 vai mexer de novo em `AgenciesPage.jsx`, `RoutesPage.jsx` e `DriverRoutePage.jsx`, e parte dos arquivos da `main` depois do kit 3.
+
+## Kit 4 — Telas da localização, da rota com mapa e da exportação
+
+Montado sobre a `main` em `ffd9a49` (kits 2 e 3 inteiros). Só telas, só Eduardo. A API não muda: tudo o que as telas usam já está na `main`. Issues #224 a #230, criadas em 20/11/2026 com pai, responsável, milestone, Project e `blocked by`.
+
+| Ordem | Pasta | PBI (pai único) | Quem | Branch | Commit no EcoTrack | Depende de |
+|---|---|---|---|---|---|---|
+| 1 | [224-mapa-da-rota](224-mapa-da-rota/README.md) | [US28 #185](https://github.com/CAMPUSCEUB/EcoTrack/issues/185) | Eduardo | `feature/224-mapa-da-rota` | `feat: mostra a rota no mapa` | kits 2 e 3 |
+| 1 | [225-localizacao-agencias](225-localizacao-agencias/README.md) | [US27 #184](https://github.com/CAMPUSCEUB/EcoTrack/issues/184) | Eduardo | `feature/225-localizacao-agencias` | `feat: adiciona cep, endereco e coordenadas na tela de agencias` | kits 2 e 3 |
+| 1 | [226-pontos-de-entrega](226-pontos-de-entrega/README.md) | [US27 #184](https://github.com/CAMPUSCEUB/EcoTrack/issues/184) | Eduardo | `feature/226-pontos-de-entrega` | `feat: cria a tela de pontos de entrega` | kits 2 e 3 |
+| 2 | [227-google-maps-e-waze](227-google-maps-e-waze/README.md) | [US29 #186](https://github.com/CAMPUSCEUB/EcoTrack/issues/186) | Eduardo | `feature/227-google-maps-e-waze` | `feat: abre a rota no google maps e no waze` | #224 |
+| 2 | [228-origem-destino-rota](228-origem-destino-rota/README.md) | [US28 #185](https://github.com/CAMPUSCEUB/EcoTrack/issues/185) | Eduardo | `feature/228-origem-destino-rota` | `feat: escolhe a origem e o destino na tela de rotas` | #224 e #226 |
+| 3 | [229-sugerir-ordem](229-sugerir-ordem/README.md) | [US28 #185](https://github.com/CAMPUSCEUB/EcoTrack/issues/185) | Eduardo | `feature/229-sugerir-ordem` | `feat: sugere a ordem das paradas na tela de rotas` | #228 |
+| 3 | [230-gpx-da-rota](230-gpx-da-rota/README.md) | [US29 #186](https://github.com/CAMPUSCEUB/EcoTrack/issues/186) | Eduardo | `feature/230-gpx-da-rota` | `feat: baixa a rota em gpx` | #227 |
+
+Quem mexe em cada arquivo (todos em `src/frontend/`):
+
+| Arquivo | #224 | #225 | #226 | #227 | #228 | #229 | #230 |
+|---|---|---|---|---|---|---|---|
+| `package.json`, `package-lock.json` | altera | | | | | | |
+| `src/components/RouteMap.jsx`, `RouteMap.css` | cria | | | | | | |
+| `src/components/RouteDetails.jsx` | cria | | | altera | | | |
+| `src/components/RouteNavigation.jsx` | | | | cria | | | altera |
+| `src/utils/navegacao.js` | | | | cria | | | |
+| `src/utils/gpx.js` | | | | | | | cria |
+| `src/pages/RoutesPage.jsx` | altera | | | | altera | altera | |
+| `src/pages/DriverRoutePage.jsx` | altera | | | altera | | | |
+| `src/pages/AgenciesPage.jsx` | | altera | | | | | |
+| `src/pages/DeliveryPointsPage.jsx` | | | cria | | | | |
+| `src/services/pontoEntregaService.js` | | | cria | | | | |
+| `src/services/api.js` | | | altera | | | | |
+| `src/auth/acesso.js` | | | altera | | | | |
+| `src/App.jsx` | | | altera | | | | |
+| `src/services/rotaService.js` | | | | | | altera | |
+
+- #224, #225 e #226 não dividem arquivo e podem ir em paralelo.
+- Depois do merge da #224, a #227 pode ir em paralelo com a #228 (que espera também a #226). A #229 vai depois da #228, e a #230 depois da #227.
+- Quem divide arquivo vai em série, e a pasta seguinte repete o bloco da anterior: `RoutesPage.jsx` (#224 → #228 → #229), `DriverRoutePage.jsx` e `RouteDetails.jsx` (#224 → #227), `RouteNavigation.jsx` (#227 → #230). A #228 também importa o serviço criado na #226.
+- Cada branch sai da `main` depois do merge da dependência, nunca da branch anterior.
+
+Ordem sugerida para o Eduardo, um PR por vez: **#224 → #225 → #226 → #227 → #228 → #229 → #230**. O mapa vem primeiro; a #225 logo depois, porque sem coordenadas cadastradas o mapa fica vazio.
+
+Se a sprint apertar, sai primeiro a **#230** (GPX) e depois a **#229** (sugerir ordem). O mapa (#224) não sai. Sem a #229, a ordem continua manual; sem a #230, a exportação fica com o Google Maps e o Waze.
+
+- **US27**: CEP, endereço e coordenadas na tela de Agências; tela de pontos de entrega para administrador e gestor.
+- **US28**: mapa da rota em Rotas e na Rota do dia; origem e destino no formulário; sugestão da ordem aplicada na tela, ajustável antes de gravar.
+- **US29**: links do Google Maps e do Waze; GPX.
+
+Decisões do corte:
+
+- Mapa com Leaflet 1.9 e `react-leaflet` 4.x (o frontend é React 18) sobre o OpenStreetMap, sem chave de API. A atribuição do OpenStreetMap fica visível. O Caddy de produção não tem CSP, e os tiles carregam.
+- O mapa liga os pontos em linha reta. O caminho pelas ruas é dos aplicativos de navegação.
+- Google Maps com até 9 paradas intermediárias por link, em trechos encadeados. Waze com um destino por link: o próximo destino e um link por parada.
+- O GPX só leva pontos com coordenadas.
+- A sugestão de ordem não grava: a rota é gravada em Criar ou Atualizar. O `agencia_id` que a API devolve na parada só com lote não é copiado.
+- CSS do mapa em `RouteMap.css`. O kit não altera `global.css`, `responsive.css`, `Sidebar.jsx`, `Header.jsx`, `Layout.jsx`, `LoginPage.jsx`, `DashboardPage.jsx` nem `LotsPage.jsx`. Esses arquivos são do redesenho de layout do Lucas, que anda em paralelo.
+- O item novo do menu é `/pontos-entrega`, depois de Rotas, para administrador e gestor.
+- Sem geocodificação: endereço e coordenadas são digitados.
+
+Features: F27 ([#176](https://github.com/CAMPUSCEUB/EcoTrack/issues/176)), F28 ([#177](https://github.com/CAMPUSCEUB/EcoTrack/issues/177)) e F29 ([#178](https://github.com/CAMPUSCEUB/EcoTrack/issues/178)). US27 e F27 fecham depois da #225 e da #226; US28 e F28 depois da #224, da #228 e da #229 (ou só da #224 e da #228, se a #229 sair do corte); US29 e F29 depois da #227 e da #230 (ou só da #227). O épico E7 ([#170](https://github.com/CAMPUSCEUB/EcoTrack/issues/170)) fecha com as três Features.
 
 ## Documentação
 
